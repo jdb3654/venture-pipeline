@@ -1,6 +1,6 @@
 """Render one PNG per sheet from the built workbooks, for listing images.
 
-Run after build.py and a LibreOffice recalc: python3 preview.py <soffice.py path> <out dir>
+Run after build.py and a LibreOffice recalc: python3 preview.py <soffice.py path> <out dir> [dpi, default 110]
 Works on copies, so the files in dist/ are left untouched.
 """
 import shutil
@@ -20,6 +20,7 @@ AREAS = {
 }
 
 soffice, out = sys.argv[1], Path(sys.argv[2])
+dpi = sys.argv[3] if len(sys.argv) > 3 else "110"
 out.mkdir(parents=True, exist_ok=True)
 dist = Path(__file__).parent / "dist"
 for name, areas in AREAS.items():
@@ -35,5 +36,5 @@ for name, areas in AREAS.items():
     subprocess.run([sys.executable, soffice, "--headless", "--convert-to", "pdf", "--outdir", str(out), str(copy)],
                    check=True, capture_output=True)
     pdf = copy.with_suffix(".pdf")
-    subprocess.run(["pdftoppm", "-png", "-r", "110", str(pdf), str(out / copy.stem)], check=True)
+    subprocess.run(["pdftoppm", "-png", "-r", dpi, str(pdf), str(out / copy.stem)], check=True)
     print("rendered", name)

@@ -7,6 +7,7 @@ Product assets for [the manufacturing templates opportunity](../../opportunities
 - `preview.py`: renders one PNG per sheet for listing images.
 - `previews/`: current screenshots.
 - `LISTING.md`: Etsy listing copy, prices and tags.
+- `guides/`: step-by-step PDF guides for buyers, one per template plus a combined bundle guide. Built by `build_guides.py` from screenshots made with `preview.py ... 220`. Rebuild them whenever a workbook changes; every limit, column and message in them comes from `build.py`.
 
 ## Rebuild and check
 

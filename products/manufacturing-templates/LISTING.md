@@ -52,6 +52,7 @@ PREVENTIVE MAINTENANCE SCHEDULE
 
 WHAT YOU GET
 - 3 Excel (.xlsx) files, each with a "How to use" sheet and example rows
+- A step-by-step PDF guide with screenshots
 - No macros, no add-ins, nothing to install
 - Instant download
 
@@ -85,6 +86,7 @@ WHAT IT DOES
 
 WHAT YOU GET
 - 1 Excel (.xlsx) file with a "How to use" sheet and example rows
+- A step-by-step PDF guide with screenshots
 - No macros, no add-ins, nothing to install
 - Instant download
 
@@ -114,6 +116,7 @@ WHAT IT DOES
 
 WHAT YOU GET
 - 1 Excel (.xlsx) file with a "How to use" sheet and example rows
+- A step-by-step PDF guide with screenshots
 - No macros, no add-ins, nothing to install
 - Instant download
 
@@ -143,6 +146,7 @@ WHAT IT DOES
 
 WHAT YOU GET
 - 1 Excel (.xlsx) file with a "How to use" sheet and example rows
+- A step-by-step PDF guide with screenshots
 - No macros, no add-ins, nothing to install
 - Instant download
 
@@ -155,6 +159,11 @@ These templates were designed with help from AI tools and checked by the seller,
 This is a digital download. No physical item will be shipped.
 
 **Tags:** PM schedule, PM tracker, maintenance log, maintenance plan, preventive maint, equipment tracker, asset tracker, Excel template, manufacturing, machine shop, facility manager, work order log, lean template
+
+## Files per listing
+
+- Bundle: the three `.xlsx` files plus `guides/Manufacturing-Bundle-Guide.pdf` (Etsy allows 5 files).
+- Each single listing: its `.xlsx` plus its own guide PDF.
 
 ## Images
 
