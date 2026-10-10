@@ -4,8 +4,8 @@ Names and identifiers of business accounts, so nobody has to remember them. **Ne
 
 | Account | Name / address | Used for | Owner | Created | 2FA | Notes |
 |---|---|---|---|---|---|---|
-| Gmail | _pending_ | Business inbox for the manufacturing-templates niche; Etsy login and buyer messages | Owner | | | Recovery email: owner's personal address (not recorded here) |
-| Etsy shop | _pending_ | Selling the manufacturing templates ([opportunity](../opportunities/manufacturing-templates.md)) | Owner | | | Shop names must be 4–20 letters/numbers, no spaces |
+| Gmail | takttools.shop@gmail.com | Business inbox for the manufacturing-templates niche; Etsy login and buyer messages | Owner | 2026-10-10 | Confirm | Recovery email: owner's personal address (not recorded here) |
+| Etsy shop | _name to confirm_ | Selling the manufacturing templates ([opportunity](../opportunities/manufacturing-templates.md)) | Owner | 2026-10-10 | Confirm | Shop names must be 4–20 letters/numbers, no spaces |
 
 ## Naming rules
 
