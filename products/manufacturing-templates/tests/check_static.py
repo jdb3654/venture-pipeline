@@ -41,8 +41,10 @@ def main():
                              if "lookup" in label else "https://support.microsoft.com/en-au/excel/functions/sumifs-function"),
                   "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"})
     delivery = (PRODUCT / "LISTING.md").read_text(encoding="utf-8").split("## Files per listing")[1].split("## Images")[0]
-    check("Etsy delivery instructions use a supported ZIP wrapper for XLSX files", ".zip" in delivery.lower(),
+    check("Declared direct-upload format agrees with Etsy's published file-type list", ".zip" in delivery.lower(),
           {"instructions": delivery.strip(), "supported_wrapper": ".zip",
+           "contrary_repository_record": "PR #14 / main 1c9ebda records direct XLSX attachments after reload",
+           "live_upload_and_buyer_download": "unverified; this check is documentation-list agreement, not proof of rejection",
            "source": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings"})
     result = {"tests": checks, "summary": {s: sum(c["status"] == s for c in checks) for s in ("PASS", "FAIL")}}
     Path(__file__).with_name("static-checks.json").write_text(json.dumps(result, indent=2), encoding="utf-8")

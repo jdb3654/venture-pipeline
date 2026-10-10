@@ -139,11 +139,13 @@
       }
     },
     {
-      "test": "Etsy delivery instructions use a supported ZIP wrapper for XLSX files",
+      "test": "Declared direct-upload format agrees with Etsy's published file-type list",
       "status": "FAIL",
       "evidence": {
         "instructions": "- Bundle: the three `.xlsx` files plus `guides/Manufacturing-Bundle-Guide.pdf` (Etsy allows 5 files).\n- Each single listing: its `.xlsx` plus its own guide PDF.",
         "supported_wrapper": ".zip",
+        "contrary_repository_record": "PR #14 / main 1c9ebda records direct XLSX attachments after reload",
+        "live_upload_and_buyer_download": "unverified; this check is documentation-list agreement, not proof of rejection",
         "source": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings"
       }
     }
