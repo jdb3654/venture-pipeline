@@ -21,6 +21,8 @@ Where this came from, with a link and date.
 
 ## Scores
 
+5 = most favorable (for example, Build effort 5 means little effort).
+
 | Factor | 1–5 | Justification and source |
 |---|---|---|
 | Distribution | | |
