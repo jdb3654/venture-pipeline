@@ -5,7 +5,7 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | Opportunity | Stage | Owner agent | Next step | Updated |
 |---|---|---|---|---|
 | [Forge replacements for orphaned Atlassian Connect apps](opportunities/atlassian-connect-replacements.md) | Screen → Validate recommended | claude | List retired or at-risk Connect apps with install counts; pick 1–2 targets | 2026-10-10 |
-| [Manufacturing spreadsheet templates](opportunities/manufacturing-templates.md) | Screen → Validate recommended | claude | Build a 3-template bundle; owner approves a store account | 2026-10-10 |
+| [Manufacturing spreadsheet templates](opportunities/manufacturing-templates.md) | Validate | claude | Templates built; waiting on owner to open an Etsy shop (issue #3), then 30-day test | 2026-10-10 |
 | [Paid data tools on Apify (Actors/MCP)](opportunities/apify-niche-actors.md) | Screen | claude | Optional parallel test: 3 tools, 30 days | 2026-10-10 |
 | [Niche Ignition SCADA module](opportunities/ignition-module.md) | Screen | claude | Mine Ignition forum for repeated unmet requests | 2026-10-10 |
 | [Software-only downtime/OEE tracker](opportunities/small-shop-downtime-tracker.md) | Screen | claude | Wait on template results; then waitlist test | 2026-10-10 |
