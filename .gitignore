@@ -1,0 +1,7 @@
+.env
+.env.*
+*.key
+*.pem
+secrets/
+customer-data/
+.DS_Store
