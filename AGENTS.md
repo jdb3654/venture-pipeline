@@ -55,6 +55,16 @@ Disqualifiers: illegal or likely to violate platform or payment-processor rules;
 - Never claim to have watched a video if only the title, description or transcript was available. Say which one.
 - Separate revenue from owner cash after costs. Don't present hypothetical numbers as forecasts.
 
+## Guardrails learned from others
+
+Public experiments with autonomous agent businesses failed through spam, unsolicited invoices, bought traffic and inflated metrics (see `research/2026-10-10-landscape.md`). So:
+
+- Never buy traffic, reviews, followers or engagement, and never post or message in communities in a way that looks like spam.
+- Revenue means settled payments. Report installs, signups and payments separately from engagement metrics.
+- After any external change, check the live state before marking it done. An API's "success" is not proof.
+- Before an opportunity enters Validate, write the strongest case against it in its file. The other agent reviews it when available.
+- Each product gets a written refund and discount policy. Anything outside it escalates to the owner.
+
 ## What agents may do without asking
 
 - Research, write, and update files in this repo.
