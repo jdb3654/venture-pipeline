@@ -123,8 +123,8 @@ def footer(canvas, doc):
 
 
 COMMON_START = [
-    "Open the file in <b>Microsoft Excel</b> (2010 or later). If Excel shows a yellow <i>Protected View</i> bar "
-    "because the file was downloaded, click <b>Enable Editing</b>.",
+    "Open the file in your spreadsheet app (see <b>Works with</b> in the listing). If Excel shows a yellow "
+    "<i>Protected View</i> bar because the file was downloaded, click <b>Enable Editing</b>.",
     "Save a copy under your own name (for example, add your plant or year) and keep the original download as a clean "
     "spare.",
     "Read the <b>How to use</b> sheet. It's a one-page summary of this guide.",
@@ -137,7 +137,8 @@ CLEAR_EXAMPLES = ("The rows marked <b>EXAMPLE</b> show the expected format. When
 SUPPORT = [
     p("Need help?", "h1"),
     p("Message us through Etsy (the <b>Message seller</b> button on our shop or your order). Tell us which file, which "
-      "sheet, and what you typed, and we'll help you get it working."),
+      "sheet, and what you typed. We answer questions about using the templates as described in this guide; we "
+      "can't do custom changes or set-up work."),
     p("These templates were designed with help from AI tools and checked by the seller.", "small"),
 ]
 
@@ -162,7 +163,7 @@ def oee(shot):
         steps([
             "Go to the <b>Setup</b> sheet.",
             "In <b>Machine</b>, type each machine's name once, one per row (up to 20). Use the names your team already "
-            "uses. Avoid the characters <b>*</b>, <b>?</b> and <b>~</b> in names.",
+            "uses.",
             "In <b>Ideal cycle time (seconds per part)</b>, enter the fastest time the machine can sustainably make "
             "one good part. For a line, use the time per finished unit at rated speed. Example: a machine rated at "
             "300 parts per hour has an ideal cycle time of 3600 / 300 = <b>12 seconds</b>.",
@@ -175,13 +176,15 @@ def oee(shot):
             "Go to the <b>Production Log</b> sheet.",
             "Fill in one row per machine per shift. The yellow columns are: <b>Date</b>, <b>Shift</b> (any label, "
             "e.g. Day or 1st), <b>Machine</b> (pick from the drop-down), <b>Shift length (min)</b>, <b>Planned stops "
-            "(min)</b>, <b>Unplanned downtime (min)</b>, <b>Total parts</b> and <b>Rejected parts</b>.",
+            "(min)</b>, <b>Unplanned downtime (min)</b>, <b>Total parts</b> and <b>Rejected parts</b>. Shift length "
+            "and total parts are required; blank planned stops, downtime or rejects count as 0.",
             "<b>Planned stops</b> are times the machine isn't expected to run, like breaks and scheduled meetings. "
             "<b>Unplanned downtime</b> is every other minute it was stopped: breakdowns, changeovers, waiting for "
             "material.",
             "The grey columns fill in by themselves, including <b>OEE</b> (coloured green, amber or red) and "
             "<b>Check</b>.",
-            "Look at <b>Check</b> on each new row. It should say <b>OK</b>. If not, see the table below.",
+            "Look at <b>Check</b> on each new row. It should say <b>OK</b>. If not, see the table below. Rows with an "
+            "error are left out of the Dashboard until you fix them.",
             CLEAR_EXAMPLES,
         ]),
         shot("OEE-Tracker-3", "Production Log with the example rows. Yellow columns are typed in; grey columns calculate."),
@@ -189,12 +192,17 @@ def oee(shot):
         table([["Message", "What to do"],
                ["Machine not in Setup", "The machine name isn't on the Setup sheet, or is spelled differently. Pick "
                 "it from the drop-down, or add it to Setup."],
+               ["Set an ideal cycle time in Setup", "The machine has no ideal cycle time (or 0) on the Setup sheet."],
+               ["Enter numbers: shift length and total parts are required", "A required cell is empty, or a cell "
+                "contains text instead of a number."],
+               ["Values must be 0 or more (shift length above 0)", "A negative number, or a shift length of 0."],
                ["Rejects > total parts", "Rejected parts must be part of the total. Fix one of the two numbers."],
+               ["Planned stops >= shift length", "Planned stops leave no time to run. Check both numbers."],
                ["Downtime > planned time", "Unplanned downtime is longer than shift length minus planned stops. "
                 "Check the three time columns."],
-               ["Performance > 100%: check cycle time or counts", "The machine made parts faster than its ideal "
-                "cycle time allows. Usually the ideal cycle time in Setup is too slow, or the part count is wrong."],
-               ["OK", "Nothing obviously wrong."]], [0.35, 0.65]),
+               ["Check: performance above 100%", "A warning only; the row still counts. The machine made parts faster "
+                "than its ideal cycle time allows. Usually the cycle time in Setup is too slow, or the count is wrong."],
+               ["OK", "Nothing obviously wrong."]], [0.38, 0.62]),
         p("Step 3: Read the Dashboard", "h1"),
         steps([
             "Go to the <b>Dashboard</b> sheet.",
@@ -202,8 +210,9 @@ def oee(shot):
             "dates are included in the range.",
             "Set your <b>OEE target</b> (85% is filled in). OEE cells turn <b>green</b> at or above target, "
             "<b>amber</b> from 60% up to the target, and <b>red</b> below 60%. <b>OEE vs target</b> shows the gap.",
-            "Each machine row adds up the times and part counts first, then calculates the percentages. That way a "
-            "long shift counts more than a short one, which is more accurate than averaging each shift's OEE.",
+            "Each row adds up times and part counts first, then calculates the percentages, so a long shift counts "
+            "more than a short one. <b>All machines</b> OEE is total ideal time for good parts divided by total "
+            "planned production time, which stays correct when machines have different cycle times.",
         ]),
         shot("OEE-Tracker-4", "Dashboard: totals and OEE by machine, the all-machines total, and the OEE chart.", 4.4),
         p("How the numbers are calculated", "h1"),
@@ -213,7 +222,8 @@ def oee(shot):
                ["Availability", "Run time ÷ planned production time"],
                ["Performance", "(Ideal cycle time × total parts) ÷ run time"],
                ["Quality", "Good parts ÷ total parts (good parts = total - rejected)"],
-               ["OEE", "Availability × Performance × Quality"]], [0.35, 0.65]),
+               ["OEE", "Availability × Performance × Quality = (ideal cycle time × good parts) ÷ planned "
+                "production time"]], [0.35, 0.65]),
         p("85% OEE is a commonly cited \"world-class\" benchmark. Many plants start well below it; improving against "
           "your own baseline matters more.", "small"),
         p("Questions", "h1"),
@@ -245,8 +255,7 @@ def downtime(shot):
         p("Step 1: Set up machines and reasons", "h1"),
         steps([
             "Go to the <b>Setup</b> sheet.",
-            "Under <b>Machine</b>, list your machines, one per row. Avoid the characters <b>*</b>, <b>?</b> and "
-            "<b>~</b> in names.",
+            "Under <b>Machine</b>, list your machines, one per row.",
             "Under <b>Downtime reason</b> and <b>Category</b>, edit the 12 starter reasons to match how your plant "
             "talks about stops. Keep the list short, about 10 to 15 reasons. Categories (Breakdown, Material, and so "
             "on) can be renamed too.",
@@ -260,19 +269,25 @@ def downtime(shot):
             "midnight, like 23:40 to 0:25, is handled automatically (45 minutes).",
             "If you only know how long it lasted, leave Start and End blank and type the minutes in <b>Minutes (if "
             "no start/end)</b>. Typed minutes always win over start and end times.",
-            "Pick a <b>Reason</b> from the drop-down. <b>Duration</b> and <b>Category</b> fill in by themselves.",
+            "Pick a <b>Reason</b> from the drop-down. <b>Duration</b>, <b>Category</b> and <b>Check</b> fill in by "
+            "themselves. Check should say <b>OK</b>; otherwise it tells you what's missing, such as a date, a "
+            "reason, or minutes that aren't a number of 0 or more.",
             "Add <b>Notes</b> if useful, especially for \"Other\".",
             CLEAR_EXAMPLES,
         ]),
         shot("Downtime-Log-and-Pareto-3", "Downtime Log with the example rows, including a stop that crosses midnight."),
         p("If <b>Category</b> shows <b>Not in Setup</b>, the reason was typed instead of picked, or is spelled "
-          "differently from the Setup list. Pick it from the drop-down so it's counted under the right reason.",
-          "small"),
+          "differently from the Setup list. Its minutes still count in the total, under <b>Unclassified</b> on the "
+          "Pareto sheet. Pick the reason from the drop-down so it's counted under the right reason. A row counts as "
+          "a <b>stop</b> when its duration is more than 0 minutes; rows without a date, or with invalid minutes, are "
+          "left out of the totals.", "small"),
         p("Step 3: Read the Pareto", "h1"),
         steps([
             "Go to the <b>Pareto</b> sheet.",
             "Optional: set <b>From date</b>, <b>To date</b> and <b>Machine</b>. Leave any of them blank to include "
             "everything. Both dates are included in the range.",
+            "<b>Total downtime</b> is every valid logged minute in the range. <b>Unclassified</b> shows minutes whose "
+            "reason is blank or not on the Setup list. Fix those in the log so they're ranked.",
             "Read the table from the top: <b>Rank</b>, <b>Reason</b>, <b>Minutes</b>, <b>Stops</b>, <b>% of "
             "total</b> and <b>Cumulative %</b>. Reasons with no minutes in the range are left out.",
             "The chart shows the top 12 reasons as bars, with the cumulative % as a line on the right-hand axis.",
@@ -282,7 +297,8 @@ def downtime(shot):
         shot("Downtime-Log-and-Pareto-4", "Pareto: reasons ranked by minutes, with cumulative % and the Pareto chart."),
         p("Step 4: Compare machines", "h1"),
         p("The <b>By Machine</b> sheet shows total downtime, number of stops, average minutes per stop and each "
-          "machine's share of all downtime. It uses the date range set on the Pareto sheet; the machine filter "
+          "machine's share of all downtime, plus <b>No machine / not in Setup</b> and <b>All logged downtime</b> "
+          "rows so the totals always add up. It uses the date range set on the Pareto sheet; the machine filter "
           "doesn't apply here."),
         shot("Downtime-Log-and-Pareto-5", "By Machine: downtime minutes, stops and share per machine.", 2.6),
         p("Tips", "h1"),
@@ -318,12 +334,14 @@ def pm(shot):
         steps([
             "Go to the <b>PM Plan</b> sheet.",
             "Add one row per asset and task. Fill in <b>Asset</b>, <b>Task</b>, <b>Frequency (days)</b> and "
-            "<b>Assigned to</b>. Common frequencies: 1 = daily, 7 = weekly, 14 = every two weeks, 30 = monthly, "
-            "90 = quarterly, 180 = twice a year, 365 = yearly.",
+            "<b>Assigned to</b>. The frequency is a fixed number of days: 1 = daily, 7 = weekly, 14 = every two "
+            "weeks, 30 = about monthly, 90 = about quarterly, 365 = about yearly.",
             "If you know when a task was last done before you started using this workbook, enter that date in "
-            "<b>Last done before log</b>. Otherwise leave it blank: the task will show as due today, so nothing is "
-            "silently missed.",
-            "Keep each asset + task combination on one row only.",
+            "<b>Last done before log</b>. Otherwise leave it blank: the task shows as due today, every day, until you "
+            "log it or enter a date.",
+            "Keep each asset + task combination on one row only. A repeated combination shows <b>Duplicate row</b>; "
+            "a blank, zero or negative frequency shows <b>Check frequency</b>. Both are counted under <b>Needs "
+            "fixing</b> at the top right.",
             CLEAR_EXAMPLES,
         ]),
         shot("Preventive-Maintenance-Schedule-2", "PM Plan with example tasks, statuses and the counts box (top right)."),
@@ -332,9 +350,9 @@ def pm(shot):
             "Go to the <b>Completion Log</b> sheet.",
             "Each time a task is done, add a row: <b>Date done</b>, <b>Asset</b> and <b>Task</b> (pick both from the "
             "drop-downs so they match the plan exactly), <b>Done by</b> and any <b>Notes</b>.",
-            "Check <b>Matches plan?</b>. It should say <b>OK</b>. If it says <b>No matching asset + task in "
-            "plan</b>, the asset or task is spelled differently from the PM Plan, and the plan won't update. Fix "
-            "the spelling.",
+            "Check <b>Matches plan?</b>. It should say <b>OK</b>. <b>Enter the date done</b> means the date is missing. "
+            "<b>No matching asset + task in plan</b> means the asset or task is spelled differently from the PM "
+            "Plan, so the plan won't update. Fix the spelling.",
         ]),
         shot("Preventive-Maintenance-Schedule-3", "Completion Log: each completion updates the plan."),
         p("Step 3: Read the plan", "h1"),
@@ -344,7 +362,7 @@ def pm(shot):
             "<b>OVERDUE</b> (red) means the due date has passed. <b>Due soon</b> (amber) means it's due within the "
             "window. <b>OK</b> (green) means it's not due yet.",
             "Change the <b>Due soon window (days)</b> at the top of the sheet. It starts at 7.",
-            "The counts box at the top right shows how many tasks are Overdue, Due soon and OK.",
+            "The counts box at the top right shows how many tasks are Overdue, Due soon, OK, and Needs fixing.",
             "To get this week's work list, sort or filter by Status: <b>Data > Filter</b> in Excel.",
         ]),
         p("Dates and statuses use today's date from your computer, so they change from day to day. The example rows "

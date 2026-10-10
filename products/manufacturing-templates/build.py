@@ -21,6 +21,7 @@ HEAD = PatternFill("solid", fgColor=NAVY)
 RED = PatternFill("solid", fgColor="F8CBAD")
 AMBER = PatternFill("solid", fgColor="FFE699")
 GREEN = PatternFill("solid", fgColor="C6EFCE")
+GREY_FIX = PatternFill("solid", fgColor="D9D9D9")
 THIN = Side(style="thin", color="D9D9D9")
 BOX = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 VERSION = "Version 1.0"
@@ -96,6 +97,8 @@ def how_to(ws, name, lines):
 def traffic_light(ws, rng, target_ref):
     first = rng.split(":")[0].replace("$", "")
     ws.conditional_formatting.add(
+        rng, FormulaRule(formula=[f'AND(ISNUMBER({first}),{first}<0.6)'], fill=RED, stopIfTrue=True))
+    ws.conditional_formatting.add(
         rng, FormulaRule(formula=[f'AND(ISNUMBER({first}),{first}>={target_ref})'], fill=GREEN))
     ws.conditional_formatting.add(
         rng, FormulaRule(formula=[f'AND(ISNUMBER({first}),{first}>=0.6,{first}<{target_ref})'], fill=AMBER))
@@ -127,18 +130,19 @@ def build_oee():
         ("t", "2. Production Log: add one row per machine per shift. Planned stops are scheduled time the machine is "
               "not expected to run (breaks, planned meetings). Unplanned downtime is everything else it was stopped."),
         ("t", "3. Dashboard: optionally enter a From and To date. Leave them blank to include everything."),
-        ("t", "4. The rows marked EXAMPLE show the expected format. Delete them before you start."),
+        ("t", "4. The rows marked EXAMPLE show the expected format. Before you start, select their yellow cells and press Delete. Don't delete whole rows."),
         ("h", "How OEE is calculated"),
         ("t", "Planned production time = shift length - planned stops.   Run time = planned production time - unplanned downtime."),
         ("t", "Availability = run time / planned production time."),
         ("t", "Performance = (ideal cycle time x total parts) / run time."),
         ("t", "Quality = good parts / total parts.   OEE = Availability x Performance x Quality."),
-        ("t", "Dashboard totals are calculated from summed times and counts, not by averaging shift percentages, "
-              "so long shifts and short shifts are weighted correctly."),
+        ("t", "Dashboard OEE = total ideal time for good parts / total planned production time. Times and counts are "
+              "summed first, so long and short shifts, and machines with different cycle times, are weighted correctly."),
         ("h", "Check column"),
         ("t", "The Check column on the log flags common entry mistakes: a machine missing from Setup, rejects higher than "
-              "total parts, downtime longer than planned time, and performance above 100% (usually a cycle time that "
-              "is too slow in Setup, or a miscounted total)."),
+              "total parts, downtime longer than planned time, missing or non-number entries. Rows with an error are left "
+              "out of the Dashboard. 'Check: performance above 100%' is a warning only (usually a cycle time that is "
+              "too slow in Setup, or a miscounted total); that row still counts."),
         ("h", "Target"),
         ("t", "85% OEE is a commonly cited 'world-class' benchmark. Set your own target on the Dashboard; many plants "
               "start well below that, and improvement against your own baseline matters more."),
@@ -164,26 +168,42 @@ def build_oee():
     cols = ["Date", "Shift", "Machine", "Shift length\n(min)", "Planned stops\n(min)", "Unplanned\ndowntime (min)",
             "Total parts", "Rejected\nparts", "Planned production\ntime (min)", "Run time\n(min)",
             "Ideal cycle\ntime (sec)", "Ideal run time\n(min)", "Good parts", "Availability", "Performance",
-            "Quality", "OEE", "Check"]
-    headers(log, 4, cols, [11, 8, 20, 11, 11, 12, 10, 10, 15, 10, 11, 13, 10, 12, 12, 10, 10, 34])
+            "Quality", "OEE", "Check", "Ideal time for\ngood parts (min)", "Row used\nin totals"]
+    headers(log, 4, cols, [11, 8, 20, 11, 11, 12, 10, 10, 15, 10, 11, 13, 10, 12, 12, 10, 10, 40, 15, 10])
     style_block(log, 5, LOG_LAST, range(1, 9), INPUT)
-    style_block(log, 5, LOG_LAST, range(9, 19), CALC)
+    style_block(log, 5, LOG_LAST, range(9, 21), CALC)
     fmt_cols(log, 5, LOG_LAST, {1: "yyyy-mm-dd", 9: "0", 10: "0", 11: "0.0", 12: "0.0", 13: "0",
-                                 14: "0.0%", 15: "0.0%", 16: "0.0%", 17: "0.0%"})
+                                 14: "0.0%", 15: "0.0%", 16: "0.0%", 17: "0.0%", 19: "0.0"})
+    S = "Setup!$A$5:$A$" + str(MACH_LAST)
+    CT = "Setup!$B$5:$B$" + str(MACH_LAST)
     for r in range(5, LOG_LAST + 1):
-        log[f"I{r}"] = f'=IF($C{r}="","",D{r}-E{r})'
-        log[f"J{r}"] = f'=IF($C{r}="","",I{r}-F{r})'
-        log[f"K{r}"] = (f'=IF($C{r}="","",IFERROR(INDEX(Setup!$B$5:$B${MACH_LAST},'
-                        f'MATCH($C{r},Setup!$A$5:$A${MACH_LAST},0)),""))')
-        log[f"L{r}"] = f'=IF(OR($C{r}="",K{r}=""),"",K{r}*G{r}/60)'
-        log[f"M{r}"] = f'=IF($C{r}="","",G{r}-H{r})'
-        log[f"N{r}"] = f'=IF($C{r}="","",IF(I{r}<=0,"",J{r}/I{r}))'
-        log[f"O{r}"] = f'=IF($C{r}="","",IF(OR(L{r}="",J{r}<=0),"",L{r}/J{r}))'
-        log[f"P{r}"] = f'=IF($C{r}="","",IF(G{r}<=0,"",M{r}/G{r}))'
-        log[f"Q{r}"] = f'=IF(OR(N{r}="",O{r}="",P{r}=""),"",N{r}*O{r}*P{r})'
-        log[f"R{r}"] = (f'=IF($C{r}="","",IF(K{r}="","Machine not in Setup",IF(H{r}>G{r},"Rejects > total parts",'
-                        f'IF(J{r}<0,"Downtime > planned time",IF(AND(ISNUMBER(O{r}),O{r}>1.05),'
-                        f'"Performance > 100%: check cycle time or counts","OK")))))')
+        # exact-match lookups (SUMPRODUCT) avoid Excel wildcards and IFERROR, which OpenOffice 4.1 lacks
+        found = f'SUMPRODUCT(--({S}=$C{r}))>0'
+        log[f"K{r}"] = f'=IF($C{r}="","",IF({found},SUMPRODUCT(({S}=$C{r})*1,{CT}),""))'
+        log[f"T{r}"] = (f'=IF($C{r}="",FALSE,AND({found},ISNUMBER(K{r}),N(K{r})>0,ISNUMBER(D{r}),N(D{r})>0,'
+                        f'ISNUMBER(G{r}),N(G{r})>=0,OR(E{r}="",ISNUMBER(E{r})),OR(F{r}="",ISNUMBER(F{r})),'
+                        f'OR(H{r}="",ISNUMBER(H{r})),N(E{r})>=0,N(F{r})>=0,N(H{r})>=0,N(H{r})<=N(G{r}),'
+                        f'N(E{r})<N(D{r}),N(F{r})<=N(D{r})-N(E{r})))')
+        ok = f'$T{r}'
+        log[f"I{r}"] = f'=IF({ok},D{r}-N(E{r}),"")'
+        log[f"J{r}"] = f'=IF({ok},I{r}-N(F{r}),"")'
+        log[f"L{r}"] = f'=IF({ok},K{r}*G{r}/60,"")'
+        log[f"M{r}"] = f'=IF({ok},G{r}-N(H{r}),"")'
+        log[f"S{r}"] = f'=IF({ok},K{r}*M{r}/60,"")'
+        log[f"N{r}"] = f'=IF({ok},J{r}/I{r},"")'
+        log[f"O{r}"] = f'=IF(AND({ok},N(J{r})>0),L{r}/J{r},"")'
+        log[f"P{r}"] = f'=IF(AND({ok},N(G{r})>0),M{r}/G{r},"")'
+        log[f"Q{r}"] = f'=IF({ok},S{r}/I{r},"")'
+        log[f"R{r}"] = (f'=IF($C{r}="","",IF(NOT({found}),"Machine not in Setup",'
+                        f'IF(OR(NOT(ISNUMBER(K{r})),N(K{r})<=0),"Set an ideal cycle time in Setup",'
+                        f'IF(OR(NOT(ISNUMBER(D{r})),NOT(ISNUMBER(G{r})),AND(E{r}<>"",NOT(ISNUMBER(E{r}))),'
+                        f'AND(F{r}<>"",NOT(ISNUMBER(F{r}))),AND(H{r}<>"",NOT(ISNUMBER(H{r})))),'
+                        f'"Enter numbers: shift length and total parts are required",'
+                        f'IF(OR(N(D{r})<=0,N(E{r})<0,N(F{r})<0,N(G{r})<0,N(H{r})<0),"Values must be 0 or more (shift length above 0)",'
+                        f'IF(N(H{r})>N(G{r}),"Rejects > total parts",'
+                        f'IF(N(E{r})>=N(D{r}),"Planned stops >= shift length",'
+                        f'IF(N(F{r})>N(D{r})-N(E{r}),"Downtime > planned time",'
+                        f'IF(AND(ISNUMBER(O{r}),O{r}>1),"Check: performance above 100%","OK")))))))))')
     examples = [
         ("2026-09-01", "Day", "Press 01", 480, 40, 35, 1900, 22),
         ("2026-09-01", "Day", "CNC Lathe 02", 480, 40, 60, 210, 4),
@@ -205,6 +225,7 @@ def build_oee():
     dv.add(f"C5:C{LOG_LAST}")
     nonneg = DataValidation(type="decimal", operator="greaterThanOrEqual", formula1="0", allow_blank=True)
     nonneg.error = "Enter a number of zero or more."
+    nonneg.showErrorMessage = True
     log.add_data_validation(nonneg)
     nonneg.add(f"D5:H{LOG_LAST}")
     traffic_light(log, f"Q5:Q{LOG_LAST}", "Dashboard!$B$5")
@@ -223,6 +244,10 @@ def build_oee():
     dash["B4"].number_format = "yyyy-mm-dd"
     dash["B5"] = 0.85
     dash["B5"].number_format = "0%"
+    tv = DataValidation(type="decimal", operator="between", formula1="0", formula2="1", allow_blank=False)
+    tv.error = "Enter a target between 0% and 100%."
+    dash.add_data_validation(tv)
+    tv.add("B5")
     dash["D3"] = '=IF(B3="",DATE(1900,1,1),B3)'
     dash["D4"] = '=IF(B4="",DATE(2999,12,31),B4)'
     for c in ("D3", "D4"):
@@ -234,30 +259,34 @@ def build_oee():
     first, last = 9, 9 + (MACH_LAST - 5)
     total = last + 1
     L = "'Production Log'!"
-    crit = (f'{L}$C$5:$C${LOG_LAST},$A{{r}},{L}$A$5:$A${LOG_LAST},">="&$D$3,'
-            f'{L}$A$5:$A${LOG_LAST},"<="&$D$4')
-    src = {2: "I", 3: "J", 4: "F", 5: "G", 6: "M", 7: "L"}
+    rng = lambda c: f"{L}${c}$5:${c}${LOG_LAST}"
+    src = {2: "I", 3: "J", 4: "F", 5: "G", 6: "M", 7: "L", 13: "S"}
     for r in range(first, last + 1):
         sr = 5 + (r - first)
         dash[f"A{r}"] = f'=IF(Setup!A{sr}="","",Setup!A{sr})'
+        sel = f'({rng("C")}=$A{r})*({rng("T")}=TRUE)*({rng("A")}>=$D$3)*({rng("A")}<=$D$4)'
         for col, lc in src.items():
-            dash.cell(row=r, column=col).value = (
-                f'=IF($A{r}="","",SUMIFS({L}${lc}$5:${lc}${LOG_LAST},{crit.format(r=r)}))')
+            dash.cell(row=r, column=col).value = f'=IF($A{r}="","",SUMPRODUCT({sel},{rng(lc)}))'
         dash[f"H{r}"] = f'=IF($A{r}="","",IF(B{r}=0,"",C{r}/B{r}))'
         dash[f"I{r}"] = f'=IF($A{r}="","",IF(C{r}=0,"",G{r}/C{r}))'
-        dash[f"J{r}"] = f'=IF($A{r}="","",IF(E{r}=0,"",F{r}/E{r}))'
-        dash[f"K{r}"] = f'=IF(OR(H{r}="",I{r}="",J{r}=""),"",H{r}*I{r}*J{r})'
+        dash[f"J{r}"] = f'=IF($A{r}="","",IF(G{r}=0,"",M{r}/G{r}))'
+        dash[f"K{r}"] = f'=IF($A{r}="","",IF(B{r}=0,"",M{r}/B{r}))'
         dash[f"L{r}"] = f'=IF(K{r}="","",K{r}-$B$5)'
     dash[f"A{total}"] = "All machines"
-    for col in range(2, 8):
+    for col in list(range(2, 8)) + [13]:
         cl = get_column_letter(col)
         dash[f"{cl}{total}"] = f"=SUM({cl}{first}:{cl}{last})"
     r = total
     dash[f"H{r}"] = f'=IF(B{r}=0,"",C{r}/B{r})'
     dash[f"I{r}"] = f'=IF(C{r}=0,"",G{r}/C{r})'
-    dash[f"J{r}"] = f'=IF(E{r}=0,"",F{r}/E{r})'
-    dash[f"K{r}"] = f'=IF(OR(H{r}="",I{r}="",J{r}=""),"",H{r}*I{r}*J{r})'
+    dash[f"J{r}"] = f'=IF(G{r}=0,"",M{r}/G{r})'
+    dash[f"K{r}"] = f'=IF(B{r}=0,"",M{r}/B{r})'
     dash[f"L{r}"] = f'=IF(K{r}="","",K{r}-$B$5)'
+    dash[f"M{first - 1}"] = "Ideal time for good parts (min)"
+    dash[f"M{first - 1}"].font = f(8, True, "808080")
+    dash.column_dimensions["M"].hidden = True
+    dash["A6"] = "Rows with a Check message (not OK) are left out of these totals."
+    dash["A6"].font = f(9, italic=True, color="595959")
     style_block(dash, first, total, range(1, 13), CALC)
     for col in range(1, 13):
         dash.cell(row=total, column=col).font = f(10, True)
@@ -328,12 +357,14 @@ def build_downtime():
         ("t", "3. Pareto: choose a date range and, optionally, one machine. Reasons are ranked automatically, with the "
               "cumulative percentage and a chart."),
         ("t", "4. By Machine: total downtime and stop counts per machine for the same date range."),
-        ("t", "5. The rows marked EXAMPLE show the expected format. Delete them before you start."),
+        ("t", "5. The rows marked EXAMPLE show the expected format. Before you start, select their yellow cells and press Delete. Don't delete whole rows."),
         ("h", "Tips"),
         ("t", "Keep the reason list short (10-15 reasons). If 'Other' becomes one of your top reasons, read its notes "
               "and add the missing reason."),
-        ("t", "Pick reasons from the drop-down so spelling stays consistent; a typed reason that isn't on the Setup "
-              "list shows 'Not in Setup' and won't be counted correctly."),
+        ("t", "Pick reasons from the drop-down so spelling stays consistent. A typed reason that isn't on the Setup "
+              "list shows 'Not in Setup'; its minutes are counted as Unclassified on the Pareto sheet until you fix it."),
+        ("t", "The Check column on the log should say OK. A stop counts when its duration is more than 0 minutes. "
+              "Rows without a date, or with minutes that aren't a number of 0 or more, are left out of the totals."),
     ])
 
     title(setup, "Setup", "Machines and downtime reasons used by the drop-downs.")
@@ -351,15 +382,27 @@ def build_downtime():
 
     title(log, "Downtime Log", "One row per stop. Use start/end times, or type minutes if you only know the duration.")
     cols = ["Date", "Shift", "Machine", "Start\n(hh:mm)", "End\n(hh:mm)", "Minutes (if no\nstart/end)",
-            "Duration\n(min)", "Reason", "Category", "Notes"]
-    headers(log, 4, cols, [11, 8, 20, 9, 9, 13, 10, 30, 20, 40])
+            "Duration\n(min)", "Reason", "Category", "Notes", "Check"]
+    headers(log, 4, cols, [11, 8, 20, 9, 9, 13, 10, 30, 20, 40, 34])
     style_block(log, 5, LOG_LAST, [1, 2, 3, 4, 5, 6, 8, 10], INPUT)
-    style_block(log, 5, LOG_LAST, [7, 9], CALC)
+    style_block(log, 5, LOG_LAST, [7, 9, 11], CALC)
     fmt_cols(log, 5, LOG_LAST, {1: "yyyy-mm-dd", 4: "hh:mm", 5: "hh:mm", 6: "0", 7: "0"})
+    RS = f"Setup!$D$5:$D${LIST_LAST}"
+    MS = f"Setup!$A$5:$A${LIST_LAST}"
     for r in range(5, LOG_LAST + 1):
-        log[f"G{r}"] = (f'=IF(F{r}<>"",F{r},IF(OR(D{r}="",E{r}=""),"",ROUND(MOD(E{r}-D{r},1)*1440,0)))')
-        log[f"I{r}"] = (f'=IF(H{r}="","",IFERROR(INDEX(Setup!$E$5:$E${LIST_LAST},'
-                        f'MATCH(H{r},Setup!$D$5:$D${LIST_LAST},0)),"Not in Setup"))')
+        # A stop counts when Duration is a number above 0. Bad typed minutes give a blank duration and a Check message.
+        log[f"G{r}"] = (f'=IF(F{r}<>"",IF(AND(ISNUMBER(F{r}),N(F{r})>=0),F{r},""),'
+                        f'IF(AND(ISNUMBER(D{r}),ISNUMBER(E{r})),ROUND(MOD(E{r}-D{r},1)*1440,0),""))')
+        pos = f'SUMPRODUCT(MAX(({RS}=H{r})*(ROW({RS})-4)))'  # exact match: no wildcards, no IFERROR
+        log[f"I{r}"] = f'=IF(H{r}="","",IF({pos}=0,"Not in Setup",INDEX(Setup!$E$5:$E${LIST_LAST},{pos})))'
+        log[f"K{r}"] = (f'=IF(AND(A{r}="",C{r}="",D{r}="",E{r}="",F{r}="",H{r}=""),"",'
+                        f'IF(NOT(ISNUMBER(A{r})),"Enter a date",'
+                        f'IF(AND(F{r}<>"",OR(NOT(ISNUMBER(F{r})),N(F{r})<0)),"Minutes must be a number of 0 or more",'
+                        f'IF(G{r}="","Enter start and end times, or minutes",'
+                        f'IF(C{r}="","Pick a machine",IF(SUMPRODUCT(--({MS}=C{r}))=0,"Machine not in Setup",'
+                        f'IF(H{r}="","Pick a reason (counted as unclassified)",'
+                        f'IF(I{r}="Not in Setup","Reason not in Setup (counted as unclassified)",'
+                        f'IF(N(G{r})=0,"0 minutes: not counted as a stop","OK")))))))))')
     from datetime import date, time
     ex = [
         (date(2026, 9, 1), "Day", "Press 01", time(7, 15), time(7, 50), None, "Changeover / setup", "Die change"),
@@ -384,6 +427,10 @@ def build_downtime():
     for dv, rng in ((dv_m, f"C5:C{LOG_LAST}"), (dv_r, f"H5:H{LOG_LAST}")):
         log.add_data_validation(dv)
         dv.add(rng)
+    mins = DataValidation(type="decimal", operator="greaterThanOrEqual", formula1="0", allow_blank=True)
+    mins.error = "Enter minutes as a number of 0 or more."
+    log.add_data_validation(mins)
+    mins.add(f"F5:F{LOG_LAST}")
     log.freeze_panes = "D5"
 
     # Pareto
@@ -401,16 +448,24 @@ def build_downtime():
     dvp.add("B5")
     par["D3"] = '=IF(B3="",DATE(1900,1,1),B3)'
     par["D4"] = '=IF(B4="",DATE(2999,12,31),B4)'
-    par["D5"] = '=IF(B5="","*",B5)'
     par["D3"].number_format = par["D4"].number_format = "yyyy-mm-dd"
-    for c in ("D3", "D4", "D5"):
+    for c in ("D3", "D4"):
         par[c].font = f(8, color="FFFFFF")
     par["A6"] = "Total downtime (min)"
     par["A6"].font = f(10, True)
     first, last = 9, 9 + (LIST_LAST - 5)
-    par["B6"] = f"=SUM($J${first}:$J${last})"
+    D = "'Downtime Log'!"
+    dcol = lambda c: f"{D}${c}$5:${c}${LOG_LAST}"
+    sel = (f'({dcol("A")}>=$D$3)*({dcol("A")}<=$D$4)*((($B$5="")+({dcol("C")}=$B$5))>0)')
+    par["B6"] = f'=SUMPRODUCT({sel},{dcol("G")})'
     par["B6"].number_format = "#,##0"
     par["B6"].font = f(10, True)
+    par["A7"] = "Unclassified (min)"
+    par["A7"].font = f(10, True)
+    par["B7"] = f"=B6-SUM($J${first}:$J${last})"
+    par["B7"].number_format = "#,##0"
+    par["C7"] = "Reason blank or not on Setup. Check the log."
+    par["C7"].font = f(8, italic=True, color="595959")
     headers(par, 8, ["Rank", "Reason", "Minutes", "Stops", "% of total", "Cumulative %"],
             [22, 32, 11, 9, 11, 13])
     for c, w in (("H", 3), ("I", 30), ("J", 11), ("K", 9), ("L", 14)):
@@ -418,15 +473,13 @@ def build_downtime():
     for col, name in zip("IJKL", ["Helper: reason", "Helper: minutes", "Helper: stops", "Helper: sort key"]):
         par[f"{col}8"] = name
         par[f"{col}8"].font = f(8, True, "808080")
-    D = "'Downtime Log'!"
-    crit = (f'{D}$A$5:$A${LOG_LAST},">="&$D$3,{D}$A$5:$A${LOG_LAST},"<="&$D$4,'
-            f'{D}$C$5:$C${LOG_LAST},$D$5')
     for r in range(first, last + 1):
         sr = 5 + (r - first)
         k = r - first + 1
         par[f"I{r}"] = f'=IF(Setup!D{sr}="","",Setup!D{sr})'
-        par[f"J{r}"] = f'=IF(I{r}="",0,SUMIFS({D}$G$5:$G${LOG_LAST},{D}$H$5:$H${LOG_LAST},I{r},{crit}))'
-        par[f"K{r}"] = f'=IF(I{r}="",0,COUNTIFS({D}$H$5:$H${LOG_LAST},I{r},{crit}))'
+        par[f"J{r}"] = f'=IF(I{r}="",0,SUMPRODUCT(({dcol("H")}=I{r})*{sel},{dcol("G")}))'
+        par[f"K{r}"] = (f'=IF(I{r}="",0,SUMPRODUCT(({dcol("H")}=I{r})*{sel}'
+                        f'*ISNUMBER({dcol("G")})*({dcol("G")}>0)))')
         par[f"L{r}"] = f'=IF(I{r}="",-1,J{r}+({LIST_LAST}-{k})/1000000)'
         par[f"A{r}"] = k
         pick = f'MATCH(LARGE($L${first}:$L${last},A{r}),$L${first}:$L${last},0)'
@@ -466,20 +519,30 @@ def build_downtime():
     par.freeze_panes = "A9"
 
     # By machine
-    title(bym, "Downtime by Machine", "Uses the date range set on the Pareto sheet (machine filter is ignored here).")
+    title(bym, "Downtime by Machine", "Uses the date range set on the Pareto sheet (machine filter is ignored here). A stop is any row with more than 0 minutes.")
     headers(bym, 4, ["Machine", "Downtime (min)", "Stops", "Avg min per stop", "% of all downtime"],
             [24, 15, 10, 16, 18])
     mfirst, mlast = 5, 5 + (LIST_LAST - 5)
+    dsel = f'({dcol("A")}>=Pareto!$D$3)*({dcol("A")}<=Pareto!$D$4)'
+    other, tot = mlast + 1, mlast + 2
     for r in range(mfirst, mlast + 1):
         bym[f"A{r}"] = f'=IF(Setup!A{r}="","",Setup!A{r})'
-        dc = (f'{D}$C$5:$C${LOG_LAST},$A{r},{D}$A$5:$A${LOG_LAST},">="&Pareto!$D$3,'
-              f'{D}$A$5:$A${LOG_LAST},"<="&Pareto!$D$4')
-        bym[f"B{r}"] = f'=IF($A{r}="","",SUMIFS({D}$G$5:$G${LOG_LAST},{dc}))'
-        bym[f"C{r}"] = f'=IF($A{r}="","",COUNTIFS({dc},{D}$G$5:$G${LOG_LAST},">0"))'
-        bym[f"D{r}"] = f'=IF(OR($A{r}="",C{r}=0),"",B{r}/C{r})'
-        bym[f"E{r}"] = f'=IF(OR($A{r}="",SUM($B${mfirst}:$B${mlast})=0),"",B{r}/SUM($B${mfirst}:$B${mlast}))'
-    style_block(bym, mfirst, mlast, range(1, 6), CALC)
-    fmt_cols(bym, mfirst, mlast, {2: "#,##0", 3: "0", 4: "0.0", 5: "0.0%"})
+        bym[f"B{r}"] = f'=IF($A{r}="","",SUMPRODUCT(({dcol("C")}=$A{r})*{dsel},{dcol("G")}))'
+        bym[f"C{r}"] = (f'=IF($A{r}="","",SUMPRODUCT(({dcol("C")}=$A{r})*{dsel}'
+                        f'*ISNUMBER({dcol("G")})*({dcol("G")}>0)))')
+    bym[f"A{other}"] = "No machine / not in Setup"
+    bym[f"B{other}"] = f"=B{tot}-SUM(B{mfirst}:B{mlast})"
+    bym[f"C{other}"] = f'=SUMPRODUCT({dsel}*ISNUMBER({dcol("G")})*({dcol("G")}>0))-SUM(C{mfirst}:C{mlast})'
+    bym[f"A{tot}"] = "All logged downtime"
+    bym[f"B{tot}"] = f'=SUMPRODUCT({dsel},{dcol("G")})'
+    bym[f"C{tot}"] = f'=SUMPRODUCT({dsel}*ISNUMBER({dcol("G")})*({dcol("G")}>0))'
+    for r in range(mfirst, tot + 1):
+        bym[f"D{r}"] = f'=IF(OR($A{r}="",N(C{r})=0),"",B{r}/C{r})'
+        bym[f"E{r}"] = f'=IF(OR($A{r}="",$B${tot}=0),"",B{r}/$B${tot})'
+    style_block(bym, mfirst, tot, range(1, 6), CALC)
+    for c in range(1, 6):
+        bym.cell(row=tot, column=c).font = f(10, True)
+    fmt_cols(bym, mfirst, tot, {2: "#,##0", 3: "0", 4: "0.0", 5: "0.0%"})
     bym.freeze_panes = "A5"
     wb.active = par
     return wb
@@ -503,15 +566,16 @@ def build_pm():
         ("input", "Yellow cells are for you to fill in."),
         ("calc", "Grey cells are calculated. Don't type over them."),
         ("h", "Steps"),
-        ("t", "1. PM Plan: one row per asset + task, with the frequency in days (7 = weekly, 30 = monthly, "
-              "90 = quarterly, 365 = yearly). If you know when a task was last done before you started using this "
+        ("t", "1. PM Plan: one row per asset + task, with the frequency in days (7 = every week, 30 = about monthly, "
+              "90 = about quarterly, 365 = about yearly). Due dates count fixed days from the last completion. If you know when a task was last done before you started using this "
               "workbook, enter it under 'Last done before log'."),
         ("t", "2. Completion Log: each time a task is done, add a row with the date, the asset and the task, picked from "
               "the drop-downs so they match the plan exactly. The 'Matches plan?' column warns you if they don't."),
         ("t", "3. The plan updates automatically: last completed date, next due date, days left and status."),
         ("t", "4. Change the 'Due soon' window at the top of the PM Plan (default 7 days)."),
-        ("t", "5. Tasks never done and with no earlier date are shown as due today, so nothing is silently missed."),
-        ("t", "6. The rows marked EXAMPLE show the expected format. Delete them before you start."),
+        ("t", "5. A task with no completion and no earlier date shows as due today, every day, until you log it or enter a last-done date."),
+        ("t", "Status 'Check frequency', 'Duplicate row' or 'Fill in asset and task' means that row needs fixing; the Needs fixing count is at the top."),
+        ("t", "6. The rows marked EXAMPLE show the expected format. Before you start, select their yellow cells and press Delete. Don't delete whole rows."),
         ("h", "Tip"),
         ("t", "Sort or filter the PM Plan by Status to get this week's work list. Excel: Data > Filter."),
     ])
@@ -531,6 +595,12 @@ def build_pm():
     plan["L1"] = f'=COUNTIF($I$5:$I${PLAN_LAST},"OVERDUE")'
     plan["L2"] = f'=COUNTIF($I$5:$I${PLAN_LAST},"Due soon")'
     plan["L3"] = f'=COUNTIF($I$5:$I${PLAN_LAST},"OK")'
+    plan["K4"] = "Needs fixing"
+    plan["L4"] = (f'=COUNTIF($I$5:$I${PLAN_LAST},"Check frequency")+COUNTIF($I$5:$I${PLAN_LAST},"Duplicate row")'
+                  f'+COUNTIF($I$5:$I${PLAN_LAST},"Fill in asset and task")')
+    for c in ("K4", "L4"):
+        plan[c].font = f(10, True)
+        plan[c].fill = GREY_FIX
     for r, fill in ((1, RED), (2, AMBER), (3, GREEN)):
         plan[f"K{r}"].font = f(10, True)
         plan[f"K{r}"].fill = fill
@@ -547,13 +617,23 @@ def build_pm():
         mx = (f'MAX(N(E{r}),SUMPRODUCT(MAX(({C}$B$5:$B${LOG_LAST}=A{r})*({C}$C$5:$C${LOG_LAST}=B{r})'
               f'*{C}$A$5:$A${LOG_LAST})))')
         plan[f"F{r}"] = f'=IF(OR(A{r}="",B{r}=""),"",IF({mx}=0,"",{mx}))'
-        plan[f"G{r}"] = f'=IF(OR(A{r}="",B{r}="",C{r}=""),"",IF(F{r}="",TODAY(),F{r}+C{r}))'
+        bad_freq = f'OR(NOT(ISNUMBER(C{r})),N(C{r})<=0)'
+        dup = f'SUMPRODUCT(($A$5:$A${PLAN_LAST}=A{r})*($B$5:$B${PLAN_LAST}=B{r}))>1'
+        plan[f"G{r}"] = f'=IF(OR(A{r}="",B{r}="",{bad_freq}),"",IF(F{r}="",TODAY(),F{r}+C{r}))'
         plan[f"H{r}"] = f'=IF(G{r}="","",G{r}-TODAY())'
-        plan[f"I{r}"] = f'=IF(H{r}="","",IF(H{r}<0,"OVERDUE",IF(H{r}<=$I$2,"Due soon","OK")))'
+        plan[f"I{r}"] = (f'=IF(AND(A{r}="",B{r}=""),"",IF(OR(A{r}="",B{r}=""),"Fill in asset and task",'
+                         f'IF({bad_freq},"Check frequency",IF({dup},"Duplicate row",'
+                         f'IF(H{r}<0,"OVERDUE",IF(H{r}<=$I$2,"Due soon","OK"))))))')
     rng = f"I5:I{PLAN_LAST}"
     plan.conditional_formatting.add(rng, FormulaRule(formula=['I5="OVERDUE"'], fill=RED))
     plan.conditional_formatting.add(rng, FormulaRule(formula=['I5="Due soon"'], fill=AMBER))
     plan.conditional_formatting.add(rng, FormulaRule(formula=['I5="OK"'], fill=GREEN))
+    plan.conditional_formatting.add(rng, FormulaRule(
+        formula=['OR(I5="Check frequency",I5="Duplicate row",I5="Fill in asset and task")'], fill=GREY_FIX))
+    fq = DataValidation(type="whole", operator="greaterThan", formula1="0", allow_blank=True)
+    fq.error = "Enter the frequency as a whole number of days, 1 or more."
+    plan.add_data_validation(fq)
+    fq.add(f"C5:C{PLAN_LAST}")
     ex = [
         ("Air compressor 1", "Change oil filter", 90, "Maintenance", 100),
         ("Press 01", "Lubricate slides and gibs", 7, "Operator", 3),
@@ -576,8 +656,9 @@ def build_pm():
     fmt_cols(done, 5, LOG_LAST, {1: "yyyy-mm-dd"})
     P = "'PM Plan'!"
     for r in range(5, LOG_LAST + 1):
-        done[f"F{r}"] = (f'=IF(B{r}="","",IF(COUNTIFS({P}$A$5:$A${PLAN_LAST},B{r},{P}$B$5:$B${PLAN_LAST},C{r})>0,'
-                         f'"OK","No matching asset + task in plan"))')
+        done[f"F{r}"] = (f'=IF(AND(A{r}="",B{r}="",C{r}=""),"",IF(NOT(ISNUMBER(A{r})),"Enter the date done",'
+                         f'IF(SUMPRODUCT(({P}$A$5:$A${PLAN_LAST}=B{r})*({P}$B$5:$B${PLAN_LAST}=C{r}))=0,'
+                         f'"No matching asset + task in plan","OK")))')
     done["A5"] = "=TODAY()-2"
     done["B5"] = "CNC Lathe 02"
     done["C5"] = "Clean chip conveyor and coolant filter"
@@ -589,6 +670,10 @@ def build_pm():
         dv.showErrorMessage = False  # warn via the 'Matches plan?' column instead of blocking
         done.add_data_validation(dv)
         dv.add(rng)
+    dd = DataValidation(type="date", operator="greaterThan", formula1="1", allow_blank=True)
+    dd.error = "Enter the date the task was done."
+    done.add_data_validation(dd)
+    dd.add(f"A5:A{LOG_LAST}")
     done.freeze_panes = "A5"
     wb.active = plan
     return wb
