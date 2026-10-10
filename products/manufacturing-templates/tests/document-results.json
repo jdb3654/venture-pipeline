@@ -1,0 +1,299 @@
+{
+  "tests": [
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf checkout cross-reference offset",
+      "status": "FAIL",
+      "evidence": {
+        "offset": 560433,
+        "bytes_at_offset": "b'<2AT0XX26W5Z/a\\\\#B2^n'",
+        "actual_xref_offset": 560587
+      }
+    },
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf checkout strict PDF parse",
+      "status": "FAIL",
+      "evidence": "Broken xref table"
+    },
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf committed blob cross-reference offset",
+      "status": "PASS",
+      "evidence": {
+        "offset": 560433,
+        "bytes_at_offset": "b'xref\\n0 21\\n0000000000'",
+        "actual_xref_offset": 560433
+      }
+    },
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf committed blob strict PDF parse",
+      "status": "PASS",
+      "evidence": {
+        "pages": 4
+      }
+    },
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf no owner identifiers or local paths",
+      "status": "PASS",
+      "evidence": {
+        "suspicious": [],
+        "author": "TaktTools"
+      }
+    },
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf explicitly clears yellow example cells only",
+      "status": "PASS",
+      "evidence": "Guide instructs clearing yellow cells and retaining formula rows"
+    },
+    {
+      "test": "Downtime-Log-and-Pareto-Guide.pdf recovery rendering of every page",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "pages_rendered": 4,
+        "stderr_first_1000_chars": "Syntax Error (560437): Illegal character <54> in hex string\nSyntax Error (560439): Illegal character <58> in hex string\nSyntax Error (560440): Illegal character <58> in hex string\nSyntax Error (560443): Illegal character <57> in hex string\nSyntax Error (560445): Illegal character <5a> in hex string\nSyntax Error (560446): Illegal character <2f> in hex string\nSyntax Error (560448): Illegal character <5c> in hex string\nSyntax Error (560449): Illegal character <23> in hex string\nSyntax Error (560452): Illegal character <5e> in hex string\nSyntax Error (560453): Illegal character <6e> in hex string\nSyntax Error (560454): Illegal character <5f> in hex string\nSyntax Error (560456): Illegal character <28> in hex string\nSyntax Error (560457): Illegal character <70> in hex string\nSyntax Error (560458): Illegal character <40> in hex string\nSyntax Error (560459): Illegal character <58> in hex string\nSyntax Error (560460): Illegal character <6f> in hex string\nSyntax Error (560461): Illegal character",
+        "stderr_line_count": 88
+      }
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf checkout cross-reference offset",
+      "status": "FAIL",
+      "evidence": {
+        "offset": 1064848,
+        "bytes_at_offset": "b'GUNh);Wq-Vil5!MSJ4QK'",
+        "actual_xref_offset": 1065164
+      }
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf checkout strict PDF parse",
+      "status": "FAIL",
+      "evidence": "Broken xref table"
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf committed blob cross-reference offset",
+      "status": "PASS",
+      "evidence": {
+        "offset": 1064848,
+        "bytes_at_offset": "b'xref\\n0 39\\n0000000000'",
+        "actual_xref_offset": 1064848
+      }
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf committed blob strict PDF parse",
+      "status": "PASS",
+      "evidence": {
+        "pages": 11
+      }
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf no owner identifiers or local paths",
+      "status": "PASS",
+      "evidence": {
+        "suspicious": [],
+        "author": "TaktTools"
+      }
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf explicitly clears yellow example cells only",
+      "status": "PASS",
+      "evidence": "Guide instructs clearing yellow cells and retaining formula rows"
+    },
+    {
+      "test": "Manufacturing-Bundle-Guide.pdf recovery rendering of every page",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "pages_rendered": 11,
+        "stderr_first_1000_chars": "Syntax Error (1064853): Illegal character ')'\nSyntax Error: No display font for 'Symbol'\nSyntax Error: No display font for 'ArialUnicode'\n",
+        "stderr_line_count": 3
+      }
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf checkout cross-reference offset",
+      "status": "FAIL",
+      "evidence": {
+        "offset": 326464,
+        "bytes_at_offset": "b'$cJ[pW.i#<r/Y85VD#3E'",
+        "actual_xref_offset": 326600
+      }
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf checkout strict PDF parse",
+      "status": "FAIL",
+      "evidence": "Broken xref table"
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf committed blob cross-reference offset",
+      "status": "PASS",
+      "evidence": {
+        "offset": 326464,
+        "bytes_at_offset": "b'xref\\n0 19\\n0000000000'",
+        "actual_xref_offset": 326464
+      }
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf committed blob strict PDF parse",
+      "status": "PASS",
+      "evidence": {
+        "pages": 4
+      }
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf no owner identifiers or local paths",
+      "status": "PASS",
+      "evidence": {
+        "suspicious": [],
+        "author": "TaktTools"
+      }
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf explicitly clears yellow example cells only",
+      "status": "PASS",
+      "evidence": "Guide instructs clearing yellow cells and retaining formula rows"
+    },
+    {
+      "test": "OEE-Tracker-Guide.pdf recovery rendering of every page",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "pages_rendered": 4,
+        "stderr_first_1000_chars": "Syntax Error: No display font for 'Symbol'\nSyntax Error: No display font for 'ArialUnicode'\n",
+        "stderr_line_count": 2
+      }
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf checkout cross-reference offset",
+      "status": "FAIL",
+      "evidence": {
+        "offset": 225608,
+        "bytes_at_offset": "b'gb<ZlIE19S\\\\?PYSRiGWk'",
+        "actual_xref_offset": 225725
+      }
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf checkout strict PDF parse",
+      "status": "FAIL",
+      "evidence": "Broken xref table"
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf committed blob cross-reference offset",
+      "status": "PASS",
+      "evidence": {
+        "offset": 225608,
+        "bytes_at_offset": "b'xref\\n0 17\\n0000000000'",
+        "actual_xref_offset": 225608
+      }
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf committed blob strict PDF parse",
+      "status": "PASS",
+      "evidence": {
+        "pages": 3
+      }
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf no owner identifiers or local paths",
+      "status": "PASS",
+      "evidence": {
+        "suspicious": [],
+        "author": "TaktTools"
+      }
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf explicitly clears yellow example cells only",
+      "status": "PASS",
+      "evidence": "Guide instructs clearing yellow cells and retaining formula rows"
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule-Guide.pdf recovery rendering of every page",
+      "status": "PASS",
+      "evidence": {
+        "returncode": 0,
+        "pages_rendered": 3,
+        "stderr_first_1000_chars": "Syntax Error (225612): Illegal character <5a> in hex string\nSyntax Error (225613): Illegal character <6c> in hex string\nSyntax Error (225614): Illegal character <49> in hex string\nSyntax Error (225618): Illegal character <53> in hex string\nSyntax Error (225619): Illegal character <5c> in hex string\nSyntax Error (225620): Illegal character <3f> in hex string\nSyntax Error (225621): Illegal character <50> in hex string\nSyntax Error (225622): Illegal character <59> in hex string\nSyntax Error (225623): Illegal character <53> in hex string\nSyntax Error (225624): Illegal character <52> in hex string\nSyntax Error (225625): Illegal character <69> in hex string\nSyntax Error (225626): Illegal character <47> in hex string\nSyntax Error (225627): Illegal character <57> in hex string\nSyntax Error (225628): Illegal character <6b> in hex string\nSyntax Error (225629): Illegal character <5a> in hex string\nSyntax Error (225631): Illegal character <73> in hex string\nSyntax Error (225632): Illegal character",
+        "stderr_line_count": 73
+      }
+    }
+  ],
+  "guides": [
+    {
+      "file": "Downtime-Log-and-Pareto-Guide.pdf",
+      "checkout_sha256": "36c0b36fafd1a945aace272a75d447363cb2276751f9d6f04667d4bdcbcf43d5",
+      "git_sha256": "025d61f7f1a0ae0dc24177f7d8a1d599d790e8445c9780510ef3836fae8771b4",
+      "bytes": 561260,
+      "pages": 4,
+      "metadata": {
+        "/Author": "TaktTools",
+        "/CreationDate": "D:20261010155722-05'00'",
+        "/Creator": "TaktTools",
+        "/Keywords": "",
+        "/ModDate": "D:20261010155722-05'00'",
+        "/Producer": "ReportLab PDF Library - (opensource)",
+        "/Subject": "Step-by-step guide",
+        "/Title": "Downtime Log & Pareto guide",
+        "/Trapped": "/False"
+      },
+      "text": "TaktTools  \u00b7  Downtime Log & Pareto guide\nPage 1\nDowntime Log & Pareto\nStep-by-step guide: log every stop and see which causes cost the most time\nWhat it does\nYou record each stop with a reason. The Pareto sheet ranks the reasons by minutes lost, with each\nreason's share and the running total, so you can see the few causes behind most of your downtime.\nFilter by date range and machine.\nYellow cells: type here.\nGrey cells: calculated. Don't type over them.\nThe sheets\nSheet\nWhat it's for\nHow to use\nA one-page summary.\nSetup\nYour machines (up to 30) and your downtime reasons with categories (up to 30).\nDowntime Log\nOne row per stop. Up to 1,000 rows.\nPareto\nReasons ranked by minutes lost, with a Pareto chart of the top 12.\nBy Machine\nDowntime minutes and stop counts per machine.\nBefore you start\n1\nOpen the file in Microsoft Excel (2010 or later). If Excel shows a yellow Protected View bar because\nthe file was downloaded, click Enable Editing.\n2\nSave a copy under your own name (for example, add your plant or year) and keep the original\ndownload as a clean spare.\n3\nRead the How to use sheet. It's a one-page summary of this guide.\nStep 1: Set up machines and reasons\n1\nGo to the Setup sheet.\n2\nUnder Machine, list your machines, one per row. Avoid the characters *, ? and ~ in names.\n3\nUnder Downtime reason and Category, edit the 12 starter reasons to match how your plant talks\nabout stops. Keep the list short, about 10 to 15 reasons. Categories (Breakdown, Material, and so on)\ncan be renamed too.\n\nTaktTools  \u00b7  Downtime Log & Pareto guide\nPage 2\nSetup: machines on the left, reasons and categories on the right.\nStep 2: Log every stop\n1\nGo to the Downtime Log sheet and use one row per stop.\n2\nEnter Date, Shift and Machine (from the drop-down).\n3\nEnter Start and End as times, like 7:15 and 7:50. A stop that crosses midnight, like 23:40 to 0:25, is\nhandled automatically (45 minutes).\n4\nIf you only know how long it lasted, leave Start and End blank and type the minutes in Minutes (if no\nstart/end). Typed minutes always win over start and end times.\n5\nPick a Reason from the drop-down. Duration and Category fill in by themselves.\n6\nAdd Notes if useful, especially for \"Other\".\n7\nThe rows marked EXAMPLE show the expected format. When you're ready, select just their yellow\ncells and press Delete to clear them. Don't delete whole rows: that removes the formulas in the grey\ncolumns too.\nDowntime Log with the example rows, including a stop that crosses midnight.\n\nTaktTools  \u00b7  Downtime Log & Pareto guide\nPage 3\nIf Category shows Not in Setup, the reason was typed instead of picked, or is spelled differently from the Setup list. Pick\nit from the drop-down so it's counted under the right reason.\nStep 3: Read the Pareto\n1\nGo to the Pareto sheet.\n2\nOptional: set From date, To date and Machine. Leave any of them blank to include everything. Both\ndates are included in the range.\n3\nRead the table from the top: Rank, Reason, Minutes, Stops, % of total and Cumulative %.\nReasons with no minutes in the range are left out.\n4\nThe chart shows the top 12 reasons as bars, with the cumulative % as a line on the right-hand axis.\n5\nStart improvement work with the reasons at the top. Often the first two or three account for most of\nthe lost time.\nPareto: reasons ranked by minutes, with cumulative % and the Pareto chart.\nStep 4: Compare machines\nThe By Machine sheet shows total downtime, number of stops, average minutes per stop and each\nmachine's share of all downtime. It uses the date range set on the Pareto sheet; the machine filter\ndoesn't apply here.\n\nTaktTools  \u00b7  Downtime Log & Pareto guide\nPage 4\nBy Machine: downtime minutes, stops and share per machine.\nTips\n\u007f\nIf Other climbs into your top reasons, read its notes and add the missing reason to Setup.\n\u007f\nDurations are rounded to whole minutes.\n\u007f\nLog stops the same day, while people remember the cause.\nQuestions\nThe log is full (1,000 rows). What now? Save the workbook as a new file for the next period, clear the\nyellow cells in the log, and keep going.\nCan I rename the sheets or move columns? Please don't. The formulas refer to them by position.\nNeed help?\nMessage us through Etsy (the Message seller button on our shop or your order). Tell us which file,\nwhich sheet, and what you typed, and we'll help you get it working.\nThese templates were designed with help from AI tools and checked by the seller.\n"
+    },
+    {
+      "file": "Manufacturing-Bundle-Guide.pdf",
+      "checkout_sha256": "81e535cc4292d59039105607fb4fb58582795390bc48f7e74dccff7fbfd80d0d",
+      "git_sha256": "5d36075a596862cc353a1a233f81e41cc17770bd384b09bc94486af7042ccb8d",
+      "bytes": 1066216,
+      "pages": 11,
+      "metadata": {
+        "/Author": "TaktTools",
+        "/CreationDate": "D:20261010155724-05'00'",
+        "/Creator": "TaktTools",
+        "/Keywords": "",
+        "/ModDate": "D:20261010155724-05'00'",
+        "/Producer": "ReportLab PDF Library - (opensource)",
+        "/Subject": "Step-by-step guide",
+        "/Title": "Manufacturing templates bundle guide",
+        "/Trapped": "/False"
+      },
+      "text": "TaktTools  \u00b7  Manufacturing templates bundle guide\nPage 1\nOEE Tracker\nStep-by-step guide: track Overall Equipment Effectiveness by machine and shift\nWhat it does\nYou log one row per machine per shift. The workbook calculates Availability, Performance, Quality and\nOEE for every row, then summarizes each machine on the Dashboard for any date range you choose,\nwith a chart and a comparison to your target.\nYellow cells: type here.\nGrey cells: calculated. Don't type over them.\nThe sheets\nSheet\nWhat it's for\nHow to use\nA one-page summary.\nSetup\nYour machines and each one's ideal cycle time. Up to 20 machines.\nProduction Log\nOne row per machine per shift. Up to 500 rows.\nDashboard\nTotals and OEE by machine for a date range, plus a chart.\nBefore you start\n1\nOpen the file in Microsoft Excel (2010 or later). If Excel shows a yellow Protected View bar because\nthe file was downloaded, click Enable Editing.\n2\nSave a copy under your own name (for example, add your plant or year) and keep the original\ndownload as a clean spare.\n3\nRead the How to use sheet. It's a one-page summary of this guide.\nStep 1: Set up your machines\n1\nGo to the Setup sheet.\n2\nIn Machine, type each machine's name once, one per row (up to 20). Use the names your team\nalready uses. Avoid the characters *, ? and ~ in names.\n3\nIn Ideal cycle time (seconds per part), enter the fastest time the machine can sustainably make one\ngood part. For a line, use the time per finished unit at rated speed. Example: a machine rated at 300\nparts per hour has an ideal cycle time of 3600 / 300 = 12 seconds.\n4\nClear the three EXAMPLE machines when you no longer need them (yellow cells only).\nGetting the ideal cycle time right matters most: if it's too slow, Performance can show over 100% and the Check column\nwill flag it.\nStep 2: Log each shift\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 2\n1\nGo to the Production Log sheet.\n2\nFill in one row per machine per shift. The yellow columns are: Date, Shift (any label, e.g. Day or 1st),\nMachine (pick from the drop-down), Shift length (min), Planned stops (min), Unplanned\ndowntime (min), Total parts and Rejected parts.\n3\nPlanned stops are times the machine isn't expected to run, like breaks and scheduled meetings.\nUnplanned downtime is every other minute it was stopped: breakdowns, changeovers, waiting for\nmaterial.\n4\nThe grey columns fill in by themselves, including OEE (coloured green, amber or red) and Check.\n5\nLook at Check on each new row. It should say OK. If not, see the table below.\n6\nThe rows marked EXAMPLE show the expected format. When you're ready, select just their yellow\ncells and press Delete to clear them. Don't delete whole rows: that removes the formulas in the grey\ncolumns too.\nProduction Log with the example rows. Yellow columns are typed in; grey columns calculate.\nWhat the Check column means\nMessage\nWhat to do\nMachine not in Setup\nThe machine name isn't on the Setup sheet, or is spelled differently. Pick\nit from the drop-down, or add it to Setup.\nRejects > total parts\nRejected parts must be part of the total. Fix one of the two numbers.\nDowntime > planned time\nUnplanned downtime is longer than shift length minus planned stops.\nCheck the three time columns.\nPerformance > 100%: check cycle\ntime or counts\nThe machine made parts faster than its ideal cycle time allows. Usually\nthe ideal cycle time in Setup is too slow, or the part count is wrong.\nOK\nNothing obviously wrong.\nStep 3: Read the Dashboard\n1\nGo to the Dashboard sheet.\n2\nOptional: enter a From date and/or To date. Leave them blank to include every row. Both dates are\nincluded in the range.\n3\nSet your OEE target (85% is filled in). OEE cells turn green at or above target, amber from 60% up\nto the target, and red below 60%. OEE vs target shows the gap.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 3\n4\nEach machine row adds up the times and part counts first, then calculates the percentages. That way\na long shift counts more than a short one, which is more accurate than averaging each shift's OEE.\nDashboard: totals and OEE by machine, the all-machines total, and the OEE chart.\nHow the numbers are calculated\nMeasure\nFormula\nPlanned production time\nShift length - planned stops\nRun time\nPlanned production time - unplanned downtime\nAvailability\nRun time \u00f7 planned production time\nPerformance\n(Ideal cycle time \u00d7 total parts) \u00f7 run time\nQuality\nGood parts \u00f7 total parts (good parts = total - rejected)\nOEE\nAvailability \u00d7 Performance \u00d7 Quality\n85% OEE is a commonly cited \"world-class\" benchmark. Many plants start well below it; improving against your own\nbaseline matters more.\nQuestions\nThe log is full (500 rows). What now? Save the workbook as a new file for the next period (for\nexample, one per quarter), clear the yellow cells in the log, and keep going.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 4\nCan I add more than 20 machines? Not in this version. Message us if you need more.\nCan I rename the sheets or move columns? Please don't. The formulas refer to them by position.\nNeed help?\nMessage us through Etsy (the Message seller button on our shop or your order). Tell us which file,\nwhich sheet, and what you typed, and we'll help you get it working.\nThese templates were designed with help from AI tools and checked by the seller.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 5\nDowntime Log & Pareto\nStep-by-step guide: log every stop and see which causes cost the most time\nWhat it does\nYou record each stop with a reason. The Pareto sheet ranks the reasons by minutes lost, with each\nreason's share and the running total, so you can see the few causes behind most of your downtime.\nFilter by date range and machine.\nYellow cells: type here.\nGrey cells: calculated. Don't type over them.\nThe sheets\nSheet\nWhat it's for\nHow to use\nA one-page summary.\nSetup\nYour machines (up to 30) and your downtime reasons with categories (up to 30).\nDowntime Log\nOne row per stop. Up to 1,000 rows.\nPareto\nReasons ranked by minutes lost, with a Pareto chart of the top 12.\nBy Machine\nDowntime minutes and stop counts per machine.\nBefore you start\n1\nOpen the file in Microsoft Excel (2010 or later). If Excel shows a yellow Protected View bar because\nthe file was downloaded, click Enable Editing.\n2\nSave a copy under your own name (for example, add your plant or year) and keep the original\ndownload as a clean spare.\n3\nRead the How to use sheet. It's a one-page summary of this guide.\nStep 1: Set up machines and reasons\n1\nGo to the Setup sheet.\n2\nUnder Machine, list your machines, one per row. Avoid the characters *, ? and ~ in names.\n3\nUnder Downtime reason and Category, edit the 12 starter reasons to match how your plant talks\nabout stops. Keep the list short, about 10 to 15 reasons. Categories (Breakdown, Material, and so on)\ncan be renamed too.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 6\nSetup: machines on the left, reasons and categories on the right.\nStep 2: Log every stop\n1\nGo to the Downtime Log sheet and use one row per stop.\n2\nEnter Date, Shift and Machine (from the drop-down).\n3\nEnter Start and End as times, like 7:15 and 7:50. A stop that crosses midnight, like 23:40 to 0:25, is\nhandled automatically (45 minutes).\n4\nIf you only know how long it lasted, leave Start and End blank and type the minutes in Minutes (if no\nstart/end). Typed minutes always win over start and end times.\n5\nPick a Reason from the drop-down. Duration and Category fill in by themselves.\n6\nAdd Notes if useful, especially for \"Other\".\n7\nThe rows marked EXAMPLE show the expected format. When you're ready, select just their yellow\ncells and press Delete to clear them. Don't delete whole rows: that removes the formulas in the grey\ncolumns too.\nDowntime Log with the example rows, including a stop that crosses midnight.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 7\nIf Category shows Not in Setup, the reason was typed instead of picked, or is spelled differently from the Setup list. Pick\nit from the drop-down so it's counted under the right reason.\nStep 3: Read the Pareto\n1\nGo to the Pareto sheet.\n2\nOptional: set From date, To date and Machine. Leave any of them blank to include everything. Both\ndates are included in the range.\n3\nRead the table from the top: Rank, Reason, Minutes, Stops, % of total and Cumulative %.\nReasons with no minutes in the range are left out.\n4\nThe chart shows the top 12 reasons as bars, with the cumulative % as a line on the right-hand axis.\n5\nStart improvement work with the reasons at the top. Often the first two or three account for most of\nthe lost time.\nPareto: reasons ranked by minutes, with cumulative % and the Pareto chart.\nStep 4: Compare machines\nThe By Machine sheet shows total downtime, number of stops, average minutes per stop and each\nmachine's share of all downtime. It uses the date range set on the Pareto sheet; the machine filter\ndoesn't apply here.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 8\nBy Machine: downtime minutes, stops and share per machine.\nTips\n\u007f\nIf Other climbs into your top reasons, read its notes and add the missing reason to Setup.\n\u007f\nDurations are rounded to whole minutes.\n\u007f\nLog stops the same day, while people remember the cause.\nQuestions\nThe log is full (1,000 rows). What now? Save the workbook as a new file for the next period, clear the\nyellow cells in the log, and keep going.\nCan I rename the sheets or move columns? Please don't. The formulas refer to them by position.\nNeed help?\nMessage us through Etsy (the Message seller button on our shop or your order). Tell us which file,\nwhich sheet, and what you typed, and we'll help you get it working.\nThese templates were designed with help from AI tools and checked by the seller.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 9\nPreventive Maintenance Schedule\nStep-by-step guide: plan recurring maintenance and see what's due\nWhat it does\nYou list each recurring maintenance task and how often it's due. Each time a task is done, you add a line\nto the Completion Log. The plan then shows each task's last completion, next due date, days left and a\ncolour-coded status.\nYellow cells: type here.\nGrey cells: calculated. Don't type over them.\nThe sheets\nSheet\nWhat it's for\nHow to use\nA one-page summary.\nPM Plan\nOne row per asset and task, with status. Up to 300 tasks.\nCompletion Log\nOne row each time a task is done. Up to 2,000 rows.\nBefore you start\n1\nOpen the file in Microsoft Excel (2010 or later). If Excel shows a yellow Protected View bar because\nthe file was downloaded, click Enable Editing.\n2\nSave a copy under your own name (for example, add your plant or year) and keep the original\ndownload as a clean spare.\n3\nRead the How to use sheet. It's a one-page summary of this guide.\nStep 1: Build your plan\n1\nGo to the PM Plan sheet.\n2\nAdd one row per asset and task. Fill in Asset, Task, Frequency (days) and Assigned to. Common\nfrequencies: 1 = daily, 7 = weekly, 14 = every two weeks, 30 = monthly, 90 = quarterly, 180 = twice a\nyear, 365 = yearly.\n3\nIf you know when a task was last done before you started using this workbook, enter that date in Last\ndone before log. Otherwise leave it blank: the task will show as due today, so nothing is silently\nmissed.\n4\nKeep each asset + task combination on one row only.\n5\nThe rows marked EXAMPLE show the expected format. When you're ready, select just their yellow\ncells and press Delete to clear them. Don't delete whole rows: that removes the formulas in the grey\ncolumns too.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 10\nPM Plan with example tasks, statuses and the counts box (top right).\nStep 2: Log completed work\n1\nGo to the Completion Log sheet.\n2\nEach time a task is done, add a row: Date done, Asset and Task (pick both from the drop-downs so\nthey match the plan exactly), Done by and any Notes.\n3\nCheck Matches plan?. It should say OK. If it says No matching asset + task in plan, the asset or\ntask is spelled differently from the PM Plan, and the plan won't update. Fix the spelling.\nCompletion Log: each completion updates the plan.\nStep 3: Read the plan\n1\nBack on PM Plan, the grey columns update automatically: Last completed (the most recent of the\nlogged dates and the before-log date), Next due, Days until due and Status.\n2\nOVERDUE (red) means the due date has passed. Due soon (amber) means it's due within the\nwindow. OK (green) means it's not due yet.\n3\nChange the Due soon window (days) at the top of the sheet. It starts at 7.\n4\nThe counts box at the top right shows how many tasks are Overdue, Due soon and OK.\n5\nTo get this week's work list, sort or filter by Status: Data > Filter in Excel.\nDates and statuses use today's date from your computer, so they change from day to day. The example rows are set\nrelative to today for the same reason.\nQuestions\nWhat if a task is done early? Log the actual date. The next due date counts from the last completion.\nThe Completion Log is full. Save the workbook as a new file, enter each task's most recent date in\nLast done before log, clear the yellow cells in the log, and keep going.\n\nTaktTools  \u00b7  Manufacturing templates bundle guide\nPage 11\nCan I rename the sheets or move columns? Please don't. The formulas refer to them by position.\nNeed help?\nMessage us through Etsy (the Message seller button on our shop or your order). Tell us which file,\nwhich sheet, and what you typed, and we'll help you get it working.\nThese templates were designed with help from AI tools and checked by the seller.\n"
+    },
+    {
+      "file": "OEE-Tracker-Guide.pdf",
+      "checkout_sha256": "dc05e52e1cf81d7f4653f059b5f59dde212ce777de1e07785b0ac7147f9173ca",
+      "git_sha256": "e1a5853b052357502b5c0530fc4848938497cda943ee22a10ffe0043c405f359",
+      "bytes": 327231,
+      "pages": 4,
+      "metadata": {
+        "/Author": "TaktTools",
+        "/CreationDate": "D:20261010155722-05'00'",
+        "/Creator": "TaktTools",
+        "/Keywords": "",
+        "/ModDate": "D:20261010155722-05'00'",
+        "/Producer": "ReportLab PDF Library - (opensource)",
+        "/Subject": "Step-by-step guide",
+        "/Title": "OEE Tracker guide",
+        "/Trapped": "/False"
+      },
+      "text": "TaktTools  \u00b7  OEE Tracker guide\nPage 1\nOEE Tracker\nStep-by-step guide: track Overall Equipment Effectiveness by machine and shift\nWhat it does\nYou log one row per machine per shift. The workbook calculates Availability, Performance, Quality and\nOEE for every row, then summarizes each machine on the Dashboard for any date range you choose,\nwith a chart and a comparison to your target.\nYellow cells: type here.\nGrey cells: calculated. Don't type over them.\nThe sheets\nSheet\nWhat it's for\nHow to use\nA one-page summary.\nSetup\nYour machines and each one's ideal cycle time. Up to 20 machines.\nProduction Log\nOne row per machine per shift. Up to 500 rows.\nDashboard\nTotals and OEE by machine for a date range, plus a chart.\nBefore you start\n1\nOpen the file in Microsoft Excel (2010 or later). If Excel shows a yellow Protected View bar because\nthe file was downloaded, click Enable Editing.\n2\nSave a copy under your own name (for example, add your plant or year) and keep the original\ndownload as a clean spare.\n3\nRead the How to use sheet. It's a one-page summary of this guide.\nStep 1: Set up your machines\n1\nGo to the Setup sheet.\n2\nIn Machine, type each machine's name once, one per row (up to 20). Use the names your team\nalready uses. Avoid the characters *, ? and ~ in names.\n3\nIn Ideal cycle time (seconds per part), enter the fastest time the machine can sustainably make one\ngood part. For a line, use the time per finished unit at rated speed. Example: a machine rated at 300\nparts per hour has an ideal cycle time of 3600 / 300 = 12 seconds.\n4\nClear the three EXAMPLE machines when you no longer need them (yellow cells only).\nGetting the ideal cycle time right matters most: if it's too slow, Performance can show over 100% and the Check column\nwill flag it.\nStep 2: Log each shift\n\nTaktTools  \u00b7  OEE Tracker guide\nPage 2\n1\nGo to the Production Log sheet.\n2\nFill in one row per machine per shift. The yellow columns are: Date, Shift (any label, e.g. Day or 1st),\nMachine (pick from the drop-down), Shift length (min), Planned stops (min), Unplanned\ndowntime (min), Total parts and Rejected parts.\n3\nPlanned stops are times the machine isn't expected to run, like breaks and scheduled meetings.\nUnplanned downtime is every other minute it was stopped: breakdowns, changeovers, waiting for\nmaterial.\n4\nThe grey columns fill in by themselves, including OEE (coloured green, amber or red) and Check.\n5\nLook at Check on each new row. It should say OK. If not, see the table below.\n6\nThe rows marked EXAMPLE show the expected format. When you're ready, select just their yellow\ncells and press Delete to clear them. Don't delete whole rows: that removes the formulas in the grey\ncolumns too.\nProduction Log with the example rows. Yellow columns are typed in; grey columns calculate.\nWhat the Check column means\nMessage\nWhat to do\nMachine not in Setup\nThe machine name isn't on the Setup sheet, or is spelled differently. Pick\nit from the drop-down, or add it to Setup.\nRejects > total parts\nRejected parts must be part of the total. Fix one of the two numbers.\nDowntime > planned time\nUnplanned downtime is longer than shift length minus planned stops.\nCheck the three time columns.\nPerformance > 100%: check cycle\ntime or counts\nThe machine made parts faster than its ideal cycle time allows. Usually\nthe ideal cycle time in Setup is too slow, or the part count is wrong.\nOK\nNothing obviously wrong.\nStep 3: Read the Dashboard\n1\nGo to the Dashboard sheet.\n2\nOptional: enter a From date and/or To date. Leave them blank to include every row. Both dates are\nincluded in the range.\n3\nSet your OEE target (85% is filled in). OEE cells turn green at or above target, amber from 60% up\nto the target, and red below 60%. OEE vs target shows the gap.\n\nTaktTools  \u00b7  OEE Tracker guide\nPage 3\n4\nEach machine row adds up the times and part counts first, then calculates the percentages. That way\na long shift counts more than a short one, which is more accurate than averaging each shift's OEE.\nDashboard: totals and OEE by machine, the all-machines total, and the OEE chart.\nHow the numbers are calculated\nMeasure\nFormula\nPlanned production time\nShift length - planned stops\nRun time\nPlanned production time - unplanned downtime\nAvailability\nRun time \u00f7 planned production time\nPerformance\n(Ideal cycle time \u00d7 total parts) \u00f7 run time\nQuality\nGood parts \u00f7 total parts (good parts = total - rejected)\nOEE\nAvailability \u00d7 Performance \u00d7 Quality\n85% OEE is a commonly cited \"world-class\" benchmark. Many plants start well below it; improving against your own\nbaseline matters more.\nQuestions\nThe log is full (500 rows). What now? Save the workbook as a new file for the next period (for\nexample, one per quarter), clear the yellow cells in the log, and keep going.\n\nTaktTools  \u00b7  OEE Tracker guide\nPage 4\nCan I add more than 20 machines? Not in this version. Message us if you need more.\nCan I rename the sheets or move columns? Please don't. The formulas refer to them by position.\nNeed help?\nMessage us through Etsy (the Message seller button on our shop or your order). Tell us which file,\nwhich sheet, and what you typed, and we'll help you get it working.\nThese templates were designed with help from AI tools and checked by the seller.\n"
+    },
+    {
+      "file": "Preventive-Maintenance-Schedule-Guide.pdf",
+      "checkout_sha256": "5b47ccccdfc6ef23bd38047362ad24f7c1331bd282bce729fba5871c14a8161a",
+      "git_sha256": "20f7ae55cfff2cbb94b099dd8c45059a70c7382f8c82a08b2cdb32f3e058bc5f",
+      "bytes": 226314,
+      "pages": 3,
+      "metadata": {
+        "/Author": "TaktTools",
+        "/CreationDate": "D:20261010155723-05'00'",
+        "/Creator": "TaktTools",
+        "/Keywords": "",
+        "/ModDate": "D:20261010155723-05'00'",
+        "/Producer": "ReportLab PDF Library - (opensource)",
+        "/Subject": "Step-by-step guide",
+        "/Title": "Preventive Maintenance Schedule guide",
+        "/Trapped": "/False"
+      },
+      "text": "TaktTools  \u00b7  Preventive Maintenance Schedule guide\nPage 1\nPreventive Maintenance Schedule\nStep-by-step guide: plan recurring maintenance and see what's due\nWhat it does\nYou list each recurring maintenance task and how often it's due. Each time a task is done, you add a line\nto the Completion Log. The plan then shows each task's last completion, next due date, days left and a\ncolour-coded status.\nYellow cells: type here.\nGrey cells: calculated. Don't type over them.\nThe sheets\nSheet\nWhat it's for\nHow to use\nA one-page summary.\nPM Plan\nOne row per asset and task, with status. Up to 300 tasks.\nCompletion Log\nOne row each time a task is done. Up to 2,000 rows.\nBefore you start\n1\nOpen the file in Microsoft Excel (2010 or later). If Excel shows a yellow Protected View bar because\nthe file was downloaded, click Enable Editing.\n2\nSave a copy under your own name (for example, add your plant or year) and keep the original\ndownload as a clean spare.\n3\nRead the How to use sheet. It's a one-page summary of this guide.\nStep 1: Build your plan\n1\nGo to the PM Plan sheet.\n2\nAdd one row per asset and task. Fill in Asset, Task, Frequency (days) and Assigned to. Common\nfrequencies: 1 = daily, 7 = weekly, 14 = every two weeks, 30 = monthly, 90 = quarterly, 180 = twice a\nyear, 365 = yearly.\n3\nIf you know when a task was last done before you started using this workbook, enter that date in Last\ndone before log. Otherwise leave it blank: the task will show as due today, so nothing is silently\nmissed.\n4\nKeep each asset + task combination on one row only.\n5\nThe rows marked EXAMPLE show the expected format. When you're ready, select just their yellow\ncells and press Delete to clear them. Don't delete whole rows: that removes the formulas in the grey\ncolumns too.\n\nTaktTools  \u00b7  Preventive Maintenance Schedule guide\nPage 2\nPM Plan with example tasks, statuses and the counts box (top right).\nStep 2: Log completed work\n1\nGo to the Completion Log sheet.\n2\nEach time a task is done, add a row: Date done, Asset and Task (pick both from the drop-downs so\nthey match the plan exactly), Done by and any Notes.\n3\nCheck Matches plan?. It should say OK. If it says No matching asset + task in plan, the asset or\ntask is spelled differently from the PM Plan, and the plan won't update. Fix the spelling.\nCompletion Log: each completion updates the plan.\nStep 3: Read the plan\n1\nBack on PM Plan, the grey columns update automatically: Last completed (the most recent of the\nlogged dates and the before-log date), Next due, Days until due and Status.\n2\nOVERDUE (red) means the due date has passed. Due soon (amber) means it's due within the\nwindow. OK (green) means it's not due yet.\n3\nChange the Due soon window (days) at the top of the sheet. It starts at 7.\n4\nThe counts box at the top right shows how many tasks are Overdue, Due soon and OK.\n5\nTo get this week's work list, sort or filter by Status: Data > Filter in Excel.\nDates and statuses use today's date from your computer, so they change from day to day. The example rows are set\nrelative to today for the same reason.\nQuestions\nWhat if a task is done early? Log the actual date. The next due date counts from the last completion.\nThe Completion Log is full. Save the workbook as a new file, enter each task's most recent date in\nLast done before log, clear the yellow cells in the log, and keep going.\n\nTaktTools  \u00b7  Preventive Maintenance Schedule guide\nPage 3\nCan I rename the sheets or move columns? Please don't. The formulas refer to them by position.\nNeed help?\nMessage us through Etsy (the Message seller button on our shop or your order). Tell us which file,\nwhich sheet, and what you typed, and we'll help you get it working.\nThese templates were designed with help from AI tools and checked by the seller.\n"
+    }
+  ],
+  "summary": {
+    "PASS": 20,
+    "FAIL": 8,
+    "BLOCKED": 0
+  }
+}

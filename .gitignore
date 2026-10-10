@@ -7,3 +7,5 @@ customer-data/
 .DS_Store
 .venv/
 __pycache__/
+.review-work/
+.review-executed/

@@ -1,0 +1,794 @@
+{
+  "workbooks": {
+    "Downtime-Log-and-Pareto.xlsx": {
+      "sha256": "298427f99b00727326c8894b960601112a2e75a13acf8e56f6fbc1309f145a2c",
+      "functions": [
+        "COUNTIFS",
+        "DATE",
+        "IF",
+        "IFERROR",
+        "INDEX",
+        "LARGE",
+        "MATCH",
+        "MOD",
+        "OR",
+        "ROUND",
+        "SUM",
+        "SUMIFS"
+      ],
+      "sheets": {
+        "How to use": {
+          "formula_count": 0,
+          "freeze_panes": null,
+          "conditional_formats": [],
+          "data_validation": [],
+          "instructions": [
+            "Downtime Log & Pareto",
+            "Version 1.0",
+            "What this does",
+            "Record every stop with a reason. The Pareto sheet ranks reasons by minutes lost so you can see the few causes behind most of your downtime, for any date range and any machine.",
+            "Colour key",
+            "Yellow cells are for you to fill in.",
+            "Grey cells are calculated. Don't type over them.",
+            "Steps",
+            "1. Setup: list your machines, and edit the reason list to match how your plant talks about stops. Each reason has a category (Breakdown, Material, and so on) that you can also rename.",
+            "2. Downtime Log: one row per stop. Enter start and end times, or type the minutes directly if you only know the duration. Stops that cross midnight are handled automatically.",
+            "3. Pareto: choose a date range and, optionally, one machine. Reasons are ranked automatically, with the cumulative percentage and a chart.",
+            "4. By Machine: total downtime and stop counts per machine for the same date range.",
+            "5. The rows marked EXAMPLE show the expected format. Delete them before you start.",
+            "Tips",
+            "Keep the reason list short (10-15 reasons). If 'Other' becomes one of your top reasons, read its notes and add the missing reason.",
+            "Pick reasons from the drop-down so spelling stays consistent; a typed reason that isn't on the Setup list shows 'Not in Setup' and won't be counted correctly."
+          ]
+        },
+        "Setup": {
+          "formula_count": 0,
+          "freeze_panes": "A5",
+          "conditional_formats": [],
+          "data_validation": [],
+          "instructions": []
+        },
+        "Downtime Log": {
+          "formula_count": 2000,
+          "freeze_panes": "D5",
+          "conditional_formats": [],
+          "data_validation": [
+            {
+              "ranges": "C5:C1004",
+              "type": "list",
+              "formula1": "Setup!$A$5:$A$34",
+              "operator": "between",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            },
+            {
+              "ranges": "H5:H1004",
+              "type": "list",
+              "formula1": "Setup!$D$5:$D$34",
+              "operator": "between",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            }
+          ],
+          "instructions": []
+        },
+        "Pareto": {
+          "formula_count": 274,
+          "freeze_panes": "A9",
+          "conditional_formats": [],
+          "data_validation": [
+            {
+              "ranges": "B5",
+              "type": "list",
+              "formula1": "Setup!$A$5:$A$34",
+              "operator": "between",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            }
+          ],
+          "instructions": []
+        },
+        "By Machine": {
+          "formula_count": 150,
+          "freeze_panes": "A5",
+          "conditional_formats": [],
+          "data_validation": [],
+          "instructions": []
+        }
+      },
+      "metadata": {
+        "docProps/core.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<cp:coreProperties xmlns:cp=\"http://schemas.openxmlformats.org/package/2006/metadata/core-properties\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns:dcmitype=\"http://purl.org/dc/dcmitype/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><dcterms:created xsi:type=\"dcterms:W3CDTF\">2026-10-10T19:09:04Z</dcterms:created><dc:creator>openpyxl</dc:creator><dc:description></dc:description><dc:language>en-US</dc:language><cp:lastModifiedBy></cp:lastModifiedBy><dcterms:modified xsi:type=\"dcterms:W3CDTF\">2026-10-10T14:09:08Z</dcterms:modified><cp:revision>1</cp:revision><dc:subject></dc:subject><dc:title></dc:title></cp:coreProperties>",
+        "docProps/app.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/extended-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\"><Template></Template><TotalTime>0</TotalTime><Application>LibreOffice/24.2.7.2$Linux_X86_64 LibreOffice_project/420$Build-2</Application><AppVersion>15.0000</AppVersion></Properties>",
+        "docProps/custom.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/custom-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\"></Properties>"
+      },
+      "external_links": [],
+      "suspicious_metadata": [],
+      "macros": false,
+      "formulas_with_new_prefix": [],
+      "chart_xml": {
+        "xl/charts/chart1.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<c:chartSpace xmlns:c=\"http://schemas.openxmlformats.org/drawingml/2006/chart\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><c:lang val=\"en-US\"/><c:roundedCorners val=\"0\"/><c:chart><c:title><c:tx><c:rich><a:bodyPr rot=\"0\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"1\" sz=\"1800\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr><a:r><a:rPr b=\"1\" sz=\"1800\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:rPr><a:t>Downtime by reason (top 12)</a:t></a:r></a:p></c:rich></c:tx><c:overlay val=\"0\"/><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:title><c:autoTitleDeleted val=\"0\"/><c:plotArea><c:barChart><c:barDir val=\"col\"/><c:grouping val=\"clustered\"/><c:varyColors val=\"0\"/><c:ser><c:idx val=\"0\"/><c:order val=\"0\"/><c:tx><c:strRef><c:f>Pareto!C8</c:f><c:strCache><c:ptCount val=\"1\"/><c:pt idx=\"0\"><c:v>Minutes</c:v></c:pt></c:strCache></c:strRef></c:tx><c:spPr><a:solidFill><a:srgbClr val=\"4f81bd\"/></a:solidFill><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr><c:invertIfNegative val=\"0\"/><c:dLbls><c:txPr><a:bodyPr wrap=\"none\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:latin typeface=\"Arial\"/></a:defRPr></a:pPr></a:p></c:txPr><c:showLegendKey val=\"0\"/><c:showVal val=\"0\"/><c:showCatName val=\"0\"/><c:showSerName val=\"0\"/><c:showPercent val=\"0\"/><c:separator> </c:separator><c:showLeaderLines val=\"1\"/><c:extLst><c:ext uri=\"{CE6537A1-D6FC-4f65-9D91-7224C49458BB}\" xmlns:c15=\"http://schemas.microsoft.com/office/drawing/2012/chart\"><c15:showLeaderLines val=\"1\"/></c:ext></c:extLst></c:dLbls><c:cat><c:strRef><c:f>Pareto!$B$9:$B$20</c:f><c:strCache><c:ptCount val=\"12\"/><c:pt idx=\"0\"><c:v>Mechanical breakdown</c:v></c:pt><c:pt idx=\"1\"><c:v>Changeover / setup</c:v></c:pt><c:pt idx=\"2\"><c:v>Tooling failure</c:v></c:pt><c:pt idx=\"3\"><c:v>Waiting for material</c:v></c:pt><c:pt idx=\"4\"><c:v>Quality hold / inspection</c:v></c:pt><c:pt idx=\"5\"><c:v></c:v></c:pt><c:pt idx=\"6\"><c:v></c:v></c:pt><c:pt idx=\"7\"><c:v></c:v></c:pt><c:pt idx=\"8\"><c:v></c:v></c:pt><c:pt idx=\"9\"><c:v></c:v></c:pt><c:pt idx=\"10\"><c:v></c:v></c:pt><c:pt idx=\"11\"><c:v></c:v></c:pt></c:strCache></c:strRef></c:cat><c:val><c:numRef><c:f>Pareto!$C$9:$C$20</c:f><c:numCache><c:formatCode>#,##0</c:formatCode><c:ptCount val=\"12\"/><c:pt idx=\"0\"><c:v>100</c:v></c:pt><c:pt idx=\"1\"><c:v>65</c:v></c:pt><c:pt idx=\"2\"><c:v>60</c:v></c:pt><c:pt idx=\"3\"><c:v>15</c:v></c:pt><c:pt idx=\"4\"><c:v>15</c:v></c:pt></c:numCache></c:numRef></c:val></c:ser><c:gapWidth val=\"150\"/><c:overlap val=\"0\"/><c:axId val=\"68062952\"/><c:axId val=\"63447801\"/></c:barChart><c:lineChart><c:grouping val=\"standard\"/><c:varyColors val=\"0\"/><c:ser><c:idx val=\"1\"/><c:order val=\"1\"/><c:tx><c:strRef><c:f>Pareto!F8</c:f><c:strCache><c:ptCount val=\"1\"/><c:pt idx=\"0\"><c:v>Cumulative %</c:v></c:pt></c:strCache></c:strRef></c:tx><c:spPr><a:solidFill><a:srgbClr val=\"be4b48\"/></a:solidFill><a:ln w=\"28440\"><a:solidFill><a:srgbClr val=\"be4b48\"/></a:solidFill><a:round/></a:ln></c:spPr><c:marker><c:symbol val=\"none\"/></c:marker><c:dLbls><c:txPr><a:bodyPr wrap=\"none\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:latin typeface=\"Arial\"/></a:defRPr></a:pPr></a:p></c:txPr><c:showLegendKey val=\"0\"/><c:showVal val=\"0\"/><c:showCatName val=\"0\"/><c:showSerName val=\"0\"/><c:showPercent val=\"0\"/><c:separator> </c:separator><c:showLeaderLines val=\"1\"/><c:extLst><c:ext uri=\"{CE6537A1-D6FC-4f65-9D91-7224C49458BB}\" xmlns:c15=\"http://schemas.microsoft.com/office/drawing/2012/chart\"><c15:showLeaderLines val=\"1\"/></c:ext></c:extLst></c:dLbls><c:cat><c:strRef><c:f>Pareto!$B$9:$B$20</c:f><c:strCache><c:ptCount val=\"12\"/><c:pt idx=\"0\"><c:v>Mechanical breakdown</c:v></c:pt><c:pt idx=\"1\"><c:v>Changeover / setup</c:v></c:pt><c:pt idx=\"2\"><c:v>Tooling failure</c:v></c:pt><c:pt idx=\"3\"><c:v>Waiting for material</c:v></c:pt><c:pt idx=\"4\"><c:v>Quality hold / inspection</c:v></c:pt><c:pt idx=\"5\"><c:v></c:v></c:pt><c:pt idx=\"6\"><c:v></c:v></c:pt><c:pt idx=\"7\"><c:v></c:v></c:pt><c:pt idx=\"8\"><c:v></c:v></c:pt><c:pt idx=\"9\"><c:v></c:v></c:pt><c:pt idx=\"10\"><c:v></c:v></c:pt><c:pt idx=\"11\"><c:v></c:v></c:pt></c:strCache></c:strRef></c:cat><c:val><c:numRef><c:f>Pareto!$F$9:$F$20</c:f><c:numCache><c:formatCode>0.0%</c:formatCode><c:ptCount val=\"12\"/><c:pt idx=\"0\"><c:v>0.392156862745098</c:v></c:pt><c:pt idx=\"1\"><c:v>0.647058823529412</c:v></c:pt><c:pt idx=\"2\"><c:v>0.882352941176471</c:v></c:pt><c:pt idx=\"3\"><c:v>0.941176470588235</c:v></c:pt><c:pt idx=\"4\"><c:v>1</c:v></c:pt></c:numCache></c:numRef></c:val><c:smooth val=\"0\"/></c:ser><c:hiLowLines><c:spPr><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:hiLowLines><c:marker val=\"0\"/><c:axId val=\"46111028\"/><c:axId val=\"98090127\"/></c:lineChart><c:catAx><c:axId val=\"68062952\"/><c:scaling><c:orientation val=\"minMax\"/></c:scaling><c:delete val=\"0\"/><c:axPos val=\"b\"/><c:numFmt formatCode=\"General\" sourceLinked=\"1\"/><c:majorTickMark val=\"none\"/><c:minorTickMark val=\"none\"/><c:tickLblPos val=\"nextTo\"/><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr><c:crossAx val=\"63447801\"/><c:crosses val=\"autoZero\"/><c:auto val=\"1\"/><c:lblAlgn val=\"ctr\"/><c:lblOffset val=\"100\"/><c:noMultiLvlLbl val=\"0\"/></c:catAx><c:valAx><c:axId val=\"63447801\"/><c:scaling><c:orientation val=\"minMax\"/></c:scaling><c:delete val=\"0\"/><c:axPos val=\"l\"/><c:majorGridlines><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr></c:majorGridlines><c:title><c:tx><c:rich><a:bodyPr rot=\"-5400000\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"1\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr><a:r><a:rPr b=\"1\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:rPr><a:t>Minutes</a:t></a:r></a:p></c:rich></c:tx><c:overlay val=\"0\"/><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:title><c:numFmt formatCode=\"#,##0\" sourceLinked=\"1\"/><c:majorTickMark val=\"none\"/><c:minorTickMark val=\"none\"/><c:tickLblPos val=\"nextTo\"/><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr><c:crossAx val=\"68062952\"/><c:crosses val=\"autoZero\"/><c:crossBetween val=\"between\"/></c:valAx><c:catAx><c:axId val=\"46111028\"/><c:scaling><c:orientation val=\"minMax\"/></c:scaling><c:delete val=\"0\"/><c:axPos val=\"t\"/><c:numFmt formatCode=\"General\" sourceLinked=\"1\"/><c:majorTickMark val=\"none\"/><c:minorTickMark val=\"none\"/><c:tickLblPos val=\"nextTo\"/><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr><c:crossAx val=\"98090127\"/><c:crosses val=\"autoZero\"/><c:auto val=\"1\"/><c:lblAlgn val=\"ctr\"/><c:lblOffset val=\"100\"/><c:noMultiLvlLbl val=\"0\"/></c:catAx><c:valAx><c:axId val=\"98090127\"/><c:scaling><c:orientation val=\"minMax\"/><c:max val=\"1\"/><c:min val=\"0\"/></c:scaling><c:delete val=\"0\"/><c:axPos val=\"r\"/><c:title><c:tx><c:rich><a:bodyPr rot=\"-5400000\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"1\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr><a:r><a:rPr b=\"1\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:rPr><a:t>Cumulative %</a:t></a:r></a:p></c:rich></c:tx><c:overlay val=\"0\"/><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:title><c:numFmt formatCode=\"0%\" sourceLinked=\"0\"/><c:majorTickMark val=\"none\"/><c:minorTickMark val=\"none\"/><c:tickLblPos val=\"nextTo\"/><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr><c:crossAx val=\"46111028\"/><c:crosses val=\"max\"/><c:crossBetween val=\"between\"/></c:valAx><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:plotArea><c:legend><c:legendPos val=\"r\"/><c:overlay val=\"0\"/><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr></c:legend><c:plotVisOnly val=\"1\"/><c:dispBlanksAs val=\"gap\"/></c:chart><c:spPr><a:solidFill><a:srgbClr val=\"ffffff\"/></a:solidFill><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"d9d9d9\"/></a:solidFill><a:round/></a:ln></c:spPr></c:chartSpace>"
+      }
+    },
+    "OEE-Tracker.xlsx": {
+      "sha256": "a98bfedc7363b95a4e0e388f79cc2a922729a6ed1f5b6a239246b0d794057ec4",
+      "functions": [
+        "AND",
+        "DATE",
+        "IF",
+        "IFERROR",
+        "INDEX",
+        "ISNUMBER",
+        "MATCH",
+        "OR",
+        "SUM",
+        "SUMIFS"
+      ],
+      "sheets": {
+        "How to use": {
+          "formula_count": 0,
+          "freeze_panes": null,
+          "conditional_formats": [],
+          "data_validation": [],
+          "instructions": [
+            "OEE Tracker",
+            "Version 1.0",
+            "What this does",
+            "Log each shift's production per machine. The workbook calculates Availability, Performance, Quality and OEE for every shift and summarizes them by machine on the Dashboard, for any date range.",
+            "Colour key",
+            "Yellow cells are for you to fill in.",
+            "Grey cells are calculated. Don't type over them.",
+            "Steps",
+            "1. Setup: list your machines and each one's ideal cycle time (the fastest sustainable time to make one part, in seconds). For a line, use the time per finished unit at rated speed.",
+            "2. Production Log: add one row per machine per shift. Planned stops are scheduled time the machine is not expected to run (breaks, planned meetings). Unplanned downtime is everything else it was stopped.",
+            "3. Dashboard: optionally enter a From and To date. Leave them blank to include everything.",
+            "4. The rows marked EXAMPLE show the expected format. Delete them before you start.",
+            "How OEE is calculated",
+            "Planned production time = shift length - planned stops.   Run time = planned production time - unplanned downtime.",
+            "Availability = run time / planned production time.",
+            "Performance = (ideal cycle time x total parts) / run time.",
+            "Quality = good parts / total parts.   OEE = Availability x Performance x Quality.",
+            "Dashboard totals are calculated from summed times and counts, not by averaging shift percentages, so long shifts and short shifts are weighted correctly.",
+            "Check column",
+            "The Check column on the log flags common entry mistakes: a machine missing from Setup, rejects higher than total parts, downtime longer than planned time, and performance above 100% (usually a cycle time that is too slow in Setup, or a miscounted total).",
+            "Target",
+            "85% OEE is a commonly cited 'world-class' benchmark. Set your own target on the Dashboard; many plants start well below that, and improvement against your own baseline matters more."
+          ]
+        },
+        "Setup": {
+          "formula_count": 0,
+          "freeze_panes": "A5",
+          "conditional_formats": [],
+          "data_validation": [],
+          "instructions": []
+        },
+        "Production Log": {
+          "formula_count": 5000,
+          "freeze_panes": "D5",
+          "conditional_formats": [
+            {
+              "range": "Q5:Q504",
+              "type": "expression",
+              "formula": [
+                "AND(ISNUMBER(Q5),Q5>=Dashboard!$B$5)"
+              ],
+              "priority": 2,
+              "fill_foreground": "00000000",
+              "fill_background": "FFC6EFCE"
+            },
+            {
+              "range": "Q5:Q504",
+              "type": "expression",
+              "formula": [
+                "AND(ISNUMBER(Q5),Q5>=0.6,Q5<Dashboard!$B$5)"
+              ],
+              "priority": 3,
+              "fill_foreground": "00000000",
+              "fill_background": "FFFFE699"
+            },
+            {
+              "range": "Q5:Q504",
+              "type": "expression",
+              "formula": [
+                "AND(ISNUMBER(Q5),Q5<0.6)"
+              ],
+              "priority": 4,
+              "fill_foreground": "00000000",
+              "fill_background": "FFF8CBAD"
+            }
+          ],
+          "data_validation": [
+            {
+              "ranges": "C5:C504",
+              "type": "list",
+              "formula1": "Setup!$A$5:$A$24",
+              "operator": "between",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            },
+            {
+              "ranges": "D5:H504",
+              "type": "decimal",
+              "formula1": "0",
+              "operator": "greaterThanOrEqual",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            }
+          ],
+          "instructions": []
+        },
+        "Dashboard": {
+          "formula_count": 253,
+          "freeze_panes": "B9",
+          "conditional_formats": [
+            {
+              "range": "K9:K29",
+              "type": "expression",
+              "formula": [
+                "AND(ISNUMBER(K9),K9>=$B$5)"
+              ],
+              "priority": 2,
+              "fill_foreground": "00000000",
+              "fill_background": "FFC6EFCE"
+            },
+            {
+              "range": "K9:K29",
+              "type": "expression",
+              "formula": [
+                "AND(ISNUMBER(K9),K9>=0.6,K9<$B$5)"
+              ],
+              "priority": 3,
+              "fill_foreground": "00000000",
+              "fill_background": "FFFFE699"
+            },
+            {
+              "range": "K9:K29",
+              "type": "expression",
+              "formula": [
+                "AND(ISNUMBER(K9),K9<0.6)"
+              ],
+              "priority": 4,
+              "fill_foreground": "00000000",
+              "fill_background": "FFF8CBAD"
+            }
+          ],
+          "data_validation": [],
+          "instructions": []
+        }
+      },
+      "metadata": {
+        "docProps/core.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<cp:coreProperties xmlns:cp=\"http://schemas.openxmlformats.org/package/2006/metadata/core-properties\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns:dcmitype=\"http://purl.org/dc/dcmitype/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><dcterms:created xsi:type=\"dcterms:W3CDTF\">2026-10-10T19:09:03Z</dcterms:created><dc:creator>openpyxl</dc:creator><dc:description></dc:description><dc:language>en-US</dc:language><cp:lastModifiedBy></cp:lastModifiedBy><dcterms:modified xsi:type=\"dcterms:W3CDTF\">2026-10-10T14:09:11Z</dcterms:modified><cp:revision>1</cp:revision><dc:subject></dc:subject><dc:title></dc:title></cp:coreProperties>",
+        "docProps/app.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/extended-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\"><Template></Template><TotalTime>0</TotalTime><Application>LibreOffice/24.2.7.2$Linux_X86_64 LibreOffice_project/420$Build-2</Application><AppVersion>15.0000</AppVersion></Properties>",
+        "docProps/custom.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/custom-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\"></Properties>"
+      },
+      "external_links": [],
+      "suspicious_metadata": [],
+      "macros": false,
+      "formulas_with_new_prefix": [],
+      "chart_xml": {
+        "xl/charts/chart1.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<c:chartSpace xmlns:c=\"http://schemas.openxmlformats.org/drawingml/2006/chart\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><c:lang val=\"en-US\"/><c:roundedCorners val=\"0\"/><c:chart><c:title><c:tx><c:rich><a:bodyPr rot=\"0\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"1\" sz=\"1800\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr><a:r><a:rPr b=\"1\" sz=\"1800\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:rPr><a:t>OEE by machine</a:t></a:r></a:p></c:rich></c:tx><c:overlay val=\"0\"/><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:title><c:autoTitleDeleted val=\"0\"/><c:plotArea><c:barChart><c:barDir val=\"col\"/><c:grouping val=\"clustered\"/><c:varyColors val=\"0\"/><c:ser><c:idx val=\"0\"/><c:order val=\"0\"/><c:tx><c:strRef><c:f>Dashboard!K8</c:f><c:strCache><c:ptCount val=\"1\"/><c:pt idx=\"0\"><c:v>OEE</c:v></c:pt></c:strCache></c:strRef></c:tx><c:spPr><a:solidFill><a:srgbClr val=\"4f81bd\"/></a:solidFill><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr><c:invertIfNegative val=\"0\"/><c:dLbls><c:txPr><a:bodyPr wrap=\"none\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:latin typeface=\"Arial\"/></a:defRPr></a:pPr></a:p></c:txPr><c:showLegendKey val=\"0\"/><c:showVal val=\"0\"/><c:showCatName val=\"0\"/><c:showSerName val=\"0\"/><c:showPercent val=\"0\"/><c:separator> </c:separator><c:showLeaderLines val=\"1\"/><c:extLst><c:ext uri=\"{CE6537A1-D6FC-4f65-9D91-7224C49458BB}\" xmlns:c15=\"http://schemas.microsoft.com/office/drawing/2012/chart\"><c15:showLeaderLines val=\"1\"/></c:ext></c:extLst></c:dLbls><c:cat><c:strRef><c:f>Dashboard!$A$9:$A$28</c:f><c:strCache><c:ptCount val=\"20\"/><c:pt idx=\"0\"><c:v>Press 01</c:v></c:pt><c:pt idx=\"1\"><c:v>CNC Lathe 02</c:v></c:pt><c:pt idx=\"2\"><c:v>Packaging Line A</c:v></c:pt><c:pt idx=\"3\"><c:v></c:v></c:pt><c:pt idx=\"4\"><c:v></c:v></c:pt><c:pt idx=\"5\"><c:v></c:v></c:pt><c:pt idx=\"6\"><c:v></c:v></c:pt><c:pt idx=\"7\"><c:v></c:v></c:pt><c:pt idx=\"8\"><c:v></c:v></c:pt><c:pt idx=\"9\"><c:v></c:v></c:pt><c:pt idx=\"10\"><c:v></c:v></c:pt><c:pt idx=\"11\"><c:v></c:v></c:pt><c:pt idx=\"12\"><c:v></c:v></c:pt><c:pt idx=\"13\"><c:v></c:v></c:pt><c:pt idx=\"14\"><c:v></c:v></c:pt><c:pt idx=\"15\"><c:v></c:v></c:pt><c:pt idx=\"16\"><c:v></c:v></c:pt><c:pt idx=\"17\"><c:v></c:v></c:pt><c:pt idx=\"18\"><c:v></c:v></c:pt><c:pt idx=\"19\"><c:v></c:v></c:pt></c:strCache></c:strRef></c:cat><c:val><c:numRef><c:f>Dashboard!$K$9:$K$28</c:f><c:numCache><c:formatCode>0.0%</c:formatCode><c:ptCount val=\"20\"/><c:pt idx=\"0\"><c:v>0.760909090909091</c:v></c:pt><c:pt idx=\"1\"><c:v>0.798863636363636</c:v></c:pt><c:pt idx=\"2\"><c:v>0.821732954545454</c:v></c:pt></c:numCache></c:numRef></c:val></c:ser><c:gapWidth val=\"150\"/><c:overlap val=\"0\"/><c:axId val=\"81552671\"/><c:axId val=\"84212848\"/></c:barChart><c:catAx><c:axId val=\"81552671\"/><c:scaling><c:orientation val=\"minMax\"/></c:scaling><c:delete val=\"0\"/><c:axPos val=\"b\"/><c:numFmt formatCode=\"General\" sourceLinked=\"1\"/><c:majorTickMark val=\"none\"/><c:minorTickMark val=\"none\"/><c:tickLblPos val=\"nextTo\"/><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr><c:crossAx val=\"84212848\"/><c:crosses val=\"autoZero\"/><c:auto val=\"1\"/><c:lblAlgn val=\"ctr\"/><c:lblOffset val=\"100\"/><c:noMultiLvlLbl val=\"0\"/></c:catAx><c:valAx><c:axId val=\"84212848\"/><c:scaling><c:orientation val=\"minMax\"/><c:max val=\"1\"/><c:min val=\"0\"/></c:scaling><c:delete val=\"0\"/><c:axPos val=\"l\"/><c:majorGridlines><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr></c:majorGridlines><c:title><c:tx><c:rich><a:bodyPr rot=\"-5400000\"/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"1\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr><a:r><a:rPr b=\"1\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:rPr><a:t>OEE</a:t></a:r></a:p></c:rich></c:tx><c:overlay val=\"0\"/><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:title><c:numFmt formatCode=\"0%\" sourceLinked=\"0\"/><c:majorTickMark val=\"none\"/><c:minorTickMark val=\"none\"/><c:tickLblPos val=\"nextTo\"/><c:spPr><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"878787\"/></a:solidFill><a:round/></a:ln></c:spPr><c:txPr><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr b=\"0\" sz=\"1000\" spc=\"-1\" strike=\"noStrike\"><a:solidFill><a:srgbClr val=\"000000\"/></a:solidFill><a:latin typeface=\"Calibri\"/></a:defRPr></a:pPr></a:p></c:txPr><c:crossAx val=\"81552671\"/><c:crosses val=\"autoZero\"/><c:crossBetween val=\"between\"/></c:valAx><c:spPr><a:noFill/><a:ln w=\"0\"><a:noFill/></a:ln></c:spPr></c:plotArea><c:plotVisOnly val=\"1\"/><c:dispBlanksAs val=\"gap\"/></c:chart><c:spPr><a:solidFill><a:srgbClr val=\"ffffff\"/></a:solidFill><a:ln w=\"9360\"><a:solidFill><a:srgbClr val=\"d9d9d9\"/></a:solidFill><a:round/></a:ln></c:spPr></c:chartSpace>"
+      }
+    },
+    "Preventive-Maintenance-Schedule.xlsx": {
+      "sha256": "2518263a121d460b3ad412f09892e35173e1ce0afabe96d082d099982701414d",
+      "functions": [
+        "COUNTIF",
+        "COUNTIFS",
+        "IF",
+        "MAX",
+        "N",
+        "OR",
+        "SUMPRODUCT",
+        "TODAY"
+      ],
+      "sheets": {
+        "How to use": {
+          "formula_count": 0,
+          "freeze_panes": null,
+          "conditional_formats": [],
+          "data_validation": [],
+          "instructions": [
+            "Preventive Maintenance Schedule",
+            "Version 1.0",
+            "What this does",
+            "List every recurring maintenance task with how often it's due. Log completions as they happen, and the plan shows each task's next due date and whether it is overdue, due soon or OK.",
+            "Colour key",
+            "Yellow cells are for you to fill in.",
+            "Grey cells are calculated. Don't type over them.",
+            "Steps",
+            "1. PM Plan: one row per asset + task, with the frequency in days (7 = weekly, 30 = monthly, 90 = quarterly, 365 = yearly). If you know when a task was last done before you started using this workbook, enter it under 'Last done before log'.",
+            "2. Completion Log: each time a task is done, add a row with the date, the asset and the task, picked from the drop-downs so they match the plan exactly. The 'Matches plan?' column warns you if they don't.",
+            "3. The plan updates automatically: last completed date, next due date, days left and status.",
+            "4. Change the 'Due soon' window at the top of the PM Plan (default 7 days).",
+            "5. Tasks never done and with no earlier date are shown as due today, so nothing is silently missed.",
+            "6. The rows marked EXAMPLE show the expected format. Delete them before you start.",
+            "Tip",
+            "Sort or filter the PM Plan by Status to get this week's work list. Excel: Data > Filter."
+          ]
+        },
+        "PM Plan": {
+          "formula_count": 1207,
+          "freeze_panes": "C5",
+          "conditional_formats": [
+            {
+              "range": "I5:I304",
+              "type": "expression",
+              "formula": [
+                "I5=\"OVERDUE\""
+              ],
+              "priority": 2,
+              "fill_foreground": "00000000",
+              "fill_background": "FFF8CBAD"
+            },
+            {
+              "range": "I5:I304",
+              "type": "expression",
+              "formula": [
+                "I5=\"Due soon\""
+              ],
+              "priority": 3,
+              "fill_foreground": "00000000",
+              "fill_background": "FFFFE699"
+            },
+            {
+              "range": "I5:I304",
+              "type": "expression",
+              "formula": [
+                "I5=\"OK\""
+              ],
+              "priority": 4,
+              "fill_foreground": "00000000",
+              "fill_background": "FFC6EFCE"
+            }
+          ],
+          "data_validation": [],
+          "instructions": []
+        },
+        "Completion Log": {
+          "formula_count": 2001,
+          "freeze_panes": "A5",
+          "conditional_formats": [],
+          "data_validation": [
+            {
+              "ranges": "B5:B2004",
+              "type": "list",
+              "formula1": "'PM Plan'!$A$5:$A$304",
+              "operator": "between",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            },
+            {
+              "ranges": "C5:C2004",
+              "type": "list",
+              "formula1": "'PM Plan'!$B$5:$B$304",
+              "operator": "between",
+              "showErrorMessage": false,
+              "showDropDown": false,
+              "allowBlank": true
+            }
+          ],
+          "instructions": []
+        }
+      },
+      "metadata": {
+        "docProps/core.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<cp:coreProperties xmlns:cp=\"http://schemas.openxmlformats.org/package/2006/metadata/core-properties\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns:dcmitype=\"http://purl.org/dc/dcmitype/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><dcterms:created xsi:type=\"dcterms:W3CDTF\">2026-10-10T19:09:05Z</dcterms:created><dc:creator>openpyxl</dc:creator><dc:description></dc:description><dc:language>en-US</dc:language><cp:lastModifiedBy></cp:lastModifiedBy><dcterms:modified xsi:type=\"dcterms:W3CDTF\">2026-10-10T19:09:06Z</dcterms:modified><cp:revision>0</cp:revision><dc:subject></dc:subject><dc:title></dc:title></cp:coreProperties>",
+        "docProps/app.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/extended-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\"><Template></Template><TotalTime>0</TotalTime><Application>LibreOffice/24.2.7.2$Linux_X86_64 LibreOffice_project/420$Build-2</Application><AppVersion>15.0000</AppVersion></Properties>",
+        "docProps/custom.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/custom-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\"></Properties>"
+      },
+      "external_links": [],
+      "suspicious_metadata": [],
+      "macros": false,
+      "formulas_with_new_prefix": [],
+      "chart_xml": {}
+    }
+  },
+  "listings": [
+    {
+      "name": "bundle",
+      "title": "Manufacturing Excel Templates Bundle | OEE Tracker, Downtime Pareto, Preventive Maintenance Schedule | Production Dashboard",
+      "title_characters": 123,
+      "title_words": 15,
+      "tags": [
+        {
+          "text": "OEE tracker",
+          "characters": 11
+        },
+        {
+          "text": "downtime tracker",
+          "characters": 16
+        },
+        {
+          "text": "Pareto chart",
+          "characters": 12
+        },
+        {
+          "text": "maintenance log",
+          "characters": 15
+        },
+        {
+          "text": "PM schedule",
+          "characters": 11
+        },
+        {
+          "text": "production log",
+          "characters": 14
+        },
+        {
+          "text": "Excel template",
+          "characters": 14
+        },
+        {
+          "text": "manufacturing",
+          "characters": 13
+        },
+        {
+          "text": "machine shop",
+          "characters": 12
+        },
+        {
+          "text": "lean template",
+          "characters": 13
+        },
+        {
+          "text": "shift report",
+          "characters": 12
+        },
+        {
+          "text": "plant dashboard",
+          "characters": 15
+        },
+        {
+          "text": "continuous improve",
+          "characters": 18
+        }
+      ],
+      "within_limits": true
+    },
+    {
+      "name": "oee",
+      "title": "OEE Tracker Excel Template | Overall Equipment Effectiveness Calculator and Dashboard by Machine | Manufacturing",
+      "title_characters": 112,
+      "title_words": 15,
+      "tags": [
+        {
+          "text": "OEE tracker",
+          "characters": 11
+        },
+        {
+          "text": "OEE calculator",
+          "characters": 14
+        },
+        {
+          "text": "OEE template",
+          "characters": 12
+        },
+        {
+          "text": "OEE dashboard",
+          "characters": 13
+        },
+        {
+          "text": "Excel template",
+          "characters": 14
+        },
+        {
+          "text": "manufacturing",
+          "characters": 13
+        },
+        {
+          "text": "machine shop",
+          "characters": 12
+        },
+        {
+          "text": "production log",
+          "characters": 14
+        },
+        {
+          "text": "lean template",
+          "characters": 13
+        },
+        {
+          "text": "shift report",
+          "characters": 12
+        },
+        {
+          "text": "plant dashboard",
+          "characters": 15
+        },
+        {
+          "text": "continuous improve",
+          "characters": 18
+        },
+        {
+          "text": "equipment tracker",
+          "characters": 17
+        }
+      ],
+      "within_limits": true
+    },
+    {
+      "name": "downtime",
+      "title": "Downtime Tracker Excel Template | Machine Downtime Log with Automatic Pareto Chart | Manufacturing Lean Tool",
+      "title_characters": 108,
+      "title_words": 16,
+      "tags": [
+        {
+          "text": "downtime tracker",
+          "characters": 16
+        },
+        {
+          "text": "downtime log",
+          "characters": 12
+        },
+        {
+          "text": "Pareto chart",
+          "characters": 12
+        },
+        {
+          "text": "Pareto template",
+          "characters": 15
+        },
+        {
+          "text": "machine downtime",
+          "characters": 16
+        },
+        {
+          "text": "Excel template",
+          "characters": 14
+        },
+        {
+          "text": "manufacturing",
+          "characters": 13
+        },
+        {
+          "text": "machine shop",
+          "characters": 12
+        },
+        {
+          "text": "lean template",
+          "characters": 13
+        },
+        {
+          "text": "root cause",
+          "characters": 10
+        },
+        {
+          "text": "maintenance log",
+          "characters": 15
+        },
+        {
+          "text": "plant dashboard",
+          "characters": 15
+        },
+        {
+          "text": "continuous improve",
+          "characters": 18
+        }
+      ],
+      "within_limits": true
+    },
+    {
+      "name": "pm",
+      "title": "Preventive Maintenance Schedule Excel Template | PM Tracker with Due Dates and Overdue Alerts | Maintenance Log",
+      "title_characters": 111,
+      "title_words": 17,
+      "tags": [
+        {
+          "text": "PM schedule",
+          "characters": 11
+        },
+        {
+          "text": "PM tracker",
+          "characters": 10
+        },
+        {
+          "text": "maintenance log",
+          "characters": 15
+        },
+        {
+          "text": "maintenance plan",
+          "characters": 16
+        },
+        {
+          "text": "preventive maint",
+          "characters": 16
+        },
+        {
+          "text": "equipment tracker",
+          "characters": 17
+        },
+        {
+          "text": "asset tracker",
+          "characters": 13
+        },
+        {
+          "text": "Excel template",
+          "characters": 14
+        },
+        {
+          "text": "manufacturing",
+          "characters": 13
+        },
+        {
+          "text": "machine shop",
+          "characters": 12
+        },
+        {
+          "text": "facility manager",
+          "characters": 16
+        },
+        {
+          "text": "work order log",
+          "characters": 14
+        },
+        {
+          "text": "lean template",
+          "characters": 13
+        }
+      ],
+      "within_limits": true
+    }
+  ],
+  "previews": [
+    {
+      "name": "Downtime-Log-and-Pareto-1.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Downtime-Log-and-Pareto-2.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Downtime-Log-and-Pareto-3.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Downtime-Log-and-Pareto-4.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Downtime-Log-and-Pareto-5.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "OEE-Tracker-1.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "OEE-Tracker-2.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "OEE-Tracker-3.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "OEE-Tracker-4.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Preventive-Maintenance-Schedule-1.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Preventive-Maintenance-Schedule-2.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    },
+    {
+      "name": "Preventive-Maintenance-Schedule-3.png",
+      "size": [
+        1287,
+        910
+      ],
+      "metadata": {
+        "dpi": [
+          109.982,
+          109.982
+        ]
+      }
+    }
+  ]
+}
