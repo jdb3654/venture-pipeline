@@ -74,3 +74,4 @@ Not sellable on its own; keep or shut down.
 
 - 2026-10-10: screened by Claude. Cheapest route to a first sale, low ceiling.
 - 2026-10-10: owner asked to pursue the quickest profit with least owner work; moved to Validate. Templates built and verified; Etsy chosen.
+- 2026-10-10: TaktTools Etsy shop opened by owner ($29 setup fee). Claude created 4 draft listings in Chrome (bundle $24, OEE $12, downtime $12, PM $9), each Digital, category Planner Templates, 13 tags, AI-generator disclosure selected; verified all 4 in the Drafts list. Not published, per owner.
