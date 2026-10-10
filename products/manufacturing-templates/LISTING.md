@@ -160,6 +160,17 @@ This is a digital download. No physical item will be shipped.
 
 **Tags:** PM schedule, PM tracker, maintenance log, maintenance plan, preventive maint, equipment tracker, asset tracker, Excel template, manufacturing, machine shop, facility manager, work order log, lean template
 
+## Etsy listing IDs (drafts)
+
+| Listing | Etsy ID | Files |
+|---|---|---|
+| Bundle ($24) | 4592758776 | 3 xlsx + Manufacturing-Bundle-Guide.pdf |
+| OEE tracker ($12) | 4592744743 | OEE-Tracker.xlsx + OEE-Tracker-Guide.pdf |
+| Downtime log and Pareto ($12) | 4592745973 | Downtime-Log-and-Pareto.xlsx + guide |
+| PM schedule ($9) | 4592747231 | Preventive-Maintenance-Schedule.xlsx + guide |
+
+Verified 2026-10-10 after reload: files attached, descriptions mention the guide, all four still drafts. If a workbook or guide changes, re-upload it to every listing that carries it.
+
 ## Files per listing
 
 - Bundle: the three `.xlsx` files plus `guides/Manufacturing-Bundle-Guide.pdf` (Etsy allows 5 files).
