@@ -1,6 +1,8 @@
 # Etsy listings: manufacturing templates
 
-Draft listing copy for the Validate test. Nothing is published until the owner creates the shop and approves.
+Listing copy for the Validate test. As of 2026-10-10 all four listings exist as **drafts** in the TaktTools Etsy shop, entered exactly as written below. Nothing is published until the owner approves.
+
+Etsy settings used on all four: category Planner Templates; type Digital; who made it "I did"; what is it "A finished product"; digital content created "With an AI generator"; quantity 999; auto-renew on.
 
 ## Listings
 
@@ -62,13 +64,97 @@ This is a digital download. No physical item will be shipped.
 **Tags (13, ≤20 characters each):**
 OEE tracker, downtime tracker, Pareto chart, maintenance log, PM schedule, production log, Excel template, manufacturing, machine shop, lean template, shift report, plant dashboard, continuous improve
 
-## Single listings
+## Single listings (as entered in Etsy)
 
-Reuse the matching section of the bundle description plus the "What you get" and disclosure lines. Titles:
+Photos are that template's own sheets: the main screen first.
 
-- OEE Tracker Excel Template | Overall Equipment Effectiveness Calculator and Dashboard by Machine | Manufacturing
-- Downtime Tracker Excel Template | Machine Downtime Log with Automatic Pareto Chart | Manufacturing Lean Tool
-- Preventive Maintenance Schedule Excel Template | PM Tracker with Due Dates and Overdue Alerts | Maintenance Log
+### OEE tracker ($12)
+
+**Title:** OEE Tracker Excel Template | Overall Equipment Effectiveness Calculator and Dashboard by Machine | Manufacturing
+
+**Description:**
+
+A ready-to-use Excel workbook for tracking OEE (Overall Equipment Effectiveness) on every machine, built for small manufacturers, machine shops and production supervisors. Fill in the yellow cells; the formulas and dashboard do the rest.
+
+WHAT IT DOES
+- Log production per machine per shift
+- Availability, Performance, Quality and OEE calculated for every shift
+- Dashboard by machine for any date range, with an OEE chart and your own target
+- Totals weighted correctly from times and counts (not averaged percentages)
+- A check column that flags common entry mistakes
+
+WHAT YOU GET
+- 1 Excel (.xlsx) file with a "How to use" sheet and example rows
+- No macros, no add-ins, nothing to install
+- Instant download
+
+Requires Microsoft Excel 2010 or later.
+
+Want the downtime Pareto and preventive maintenance schedule too? See the 3-template bundle in this shop.
+
+These templates were designed with help from AI tools and checked by the seller, who has many years of experience in manufacturing systems.
+
+This is a digital download. No physical item will be shipped.
+
+**Tags:** OEE tracker, OEE calculator, OEE template, OEE dashboard, Excel template, manufacturing, machine shop, production log, lean template, shift report, plant dashboard, continuous improve, equipment tracker
+
+### Downtime log and Pareto ($12)
+
+**Title:** Downtime Tracker Excel Template | Machine Downtime Log with Automatic Pareto Chart | Manufacturing Lean Tool
+
+**Description:**
+
+A ready-to-use Excel workbook for logging machine downtime and finding the few causes behind most of your lost time, built for small manufacturers, machine shops and production supervisors. Fill in the yellow cells; the formulas and Pareto chart do the rest.
+
+WHAT IT DOES
+- Log every stop with start/end times (overnight stops handled) or just the minutes
+- Your own reason list and categories, with drop-downs for consistent entries
+- Automatic Pareto ranking with cumulative %, and a Pareto chart
+- Filter by date range and machine; downtime summary per machine
+
+WHAT YOU GET
+- 1 Excel (.xlsx) file with a "How to use" sheet and example rows
+- No macros, no add-ins, nothing to install
+- Instant download
+
+Requires Microsoft Excel 2010 or later.
+
+Want the OEE tracker and preventive maintenance schedule too? See the 3-template bundle in this shop.
+
+These templates were designed with help from AI tools and checked by the seller, who has many years of experience in manufacturing systems.
+
+This is a digital download. No physical item will be shipped.
+
+**Tags:** downtime tracker, downtime log, Pareto chart, Pareto template, machine downtime, Excel template, manufacturing, machine shop, lean template, root cause, maintenance log, plant dashboard, continuous improve
+
+### Preventive maintenance schedule ($9)
+
+**Title:** Preventive Maintenance Schedule Excel Template | PM Tracker with Due Dates and Overdue Alerts | Maintenance Log
+
+**Description:**
+
+A ready-to-use Excel workbook for planning preventive maintenance and seeing at a glance what's overdue, built for small manufacturers, machine shops and maintenance teams. Fill in the yellow cells; the formulas and status colours do the rest.
+
+WHAT IT DOES
+- Every asset and task with its frequency in days
+- Log completions; next due date and days left update automatically
+- Overdue / Due soon / OK status with colour coding and counts
+- Warns you when a completion doesn't match a planned task
+
+WHAT YOU GET
+- 1 Excel (.xlsx) file with a "How to use" sheet and example rows
+- No macros, no add-ins, nothing to install
+- Instant download
+
+Requires Microsoft Excel 2010 or later.
+
+Want the OEE tracker and downtime Pareto too? See the 3-template bundle in this shop.
+
+These templates were designed with help from AI tools and checked by the seller, who has many years of experience in manufacturing systems.
+
+This is a digital download. No physical item will be shipped.
+
+**Tags:** PM schedule, PM tracker, maintenance log, maintenance plan, preventive maint, equipment tracker, asset tracker, Excel template, manufacturing, machine shop, facility manager, work order log, lean template
 
 ## Images
 
