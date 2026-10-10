@@ -1,0 +1,1159 @@
+[
+  {
+    "errors": {
+      "Downtime Log": "'Downtime Log'.I5:I34",
+      "Setup": "",
+      "Pareto": "",
+      "By Machine": "",
+      "How to use": ""
+    },
+    "features": {
+      "calculation_settings": {
+        "whole_cell_matching": true,
+        "regular_expressions": false
+      },
+      "Pareto": {
+        "cells": {
+          "B5": {
+            "formula2": "0",
+            "formula1": "$Setup.$A$5:$A$34",
+            "validation_type": "LIST",
+            "show_list": 1,
+            "show_error": false,
+            "conditional_rules": []
+          }
+        },
+        "charts": [
+          {
+            "coordinate_systems": [
+              [
+                {
+                  "series": [
+                    {
+                      "data": [
+                        [
+                          100.0,
+                          100.0,
+                          28.0,
+                          27.0,
+                          26.0,
+                          25.0,
+                          24.0,
+                          23.0,
+                          22.0,
+                          21.0,
+                          20.0,
+                          19.0
+                        ]
+                      ],
+                      "axis": 0
+                    }
+                  ],
+                  "type": "com.sun.star.chart2.ColumnChartType"
+                },
+                {
+                  "series": [
+                    {
+                      "data": [
+                        [
+                          0.1652892561983471,
+                          0.3305785123966942,
+                          0.3768595041322314,
+                          0.4214876033057851,
+                          0.4644628099173554,
+                          0.5057851239669422,
+                          0.5454545454545454,
+                          0.5834710743801653,
+                          0.6198347107438017,
+                          0.6545454545454545,
+                          0.687603305785124,
+                          0.71900826446281
+                        ]
+                      ],
+                      "axis": 1
+                    }
+                  ],
+                  "type": "com.sun.star.chart2.LineChartType"
+                }
+              ]
+            ],
+            "name": "Object 1"
+          }
+        ],
+        "freeze": [
+          true,
+          0,
+          8
+        ]
+      }
+    },
+    "load_calculate_save_read_seconds": 21.25,
+    "diagnostics": {
+      "Downtime Log": [
+        {
+          "formula": "46266",
+          "display": "2026-09-01",
+          "error": 0
+        },
+        {
+          "formula": "Day",
+          "display": "Day",
+          "error": 0
+        },
+        {
+          "formula": "M1",
+          "display": "M1",
+          "error": 0
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        },
+        {
+          "formula": "100",
+          "display": "100",
+          "error": 0
+        },
+        {
+          "formula": "=IF(F5<>\"\";F5;IF(OR(D5=\"\";E5=\"\");\"\";ROUND(MOD(E5-D5;1)*1440;0)))",
+          "display": "100",
+          "error": 0
+        },
+        {
+          "formula": "R00",
+          "display": "R00",
+          "error": 0
+        },
+        {
+          "formula": "=IF(H5=\"\";\"\";iferror(INDEX($Setup.$E$5:$E$34;MATCH(H5;$Setup.$D$5:$D$34;0));\"Not in Setup\"))",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        }
+      ],
+      "Pareto": [
+        {
+          "formula": "Total downtime (min)",
+          "display": "Total downtime (min)",
+          "error": 0
+        },
+        {
+          "formula": "=SUM($J$9:$J$38)",
+          "display": "605",
+          "error": 0
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        },
+        {
+          "formula": "",
+          "display": "",
+          "error": 0
+        },
+        {
+          "formula": "=IF($Setup.D5=\"\";\"\";$Setup.D5)",
+          "display": "R00",
+          "error": 0
+        },
+        {
+          "formula": "=IF(I9=\"\";0;SUMIFS($'Downtime Log'.$G$5:$G$1004;$'Downtime Log'.$H$5:$H$1004;I9;$'Downtime Log'.$A$5:$A$1004;\">=\"&$D$3;$'Downtime Log'.$A$5:$A$1004;\"<=\"&$D$4;$'Downtime Log'.$C$5:$C$1004;$D$5))",
+          "display": "100",
+          "error": 0
+        },
+        {
+          "formula": "=IF(I9=\"\";0;COUNTIFS($'Downtime Log'.$H$5:$H$1004;I9;$'Downtime Log'.$A$5:$A$1004;\">=\"&$D$3;$'Downtime Log'.$A$5:$A$1004;\"<=\"&$D$4;$'Downtime Log'.$C$5:$C$1004;$D$5))",
+          "display": "1",
+          "error": 0
+        },
+        {
+          "formula": "=IF(I9=\"\";-1;J9+(34-1)/1000000)",
+          "display": "100.000033",
+          "error": 0
+        }
+      ],
+      "By Machine": [
+        {
+          "formula": "=IF($Setup.A5=\"\";\"\";$Setup.A5)",
+          "display": "M1",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A5=\"\";\"\";SUMIFS($'Downtime Log'.$G$5:$G$1004;$'Downtime Log'.$C$5:$C$1004;$A5;$'Downtime Log'.$A$5:$A$1004;\">=\"&$Pareto.$D$3;$'Downtime Log'.$A$5:$A$1004;\"<=\"&$Pareto.$D$4))",
+          "display": "605",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A5=\"\";\"\";COUNTIFS($'Downtime Log'.$C$5:$C$1004;$A5;$'Downtime Log'.$A$5:$A$1004;\">=\"&$Pareto.$D$3;$'Downtime Log'.$A$5:$A$1004;\"<=\"&$Pareto.$D$4;$'Downtime Log'.$G$5:$G$1004;\">0\"))",
+          "display": "29",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR($A5=\"\";C5=0);\"\";B5/C5)",
+          "display": "20.9",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR($A5=\"\";SUM($B$5:$B$34)=0);\"\";B5/SUM($B$5:$B$34))",
+          "display": "100.0%",
+          "error": 0
+        }
+      ]
+    },
+    "calculate_seconds": 0.05200004577636719,
+    "id": "down_ranking"
+  },
+  {
+    "errors": {
+      "Production Log": "",
+      "Setup": "",
+      "Dashboard": "",
+      "How to use": ""
+    },
+    "features": {
+      "Production Log": {
+        "cells": {
+          "Q5": {
+            "formula2": "",
+            "formula1": "",
+            "validation_type": "ANY",
+            "show_list": 1,
+            "show_error": false,
+            "conditional_rules": [
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_1",
+                "formula1": "AND(ISNUMBER(A1);A1>=$Dashboard.$B$5)",
+                "background": 13037518
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_2",
+                "formula1": "AND(ISNUMBER(A1);A1>=0.6;A1<$Dashboard.$B$5)",
+                "background": 16770713
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_3",
+                "formula1": "AND(ISNUMBER(A1);A1<0.6)",
+                "background": 16305069
+              }
+            ]
+          }
+        },
+        "charts": [],
+        "freeze": [
+          true,
+          3,
+          4
+        ]
+      },
+      "Dashboard": {
+        "cells": {
+          "K9": {
+            "formula2": "",
+            "formula1": "",
+            "validation_type": "ANY",
+            "show_list": 1,
+            "show_error": false,
+            "conditional_rules": [
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_1",
+                "formula1": "AND(ISNUMBER(A1);A1>=$B$5)",
+                "background": 13037518
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_2",
+                "formula1": "AND(ISNUMBER(A1);A1>=0.6;A1<$B$5)",
+                "background": 16770713
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_3",
+                "formula1": "AND(ISNUMBER(A1);A1<0.6)",
+                "background": 16305069
+              }
+            ]
+          }
+        },
+        "charts": [
+          {
+            "coordinate_systems": [
+              [
+                {
+                  "series": [
+                    {
+                      "data": [
+                        [
+                          0.7609090909090909,
+                          0.7988636363636363,
+                          0.8217329545454544,
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          ""
+                        ]
+                      ],
+                      "axis": 0
+                    }
+                  ],
+                  "type": "com.sun.star.chart2.ColumnChartType"
+                }
+              ]
+            ],
+            "name": "Object 1"
+          }
+        ],
+        "freeze": [
+          true,
+          1,
+          8
+        ]
+      },
+      "calculation_settings": {
+        "whole_cell_matching": true,
+        "regular_expressions": false
+      }
+    },
+    "load_calculate_save_read_seconds": 13.753000020980835,
+    "diagnostics": {
+      "Production Log": [
+        {
+          "formula": "46266",
+          "display": "2026-09-01",
+          "error": 0
+        },
+        {
+          "formula": "Day",
+          "display": "Day",
+          "error": 0
+        },
+        {
+          "formula": "Press 01",
+          "display": "Press 01",
+          "error": 0
+        },
+        {
+          "formula": "480",
+          "display": "480",
+          "error": 0
+        },
+        {
+          "formula": "40",
+          "display": "40",
+          "error": 0
+        },
+        {
+          "formula": "35",
+          "display": "35",
+          "error": 0
+        },
+        {
+          "formula": "1900",
+          "display": "1900",
+          "error": 0
+        },
+        {
+          "formula": "22",
+          "display": "22",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";D5-E5)",
+          "display": "440",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";I5-F5)",
+          "display": "405",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(ISERROR(INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0)));\"\";INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0))))",
+          "display": "12.0",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR($C5=\"\";K5=\"\");\"\";K5*G5/60)",
+          "display": "380.0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";G5-H5)",
+          "display": "1878",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(I5<=0;\"\";J5/I5))",
+          "display": "92.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(OR(L5=\"\";J5<=0);\"\";L5/J5))",
+          "display": "93.8%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(G5<=0;\"\";M5/G5))",
+          "display": "98.8%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(N5=\"\";O5=\"\";P5=\"\");\"\";N5*O5*P5)",
+          "display": "85.4%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(K5=\"\";\"Machine not in Setup\";IF(H5>G5;\"Rejects > total parts\";IF(J5<0;\"Downtime > planned time\";IF(AND(ISNUMBER(O5);O5>1.05);\"Performance > 100%: check cycle time or counts\";\"OK\")))))",
+          "display": "OK",
+          "error": 0
+        }
+      ],
+      "Dashboard": [
+        {
+          "formula": "=IF($Setup.A5=\"\";\"\";$Setup.A5)",
+          "display": "Press 01",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$I$5:$I$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "880",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$J$5:$J$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "755",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$F$5:$F$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "125",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$G$5:$G$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "3,400",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$M$5:$M$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "3,348",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$L$5:$L$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "680",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(B9=0;\"\";C9/B9))",
+          "display": "85.8%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(C9=0;\"\";G9/C9))",
+          "display": "90.1%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(E9=0;\"\";F9/E9))",
+          "display": "98.5%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(H9=\"\";I9=\"\";J9=\"\");\"\";H9*I9*J9)",
+          "display": "76.1%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(K9=\"\";\"\";K9-$B$5)",
+          "display": "-18.9%",
+          "error": 0
+        }
+      ]
+    },
+    "calculate_seconds": 0.01900005340576172,
+    "id": "diagnostic_oee_target_0.95"
+  },
+  {
+    "errors": {
+      "Production Log": "",
+      "Setup": "",
+      "Dashboard": "",
+      "How to use": ""
+    },
+    "features": {
+      "Production Log": {
+        "cells": {
+          "Q5": {
+            "formula2": "",
+            "formula1": "",
+            "validation_type": "ANY",
+            "show_list": 1,
+            "show_error": false,
+            "conditional_rules": [
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_1",
+                "formula1": "AND(ISNUMBER(A1);A1>=$Dashboard.$B$5)",
+                "background": 13037518
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_2",
+                "formula1": "AND(ISNUMBER(A1);A1>=0.6;A1<$Dashboard.$B$5)",
+                "background": 16770713
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_3",
+                "formula1": "AND(ISNUMBER(A1);A1<0.6)",
+                "background": 16305069
+              }
+            ]
+          }
+        },
+        "charts": [],
+        "freeze": [
+          true,
+          3,
+          4
+        ]
+      },
+      "Dashboard": {
+        "cells": {
+          "K9": {
+            "formula2": "",
+            "formula1": "",
+            "validation_type": "ANY",
+            "show_list": 1,
+            "show_error": false,
+            "conditional_rules": [
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_1",
+                "formula1": "AND(ISNUMBER(A1);A1>=$B$5)",
+                "background": 13037518
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_2",
+                "formula1": "AND(ISNUMBER(A1);A1>=0.6;A1<$B$5)",
+                "background": 16770713
+              },
+              {
+                "formula2": "0",
+                "operator": "FORMULA",
+                "style": "ConditionalStyle_3",
+                "formula1": "AND(ISNUMBER(A1);A1<0.6)",
+                "background": 16305069
+              }
+            ]
+          }
+        },
+        "charts": [
+          {
+            "coordinate_systems": [
+              [
+                {
+                  "series": [
+                    {
+                      "data": [
+                        [
+                          0.7609090909090909,
+                          0.7988636363636363,
+                          0.8217329545454544,
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          ""
+                        ]
+                      ],
+                      "axis": 0
+                    }
+                  ],
+                  "type": "com.sun.star.chart2.ColumnChartType"
+                }
+              ]
+            ],
+            "name": "Object 1"
+          }
+        ],
+        "freeze": [
+          true,
+          1,
+          8
+        ]
+      },
+      "calculation_settings": {
+        "whole_cell_matching": true,
+        "regular_expressions": false
+      }
+    },
+    "load_calculate_save_read_seconds": 10.7739999294281,
+    "diagnostics": {
+      "Production Log": [
+        {
+          "formula": "46266",
+          "display": "2026-09-01",
+          "error": 0
+        },
+        {
+          "formula": "Day",
+          "display": "Day",
+          "error": 0
+        },
+        {
+          "formula": "Press 01",
+          "display": "Press 01",
+          "error": 0
+        },
+        {
+          "formula": "480",
+          "display": "480",
+          "error": 0
+        },
+        {
+          "formula": "40",
+          "display": "40",
+          "error": 0
+        },
+        {
+          "formula": "35",
+          "display": "35",
+          "error": 0
+        },
+        {
+          "formula": "1900",
+          "display": "1900",
+          "error": 0
+        },
+        {
+          "formula": "22",
+          "display": "22",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";D5-E5)",
+          "display": "440",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";I5-F5)",
+          "display": "405",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(ISERROR(INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0)));\"\";INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0))))",
+          "display": "12.0",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR($C5=\"\";K5=\"\");\"\";K5*G5/60)",
+          "display": "380.0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";G5-H5)",
+          "display": "1878",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(I5<=0;\"\";J5/I5))",
+          "display": "92.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(OR(L5=\"\";J5<=0);\"\";L5/J5))",
+          "display": "93.8%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(G5<=0;\"\";M5/G5))",
+          "display": "98.8%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(N5=\"\";O5=\"\";P5=\"\");\"\";N5*O5*P5)",
+          "display": "85.4%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(K5=\"\";\"Machine not in Setup\";IF(H5>G5;\"Rejects > total parts\";IF(J5<0;\"Downtime > planned time\";IF(AND(ISNUMBER(O5);O5>1.05);\"Performance > 100%: check cycle time or counts\";\"OK\")))))",
+          "display": "OK",
+          "error": 0
+        }
+      ],
+      "Dashboard": [
+        {
+          "formula": "=IF($Setup.A5=\"\";\"\";$Setup.A5)",
+          "display": "Press 01",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$I$5:$I$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "880",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$J$5:$J$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "755",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$F$5:$F$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "125",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$G$5:$G$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "3,400",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$M$5:$M$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "3,348",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$L$5:$L$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "680",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(B9=0;\"\";C9/B9))",
+          "display": "85.8%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(C9=0;\"\";G9/C9))",
+          "display": "90.1%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(E9=0;\"\";F9/E9))",
+          "display": "98.5%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(H9=\"\";I9=\"\";J9=\"\");\"\";H9*I9*J9)",
+          "display": "76.1%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(K9=\"\";\"\";K9-$B$5)",
+          "display": "+26.1%",
+          "error": 0
+        }
+      ]
+    },
+    "calculate_seconds": 0.014999866485595703,
+    "id": "diagnostic_oee_target_0.5"
+  },
+  {
+    "errors": {
+      "Production Log": "'Production Log'.K5:L6;'Production Log'.O5:O6;'Production Log'.Q5:R6",
+      "Setup": "",
+      "Dashboard": "Dashboard.G9:G10;Dashboard.G29;Dashboard.I9:I10;Dashboard.I29;Dashboard.K9:L10;Dashboard.K29:L29",
+      "How to use": ""
+    },
+    "features": {
+      "calculation_settings": {
+        "whole_cell_matching": true,
+        "regular_expressions": false
+      }
+    },
+    "load_calculate_save_read_seconds": 9.74399995803833,
+    "diagnostics": {
+      "Production Log": [
+        {
+          "formula": "46266",
+          "display": "2026-09-01",
+          "error": 0
+        },
+        {
+          "formula": "Day",
+          "display": "Day",
+          "error": 0
+        },
+        {
+          "formula": "Slow",
+          "display": "Slow",
+          "error": 0
+        },
+        {
+          "formula": "60",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "0",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "0",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "60",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "0",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";D5-E5)",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";I5-F5)",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";iferror(INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0));\"\"))",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF(OR($C5=\"\";K5=\"\");\"\";K5*G5/60)",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";G5-H5)",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(I5<=0;\"\";J5/I5))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(OR(L5=\"\";J5<=0);\"\";L5/J5))",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(G5<=0;\"\";M5/G5))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(N5=\"\";O5=\"\";P5=\"\");\"\";N5*O5*P5)",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(K5=\"\";\"Machine not in Setup\";IF(H5>G5;\"Rejects > total parts\";IF(J5<0;\"Downtime > planned time\";IF(AND(ISNUMBER(O5);O5>1.05);\"Performance > 100%: check cycle time or counts\";\"OK\")))))",
+          "display": "#NAME?",
+          "error": 525
+        }
+      ],
+      "Dashboard": [
+        {
+          "formula": "=IF($Setup.A5=\"\";\"\";$Setup.A5)",
+          "display": "Slow",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$I$5:$I$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$J$5:$J$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$F$5:$F$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$G$5:$G$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$M$5:$M$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$L$5:$L$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(B9=0;\"\";C9/B9))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(C9=0;\"\";G9/C9))",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(E9=0;\"\";F9/E9))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(H9=\"\";I9=\"\";J9=\"\");\"\";H9*I9*J9)",
+          "display": "#NAME?",
+          "error": 525
+        },
+        {
+          "formula": "=IF(K9=\"\";\"\";K9-$B$5)",
+          "display": "#NAME?",
+          "error": 525
+        }
+      ]
+    },
+    "calculate_seconds": 0.013000011444091797,
+    "id": "oee_heterogeneous"
+  },
+  {
+    "errors": {
+      "Production Log": "",
+      "Setup": "",
+      "Dashboard": "",
+      "How to use": ""
+    },
+    "features": {
+      "calculation_settings": {
+        "whole_cell_matching": true,
+        "regular_expressions": false
+      }
+    },
+    "load_calculate_save_read_seconds": 11.04200005531311,
+    "diagnostics": {
+      "Production Log": [
+        {
+          "formula": "46266",
+          "display": "2026-09-01",
+          "error": 0
+        },
+        {
+          "formula": "Day",
+          "display": "Day",
+          "error": 0
+        },
+        {
+          "formula": "Slow",
+          "display": "Slow",
+          "error": 0
+        },
+        {
+          "formula": "60",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "0",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "0",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "60",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "0",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";D5-E5)",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";I5-F5)",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(ISERROR(INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0)));\"\";INDEX($Setup.$B$5:$B$24;MATCH($C5;$Setup.$A$5:$A$24;0))))",
+          "display": "60.0",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR($C5=\"\";K5=\"\");\"\";K5*G5/60)",
+          "display": "60.0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";G5-H5)",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(I5<=0;\"\";J5/I5))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(OR(L5=\"\";J5<=0);\"\";L5/J5))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(G5<=0;\"\";M5/G5))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(N5=\"\";O5=\"\";P5=\"\");\"\";N5*O5*P5)",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($C5=\"\";\"\";IF(K5=\"\";\"Machine not in Setup\";IF(H5>G5;\"Rejects > total parts\";IF(J5<0;\"Downtime > planned time\";IF(AND(ISNUMBER(O5);O5>1.05);\"Performance > 100%: check cycle time or counts\";\"OK\")))))",
+          "display": "OK",
+          "error": 0
+        }
+      ],
+      "Dashboard": [
+        {
+          "formula": "=IF($Setup.A5=\"\";\"\";$Setup.A5)",
+          "display": "Slow",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$I$5:$I$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$J$5:$J$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$F$5:$F$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "0",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$G$5:$G$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$M$5:$M$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";SUMIFS($'Production Log'.$L$5:$L$504;$'Production Log'.$C$5:$C$504;$A9;$'Production Log'.$A$5:$A$504;\">=\"&$D$3;$'Production Log'.$A$5:$A$504;\"<=\"&$D$4))",
+          "display": "60",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(B9=0;\"\";C9/B9))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(C9=0;\"\";G9/C9))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF($A9=\"\";\"\";IF(E9=0;\"\";F9/E9))",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(OR(H9=\"\";I9=\"\";J9=\"\");\"\";H9*I9*J9)",
+          "display": "100.0%",
+          "error": 0
+        },
+        {
+          "formula": "=IF(K9=\"\";\"\";K9-$B$5)",
+          "display": "+15.0%",
+          "error": 0
+        }
+      ]
+    },
+    "calculate_seconds": 0.023999929428100586,
+    "id": "diagnostic_oee_heterogeneous"
+  }
+]

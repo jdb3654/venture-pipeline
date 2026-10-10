@@ -1,0 +1,157 @@
+{
+  "tests": [
+    {
+      "test": "bundle title and tag limits",
+      "status": "PASS",
+      "evidence": {
+        "title_characters": 123,
+        "tag_count": 13,
+        "longest_tag": 18
+      }
+    },
+    {
+      "test": "oee title and tag limits",
+      "status": "PASS",
+      "evidence": {
+        "title_characters": 112,
+        "tag_count": 13,
+        "longest_tag": 18
+      }
+    },
+    {
+      "test": "downtime title and tag limits",
+      "status": "PASS",
+      "evidence": {
+        "title_characters": 108,
+        "tag_count": 13,
+        "longest_tag": 18
+      }
+    },
+    {
+      "test": "pm title and tag limits",
+      "status": "PASS",
+      "evidence": {
+        "title_characters": 111,
+        "tag_count": 13,
+        "longest_tag": 17
+      }
+    },
+    {
+      "test": "Downtime-Log-and-Pareto.xlsx no macros/external links/personal identifiers/paths",
+      "status": "PASS",
+      "evidence": {
+        "creator": "openpyxl (library)",
+        "external_links": [],
+        "suspicious_metadata": []
+      }
+    },
+    {
+      "test": "OEE-Tracker.xlsx no macros/external links/personal identifiers/paths",
+      "status": "PASS",
+      "evidence": {
+        "creator": "openpyxl (library)",
+        "external_links": [],
+        "suspicious_metadata": []
+      }
+    },
+    {
+      "test": "Preventive-Maintenance-Schedule.xlsx no macros/external links/personal identifiers/paths",
+      "status": "PASS",
+      "evidence": {
+        "creator": "openpyxl (library)",
+        "external_links": [],
+        "suspicious_metadata": []
+      }
+    },
+    {
+      "test": "OEE Check flags every performance above 100%",
+      "status": "FAIL",
+      "evidence": "=IF($C5=\"\",\"\",IF(K5=\"\",\"Machine not in Setup\",IF(H5>G5,\"Rejects > total parts\",IF(J5<0,\"Downtime > planned time\",IF(AND(ISNUMBER(O5),O5>1.05),\"Performance > 100%: check cycle time or counts\",\"OK\")))))"
+    },
+    {
+      "test": "OEE machine literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF($A9=\"\",\"\",SUMIFS('Production Log'!$I$5:$I$504,'Production Log'!$C$5:$C$504,$A9,'Production Log'!$A$5:$A$504,\">=\"&$D$3,'Production Log'!$A$5:$A$504,\"<=\"&$D$4))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-au/excel/functions/sumifs-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "OEE cycle lookup literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF($C5=\"\",\"\",IFERROR(INDEX(Setup!$B$5:$B$24,MATCH($C5,Setup!$A$5:$A$24,0)),\"\"))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-us/excel/functions/match-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "downtime machine literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF($A5=\"\",\"\",SUMIFS('Downtime Log'!$G$5:$G$1004,'Downtime Log'!$C$5:$C$1004,$A5,'Downtime Log'!$A$5:$A$1004,\">=\"&Pareto!$D$3,'Downtime Log'!$A$5:$A$1004,\"<=\"&Pareto!$D$4))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-au/excel/functions/sumifs-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "downtime reason literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF(I9=\"\",0,SUMIFS('Downtime Log'!$G$5:$G$1004,'Downtime Log'!$H$5:$H$1004,I9,'Downtime Log'!$A$5:$A$1004,\">=\"&$D$3,'Downtime Log'!$A$5:$A$1004,\"<=\"&$D$4,'Downtime Log'!$C$5:$C$1004,$D$5))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-au/excel/functions/sumifs-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "downtime stops literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF(I9=\"\",0,COUNTIFS('Downtime Log'!$H$5:$H$1004,I9,'Downtime Log'!$A$5:$A$1004,\">=\"&$D$3,'Downtime Log'!$A$5:$A$1004,\"<=\"&$D$4,'Downtime Log'!$C$5:$C$1004,$D$5))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-au/excel/functions/sumifs-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "downtime category lookup literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF(H5=\"\",\"\",IFERROR(INDEX(Setup!$E$5:$E$34,MATCH(H5,Setup!$D$5:$D$34,0)),\"Not in Setup\"))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-us/excel/functions/match-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "PM completion matching literal names safe under documented Excel wildcard semantics",
+      "status": "FAIL",
+      "evidence": {
+        "formula": "=IF(B5=\"\",\"\",IF(COUNTIFS('PM Plan'!$A$5:$A$304,B5,'PM Plan'!$B$5:$B$304,C5)>0,\"OK\",\"No matching asset + task in plan\"))",
+        "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+        "source": "https://support.microsoft.com/en-au/excel/functions/sumifs-function",
+        "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"
+      }
+    },
+    {
+      "test": "Declared direct-upload format agrees with Etsy's published file-type list",
+      "status": "FAIL",
+      "evidence": {
+        "instructions": "- Bundle: the three `.xlsx` files plus `guides/Manufacturing-Bundle-Guide.pdf` (Etsy allows 5 files).\n- Each single listing: its `.xlsx` plus its own guide PDF.",
+        "supported_wrapper": ".zip",
+        "contrary_repository_record": "PR #14 / main 1c9ebda records direct XLSX attachments after reload",
+        "live_upload_and_buyer_download": "unverified; this check is documentation-list agreement, not proof of rejection",
+        "source": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings"
+      }
+    }
+  ],
+  "summary": {
+    "PASS": 7,
+    "FAIL": 9
+  }
+}
