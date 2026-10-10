@@ -50,7 +50,7 @@ Disqualifiers checked: none.
 
 ## Validation plan
 
-Publish on Etsy: a 3-template bundle plus each template on its own (4 listings). Run 30 days from listing. Pass: 5+ sales. Cost: $0.80 in listing fees plus any one-time shop setup fee.
+Publish on Etsy: a 3-template bundle plus each template on its own (4 listings). Run 30 days from listing. Pass: 5+ sales. Cost: $0.80 in listing fees plus Etsy's one-time $29 shop setup fee (seen on Etsy's onboarding screen, 2026-10-10).
 
 Why Etsy over Gumroad (checked 2026-10-10): Etsy buyers search the marketplace, which is the distribution we need; Etsy collects and remits US sales tax as a marketplace facilitator; fees are a $0.20 listing fee, 6.5% transaction fee and 3% + $0.25 payment processing in the US ([Checkout Page, Jul 2026](https://checkoutpage.com/blog/etsy-fees), a competitor's summary). Gumroad is merchant of record but charges 10% + $0.50 on direct sales and 30% on sales through its own Discover marketplace ([Checkout Page](https://checkoutpage.com/blog/gumroad-fees)). Etsy's creativity standards require disclosing AI use in the description ([Etsy](https://etsy.com/legal/creativity)).
 
