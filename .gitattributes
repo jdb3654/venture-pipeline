@@ -1,0 +1,7 @@
+# Binary deliverables: never convert line endings (PDF byte offsets break; #15)
+*.pdf binary
+*.png binary
+*.jpg binary
+*.xlsx binary
+*.ods binary
+*.zip binary
