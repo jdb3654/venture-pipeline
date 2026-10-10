@@ -34,7 +34,7 @@ Keep the pipeline full. At any time, aim for several opportunities in Signal/Scr
 
 ## Scoring (Screen stage)
 
-Score each 1–5 and write one line of justification with a source. Scores are hypotheses, not predictions.
+Score each 1–5, where 5 is most favorable, and write one line of justification with a source. Scores are hypotheses, not predictions.
 
 - **Distribution**: can customers find it without ads or sales calls?
 - **Willingness to pay**: evidence that people already pay for this or something close.
