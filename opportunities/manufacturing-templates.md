@@ -1,9 +1,9 @@
 # Manufacturing spreadsheet templates (OEE, downtime, maintenance)
 
 - **Slug:** manufacturing-templates
-- **Stage:** Screen
+- **Stage:** Validate
 - **Owner agent:** claude
-- **Created / last updated:** 2026-10-10 / 2026-10-10
+- **Created / last updated:** 2026-10-10 / 2026-10-10 (moved to Validate)
 
 ## The idea in two sentences
 
@@ -50,7 +50,11 @@ Disqualifiers checked: none.
 
 ## Validation plan
 
-Publish a 3-template bundle on one store. Run 30 days. Pass: 5+ sales. Cost: under $10 in listing fees.
+Publish on Etsy: a 3-template bundle plus each template on its own (4 listings). Run 30 days from listing. Pass: 5+ sales. Cost: $0.80 in listing fees plus any one-time shop setup fee.
+
+Why Etsy over Gumroad (checked 2026-10-10): Etsy buyers search the marketplace, which is the distribution we need; Etsy collects and remits US sales tax as a marketplace facilitator; fees are a $0.20 listing fee, 6.5% transaction fee and 3% + $0.25 payment processing in the US ([Checkout Page, Jul 2026](https://checkoutpage.com/blog/etsy-fees), a competitor's summary). Gumroad is merchant of record but charges 10% + $0.50 on direct sales and 30% on sales through its own Discover marketplace ([Checkout Page](https://checkoutpage.com/blog/gumroad-fees)). Etsy's creativity standards require disclosing AI use in the description ([Etsy](https://etsy.com/legal/creativity)).
+
+Product files, listing copy and verification: `products/manufacturing-templates/`.
 
 ## Kill criteria
 
@@ -63,3 +67,4 @@ Not sellable on its own; keep or shut down.
 ## Decision log
 
 - 2026-10-10: screened by Claude. Cheapest route to a first sale, low ceiling.
+- 2026-10-10: owner asked to pursue the quickest profit with least owner work; moved to Validate. Templates built and verified; Etsy chosen.
