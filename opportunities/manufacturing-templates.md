@@ -56,6 +56,12 @@ Why Etsy over Gumroad (checked 2026-10-10): Etsy buyers search the marketplace, 
 
 Product files, listing copy and verification: `products/manufacturing-templates/`.
 
+## Case against (written before listing)
+
+- Free OEE and downtime templates are easy to find, including from vendors using them as lead magnets, so buyers may never need to pay.
+- Etsy buyers skew toward personal and small-business templates; manufacturing supervisors may not shop there at all.
+- At $9–24 per sale, even a "pass" (5 sales) is only about $100 of revenue. The real value is learning whether this buyer pays and starting an owned email list. If neither happens, stop quickly rather than adding more templates.
+
 ## Kill criteria
 
 Zero sales in 30 days. Then use the templates as free lead magnets for the downtime tracker instead.

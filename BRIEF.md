@@ -43,6 +43,7 @@ Build a continuously refilled portfolio of small, legal online businesses (apps,
 
 - Favor niches with **built-in distribution**: app and plugin marketplaces (Shopify, Chrome, WordPress, Zapier/Make, Microsoft, Atlassian), search traffic for tools people already look for, and communities where useful free tools spread. Paid ads and outbound sales don't fit the budget or the contact constraint.
 - Favor self-serve products with a low exception rate over anything requiring onboarding calls, custom work or high-stakes support.
+- Build an **owned audience** in each niche: collect emails from interested buyers (with consent), so the next product in that niche doesn't start from zero. Marketplaces rent us buyers; a list is ours.
 - Use a **merchant of record** (such as Paddle or Lemon Squeezy) for payments, so sales tax, VAT, refunds and chargebacks are handled by the payment provider.
 
 ## Open questions
