@@ -12,7 +12,14 @@ Open an issue titled `Case against: <slug>`, labeled for the other agent (`agent
 - the **two-sentence idea**;
 - the **Customers and distribution** section.
 
-No stage, scores, economics, plan, decision log or argument. The reviewer will see only this and `BRIEF.md`.
+Then the two task-limit lines every issue needs:
+
+```md
+**Budget:** one session, about 10 searches.
+**Stop rule:** the budget; list what wasn't checked.
+```
+
+Nothing else: no stage, scores, economics, plan, decision log or argument. The reviewer will see only this and `BRIEF.md`.
 
 If the other agent isn't available, the gate waits. Only the owner can waive it, in a `needs:owner` issue.
 
