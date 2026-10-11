@@ -49,9 +49,12 @@ def unresolved_threads(n):
 
 def codex_status(n, head):
     """Return (state, reviewed_commit) from Codex's summary comment, or (None, None)."""
-    summaries = [c["body"] for c in gh("repos/%s/issues/%d/comments?per_page=100" % (REPO, n))
-                 if c["user"]["login"] == CODEX and SUMMARY in c["body"]]
+    bot = [c["body"] for c in gh("repos/%s/issues/%d/comments?per_page=100" % (REPO, n))
+           if c["user"]["login"] == CODEX]
+    summaries = [b for b in bot if SUMMARY in b]
     if not summaries:
+        if any("create an environment" in b for b in bot):
+            return "no-environment", None
         return None, None
     body = summaries[-1]
     state = "running" if "Running" in body else "completed" if "Completed" in body else "unknown"
@@ -78,7 +81,10 @@ def check(n):
         problems.append("CI failed: " + ", ".join(failed))
 
     state, reviewed = codex_status(n, head)
-    if state is None:
+    if state == "no-environment":
+        problems.append("Codex can't review: no Codex environment for this repo. "
+                        "The owner must create one in Codex settings, then comment @codex review")
+    elif state is None:
         problems.append("no Codex review yet")
     elif state == "running":
         problems.append("Codex review still running")
@@ -111,7 +117,7 @@ def main():
     deadline = time.time() + wait
     while problems and time.time() < deadline and all(
             p.startswith(("CI still running", "Codex review still running", "Codex last reviewed",
-                          "no Codex review"))
+                          "no Codex review", "not mergeable (unknown)", "not mergeable (None)"))
             for p in problems):
         time.sleep(30)
         head, state, reviewed, problems, rounds = check(n)
