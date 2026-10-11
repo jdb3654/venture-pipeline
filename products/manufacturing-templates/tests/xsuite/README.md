@@ -48,6 +48,8 @@ test outside it. Nothing is installed and the owner's office session is never at
 
 Steps 1–3 for the web apps can be done by hand or by Claude through the owner's browser.
 
+Note: opening an uploaded .xlsx in Sheets without converting ("Office editing" mode) and downloading it returns the original file unchanged, with no recalculated values. Always convert first.
+
 ## What the scenarios cover
 
 | Scenario | Checks |
@@ -76,4 +78,4 @@ Steps 1–3 for the web apps can be done by hand or by Claude through the owner'
 | 2026-10-10 | LibreOffice 24.2 (Linux, headless), after #37–#40 fixes | Claude | 188/188 pass |
 | | Apache OpenOffice 4.1.7, after #37–#40 fixes | Codex | pending re-run |
 | | Excel for the web | | pending |
-| | Google Sheets | | pending |
+| 2026-10-10 | Google Sheets (web; uploaded .xlsx, File > Save as Google Sheets) | Claude | 188/188 pass; no formula errors. Values read from Google's own .xlsx export of each converted sheet (results-google-sheets.json, check.py --native-readback). Visual check found the Production Log OEE colours missing (cross-sheet colour rule); fixed by a hidden same-sheet copy of the target and re-checked in Sheets. |
