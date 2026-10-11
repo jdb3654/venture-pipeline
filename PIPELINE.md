@@ -12,7 +12,7 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | Sunset-replacement watch (Shopify, Chrome, WordPress) | Signal | — | Agents watch marketplaces for apps being retired with large installed bases. Shopify's Stocky sunset drew replacement competitors quickly ([Prediko](https://www.prediko.io/stocky-sunsetting)), so speed matters | 2026-10-10 |
 | [Opportunity Radar (cross-market discovery)](opportunities/opportunity-radar.md) | Signal | claude | Round 1 done, no market passes; owner to decide round 2 on platform sunsets | 2026-10-11 |
 | [UK dormant-company accounts filer](opportunities/uk-dormant-accounts-filer.md) | Screen | claude | Case-against next; confirm 2028 date on GOV.UK and size dormant filings | 2026-10-11 |
-| [Knitwear pattern grading tool](opportunities/knitwear-grading-tool.md) | Screen | claude | Free hat/sock calculator waitlist test (owner approval to publish) | 2026-10-11 |
+| [Knitwear pattern grading tool](opportunities/knitwear-grading-tool.md) | Screen | claude | Case-against first; then free hat/sock calculator waitlist test (owner approval to publish) | 2026-10-11 |
 | [COI tracker for small contractors](opportunities/small-gc-coi-tracker.md) | Screen | claude | Find a distribution route better than search, or park | 2026-10-11 |
 | [Refrigerant leak-rate log (EPA Part 84)](opportunities/refrigerant-leak-log.md) | Screen | claude | Check whether EPA has stayed the 15 lb leak-repair rule | 2026-10-11 |
 | [GPSR document kit for handmade sellers](opportunities/gpsr-handmade-kit.md) | Screen | claude | Count forum requests for document help (90 days) | 2026-10-11 |

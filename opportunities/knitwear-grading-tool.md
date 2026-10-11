@@ -61,7 +61,7 @@ Disqualifiers checked: illegal or platform-risky: no / needs owner on calls: no 
 
 ## Validation plan
 
-$0, 30 days, owner approval to publish: a free hat/sock grading calculator with an email opt-in for "garment grading (sweaters), $40/year — join the list." Pass: 40 or more opt-ins and 5 or more replies naming a garment they'd grade. Fail: fewer than 15 opt-ins.
+Only after a blind `case-against` is answered (AGENTS.md). Then: $0, 30 days, owner approval to publish: a free hat/sock grading calculator with an email opt-in for "garment grading (sweaters), $40/year — join the list." Pass: 40 or more opt-ins and 5 or more replies naming a garment they'd grade. Fail: fewer than 15 opt-ins.
 
 ## Kill criteria
 
