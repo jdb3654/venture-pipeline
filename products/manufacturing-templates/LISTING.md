@@ -1,6 +1,6 @@
 # Etsy listings: manufacturing templates
 
-Listing copy for the Validate test. **2026-10-10: workbooks fixed after Codex's review (#15–#31); the Etsy drafts still hold the old files and copy and must be updated (new files, guides, wording, "Works in" line, hero thumbnails) before publishing.** As of 2026-10-10 all four listings exist as **drafts** in the TaktTools Etsy shop, entered exactly as written below. Nothing is published until the owner approves.
+Listing copy for the Validate test. **2026-10-11: all four Etsy drafts updated to match this file exactly (current workbooks and guides, descriptions with the "Works in" line, titles and tags) and re-checked after reload. Still drafts; nothing is published until the owner approves.** Remaining before publishing: hero thumbnails (#22), refund/support policy (#23), delivery check (#16).
 
 Etsy settings used on all four: category Planner Templates; type Digital; who made it "I did"; what is it "A finished product"; digital content created "With an AI generator"; quantity 999; auto-renew on.
 
@@ -20,7 +20,7 @@ Prices are a starting hypothesis, not researched yet. A comparable OEE template 
 ## Category and attributes
 
 - Etsy "Designed by a seller" (digital download). Etsy's creativity standards require disclosing AI use in the description; the disclosure line below covers that.
-- File type: Microsoft Excel (.xlsx). Don't claim Google Sheets support until someone has opened each file in Sheets and checked the charts and drop-downs.
+- File type: Microsoft Excel (.xlsx). "Works in" lists only apps with a full recorded pass in `tests/xsuite/README.md` (Excel for the web, Google Sheets, LibreOffice). Add OpenOffice after the AOO re-run (#43).
 
 ## Bundle listing
 
@@ -56,7 +56,7 @@ WHAT YOU GET
 - No macros or add-ins: works in your existing spreadsheet app
 - Instant download
 
-Works in: [fill in only the apps that have passed tests/xsuite; until then, do not publish].
+Works in: Microsoft Excel (tested in Excel for the web), Google Sheets and LibreOffice Calc. No macros, so nothing to enable.
 
 These templates were designed with help from AI tools and checked by the seller, who has many years of experience in manufacturing systems.
 
@@ -90,7 +90,7 @@ WHAT YOU GET
 - No macros or add-ins: works in your existing spreadsheet app
 - Instant download
 
-Works in: [fill in only the apps that have passed tests/xsuite; until then, do not publish].
+Works in: Microsoft Excel (tested in Excel for the web), Google Sheets and LibreOffice Calc. No macros, so nothing to enable.
 
 Want the downtime Pareto and preventive maintenance schedule too? See the 3-template bundle in this shop.
 
@@ -120,7 +120,7 @@ WHAT YOU GET
 - No macros or add-ins: works in your existing spreadsheet app
 - Instant download
 
-Works in: [fill in only the apps that have passed tests/xsuite; until then, do not publish].
+Works in: Microsoft Excel (tested in Excel for the web), Google Sheets and LibreOffice Calc. No macros, so nothing to enable.
 
 Want the OEE tracker and preventive maintenance schedule too? See the 3-template bundle in this shop.
 
@@ -150,7 +150,7 @@ WHAT YOU GET
 - No macros or add-ins: works in your existing spreadsheet app
 - Instant download
 
-Works in: [fill in only the apps that have passed tests/xsuite; until then, do not publish].
+Works in: Microsoft Excel (tested in Excel for the web), Google Sheets and LibreOffice Calc. No macros, so nothing to enable.
 
 Want the OEE tracker and downtime Pareto too? See the 3-template bundle in this shop.
 
@@ -169,7 +169,7 @@ This is a digital download. No physical item will be shipped.
 | Downtime log and Pareto ($12) | 4592745973 | Downtime-Log-and-Pareto.xlsx + guide |
 | PM schedule ($9) | 4592747231 | Preventive-Maintenance-Schedule.xlsx + guide |
 
-Verified 2026-10-10 after reload: files attached, descriptions mention the guide, all four still drafts. If a workbook or guide changes, re-upload it to every listing that carries it.
+Verified 2026-10-11 after reload: current files attached (OEE 170.77 kb, Downtime 149.39 kb, PM 120.29 kb, guides), descriptions, titles and tags match this file, all four still drafts. If a workbook or guide changes, re-upload it to every listing that carries it.
 
 ## Files per listing
 
