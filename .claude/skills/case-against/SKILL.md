@@ -33,7 +33,7 @@ You are the adversary. Your job is to find the reason this fails, not to improve
 
 **Budget and stop rule:** as stated in the issue. Stop early once you have one disqualifier under `BRIEF.md` or three source-backed reasons it fails. Otherwise stop at the budget even if unfinished, and list what you didn't check.
 
-**Output:** create `opportunities/<slug>-case-against.md` (a new file, so you never open the opportunity file), under 250 words, and open a PR that closes the issue:
+**Output:** one to three reasons; a single disqualifier is enough. Create `opportunities/<slug>-case-against.md` (a new file, so you never open the opportunity file), under 250 words, and open a PR that closes the issue:
 
 ```md
 # Case against: <slug> (blind review, <agent>, YYYY-MM-DD)
@@ -41,8 +41,8 @@ You are the adversary. Your job is to find the reason this fails, not to improve
 **Verdict:** kill | park | proceed. **Confidence:** low | medium | high.
 
 1. <strongest reason it fails>, with source.
-2. <next reason>, with source.
-3. <next reason>, with source.
+2. <next reason, if found>, with source.
+3. <next reason, if found>, with source.
 
 **Cheapest kill test:** <the one test, with its cost and duration, whose failure should end this>.
 
