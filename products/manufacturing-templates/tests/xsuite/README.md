@@ -30,7 +30,7 @@ python products/manufacturing-templates/tests/xsuite/run_native.py <in> <out>
 python products/manufacturing-templates/tests/xsuite/check.py <in>/expected.json <out> --app "Apache OpenOffice 4.1.7" --native-readback <out>/office-results.json --json <out>/results.json
 ```
 
-The same 147 independent cell expectations are checked; this does not emulate Excel or claim an XLSX save
+The same independent cell expectations are checked; this does not emulate Excel or claim an XLSX save
 round trip in AOO. Do not use an old native JSON after changing inputs/products. `provenance.json` records
 input hashes, preservation and installed version. Both default executable paths are for installed AOO4;
 `--soffice` and `--uno-python` accept matching alternatives. If a sandbox blocks local UNO, run the authorized
@@ -62,6 +62,9 @@ Steps 1–3 for the web apps can be done by hand or by Claude through the owner'
 | `down_unknown_negative_zero` | Unknown reason shown as unclassified, negative minutes rejected, zero minutes not a stop, missing end time, blank machine (#19, #28, #29) |
 | `down_wildcard_names` | Machine and reason names with `*` and `~` (#18) |
 | `down_dates` | Date filter; rows without a date are left out |
+| `oee_setup_duplicates_and_dates` | Repeated Setup machine: first row wins, no doubled totals; undated log row flagged and excluded (#37, #25) |
+| `down_setup_duplicates` | Repeated machine and reason in Setup: no negative totals, no doubled Pareto rows (#39, #40) |
+| `pm_incomplete_completion` | Completion rows missing asset or task are flagged, not OK (#38) |
 | `pm_rules` | Latest completion, earlier date, undated completion, blank/zero/negative frequency, duplicate rows, wildcard asset names, status counts (#18, #20, #30, #31) |
 
 ## Results
@@ -70,5 +73,7 @@ Steps 1–3 for the web apps can be done by hand or by Claude through the owner'
 |---|---|---|---|
 | 2026-10-10 | LibreOffice 24.2 (Linux, headless) | Claude | 147/147 pass |
 | 2026-10-10 | Apache OpenOffice 4.1.7 (Windows; native UNO/ODS) | Codex | 147/147 pass; no formula errors in any scenario. See results-aoo-4.1.7.json and the broader recheck report for additional defects. |
+| 2026-10-10 | LibreOffice 24.2 (Linux, headless), after #37–#40 fixes | Claude | 188/188 pass |
+| | Apache OpenOffice 4.1.7, after #37–#40 fixes | Codex | pending re-run |
 | | Excel for the web | | pending |
 | | Google Sheets | | pending |
