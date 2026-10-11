@@ -63,7 +63,7 @@ Disqualifiers checked: we would scan customers' files, which can include health 
 
 ## Validation plan
 
-Not worth its own test yet. If the evidence pack's free script draws interest, add one "broadly shared sites" check to it and count requests for the full scan.
+Not worth its own test yet. Requests for a full scan seen during the evidence-pack test are logged as signal only. Any test aimed at this opportunity needs its own blind case-against first.
 
 ## Kill criteria
 

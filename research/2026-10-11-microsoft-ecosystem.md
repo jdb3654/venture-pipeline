@@ -1,6 +1,6 @@
 # Discovery: Microsoft ecosystem for SMBs, IT generalists and MSPs
 
-Issue #58. Researched 2026-10-11 by Claude. Budget about 50 lookups; used 47 (22 searches, 25 fetches, one fetch failed). $0 spend. No accounts, outreach or publishing.
+Issue #58. Researched 2026-10-11 by Claude. Budget about 50 lookups; used 48 (22 searches, 26 fetches, one fetch failed; the 48th answered a Codex review finding). $0 spend. No accounts, outreach or publishing.
 
 Labels: **[fact]** verified on the cited page, **[report]** first-hand or secondary report, **[vendor]** vendor claim, **[est]** estimate, **[assume]** assumption. All pages checked 2026-10-11 unless a date is given.
 

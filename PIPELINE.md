@@ -16,9 +16,9 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | [COI tracker for small contractors](opportunities/small-gc-coi-tracker.md) | Screen | claude | Find a distribution route better than search, or park | 2026-10-11 |
 | [Refrigerant leak-rate log (EPA Part 84)](opportunities/refrigerant-leak-log.md) | Screen | claude | Check whether EPA has stayed the 15 lb leak-repair rule | 2026-10-11 |
 | [GPSR document kit for handmade sellers](opportunities/gpsr-handmade-kit.md) | Screen | claude | Count forum requests for document help (90 days) | 2026-10-11 |
-| [Cyber-insurance evidence pack (M365)](opportunities/m365-insurance-evidence-pack.md) | Screen | claude | Case-against next; then free read-only script test (owner approval to publish) | 2026-10-11 |
-| [Owner access reviews (M365, under 100 seats)](opportunities/m365-owner-access-reviews.md) | Screen | claude | Ride along with the evidence-pack test; merge if both pass | 2026-10-11 |
-| [Pre-Copilot oversharing check](opportunities/m365-oversharing-check.md) | Screen | claude | No own test; one check added to the evidence-pack script | 2026-10-11 |
+| [Cyber-insurance evidence pack (M365)](opportunities/m365-insurance-evidence-pack.md) | Screen | claude | Case-against next; check control set against 2 insurer forms; then free script test (owner approval to publish) | 2026-10-11 |
+| [Owner access reviews (M365, under 100 seats)](opportunities/m365-owner-access-reviews.md) | Screen | claude | Signal logged during evidence-pack test; own case-against (or merge into the pack) before any test | 2026-10-11 |
+| [Pre-Copilot oversharing check](opportunities/m365-oversharing-check.md) | Screen | claude | No test; own case-against before any; requests logged as signal | 2026-10-11 |
 | Artist opportunity feed (ART-01, inherited) | Signal | — | Re-screen with the new template; see old repo `PORTFOLIO.md` | 2026-10-10 |
 
 ## Parked and killed

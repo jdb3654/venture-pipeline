@@ -67,7 +67,7 @@ Disqualifiers checked: none apply.
 
 ## Validation plan
 
-Free read-only script that lists guests with last sign-in and the groups they're in, plus external sharing links, published alongside the evidence-pack test if both survive (same repository, same 21 days, $0, owner approval to publish). Pass: 5+ organizations ask for the owner-email review. Fail: fewer than 2.
+No test of its own yet. During the evidence-pack test, requests for owner reviews are logged as signal only. Before any test aimed at this opportunity: its own blind case-against, or a decision to merge it into the evidence pack and re-review the merged scope. Then: free script listing guests (last sign-in, groups) and external sharing links; $0; 21 days; pass 5+ organizations asking for the owner-email review, fail under 2.
 
 ## Kill criteria
 

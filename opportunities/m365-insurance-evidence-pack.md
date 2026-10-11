@@ -10,13 +10,14 @@ Labels: **[fact]** verified on the cited page, **[report]** first-hand or second
 
 ## The idea in two sentences
 
-A read-only scan of a small Microsoft 365 tenant that produces a dated evidence pack mapped to the questions cyber insurers ask at renewal: MFA coverage (admins included), legacy authentication, number of admins, guest accounts, audit log settings. IT generalists buy one pack per renewal; MSPs buy a per-tenant plan to run it for every client before renewals.
+A read-only scan of a small Microsoft 365 tenant that produces a dated evidence pack mapped to the questions cyber insurers ask at renewal that Microsoft 365 configuration can answer: MFA for email and for admins, legacy authentication blocked, permanent Global Administrator count, audit log retention. IT generalists buy one pack per renewal; MSPs buy a per-tenant plan to run it for every client before renewals.
 
 ## Signal
 
 Lens: MSPs as buyers / admin chores.
 
 - A consultancy sells the same deliverable as a fixed-price, one-week project: control-to-questionnaire mapping, dated configuration exports, evidence pack, gap plan, **$1,950 per project**, delivered by engineers through time-bound GDAP access [vendor: [o365hq](https://o365hq.com/services/cyber-insurance-readiness-assessment), no page date, © 2026].
+- The same consultancy maps common questionnaire items to M365 evidence: MFA (email, remote access, admins), legacy authentication blocked, privileged access, EDR, patching, encryption, email filtering, backups, logging and retention, training, incident response, vendor management. It cites no insurer's actual questionnaire; the list is its own framing [vendor: [o365hq blog, 2026-09-20](https://o365hq.com/blog/cyber-insurance-questionnaire-the-microsoft-365-evidence-that-answers-each-question)]. Several items (EDR, patching, training, backups) need Defender, Intune or separate records, which a Graph scan of a Business Standard tenant can't show [vendor: same].
 - An MSP-focused M365 commentator tells MSPs to sell quarterly governance evidence for cyber insurance and frameworks such as Essential Eight [report: [CIAOPS, 2026-06-03](https://blog.ciaops.com/2026/06/03/most-smb-tenants-have-a-guest-graveyard/)].
 
 ## Customers and distribution
@@ -65,11 +66,14 @@ Disqualifiers checked: not illegal; no calls or on-site work; no health or finan
 
 ## Validation plan
 
-Cheapest test: a free, read-only PowerShell script (delegated sign-in, nothing leaves the admin's machine) that prints the five most-asked questionnaire answers with the evidence behind each, published in a public GitHub repository with one honest post in an MSP community. The README offers the full pack and asks interested buyers to reply in a pinned issue with company size and number of tenants.
+**Before publishing (desk, $0):** check the control set against at least two insurers' published application forms. The current set (MFA for email, MFA for admins, legacy authentication blocked, permanent Global Administrator count, audit log retention) comes from a consultancy's framing, not an insurer's form [vendor: o365hq blog]. Replace any control the forms don't ask about.
+
+Cheapest test: a free, read-only PowerShell script (delegated sign-in, nothing leaves the admin's machine) that prints those answers with the evidence behind each, published in a public GitHub repository with one honest post in an MSP community. The README offers the full pack and asks interested buyers to reply in a pinned issue with company size, number of tenants and which questions their carrier asked.
 
 - Cost: $0. Needs owner approval to publish and to post.
 - Duration: 21 days.
 - Pass: 5 or more distinct organizations ask for the paid pack. Fail: fewer than 2. Stars and downloads are recorded as engagement, not demand.
+- This tests the evidence pack only. Requests about access reviews or oversharing are logged as signal for those opportunities, not as their validation.
 
 ## Kill criteria
 
