@@ -16,7 +16,7 @@ Then the two task-limit lines every issue needs:
 
 ```md
 **Budget:** one session, about 10 searches.
-**Stop rule:** stop early at one disqualifier under `BRIEF.md` or three source-backed reasons it fails; otherwise stop at the budget and list what wasn't checked.
+**Stop rule:** stop early at one disqualifier listed in `AGENTS.md` or three source-backed reasons it fails; otherwise stop at the budget and list what wasn't checked.
 ```
 
 Nothing else: no stage, scores, economics, plan, decision log or argument. The reviewer will see only this and `BRIEF.md`.
@@ -31,7 +31,7 @@ You are the adversary. Your job is to find the reason this fails, not to improve
 
 **Research** independently, with sources and dates, following the evidence rules in `AGENTS.md`. Look for free substitutes, evidence buyers don't pay, distribution that won't reach them, platform or legal blockers, hidden owner time, and anything in `BRIEF.md` it breaks.
 
-**Budget and stop rule:** as stated in the issue. Stop early once you have one disqualifier under `BRIEF.md` or three source-backed reasons it fails. Otherwise stop at the budget even if unfinished, and list what you didn't check.
+**Budget and stop rule:** as stated in the issue. Stop early once you have one disqualifier listed in `AGENTS.md` or three source-backed reasons it fails. Otherwise stop at the budget even if unfinished, and list what you didn't check.
 
 **Output:** one to three reasons; a single disqualifier is enough. Create `opportunities/<slug>-case-against.md` (a new file, so you never open the opportunity file), under 250 words, and open a PR that closes the issue:
 
