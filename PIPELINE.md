@@ -16,6 +16,9 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | [COI tracker for small contractors](opportunities/small-gc-coi-tracker.md) | Screen | claude | Find a distribution route better than search, or park | 2026-10-11 |
 | [Refrigerant leak-rate log (EPA Part 84)](opportunities/refrigerant-leak-log.md) | Screen | claude | Check whether EPA has stayed the 15 lb leak-repair rule | 2026-10-11 |
 | [GPSR document kit for handmade sellers](opportunities/gpsr-handmade-kit.md) | Screen | claude | Count forum requests for document help (90 days) | 2026-10-11 |
+| [Cyber-insurance evidence pack (M365)](opportunities/m365-insurance-evidence-pack.md) | Screen | claude | Case-against next; check control set against 2 insurer forms; then free script test (owner approval to publish) | 2026-10-11 |
+| [Owner access reviews (M365, under 100 seats)](opportunities/m365-owner-access-reviews.md) | Screen | claude | Signal logged during evidence-pack test; own case-against (or merge into the pack) before any test | 2026-10-11 |
+| [Pre-Copilot oversharing check](opportunities/m365-oversharing-check.md) | Screen | claude | No test; own case-against before any; requests logged as signal | 2026-10-11 |
 | Artist opportunity feed (ART-01, inherited) | Signal | — | Re-screen with the new template; see old repo `PORTFOLIO.md` | 2026-10-10 |
 
 ## Parked and killed
@@ -50,4 +53,16 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | Whatnot seller bookkeeping sync | Parked | Link My Books already integrates Whatnot ([Link My Books](https://linkmybooks.com/uk/integration/whatnot-xero)) | A fast-growing marketplace without A2X or Link My Books support |
 | Snow and ice service logs | Parked | No payment evidence found this round | An insurer makes timestamped logs a policy condition |
 | EU/UK F-gas registers | Parked | Needs EU/UK presence; only vendor estimates ([Kolonell](https://kolonell.com/en/blog/f-gas-register-compliance-software-refrigeration-engineers-2026)) | US refrigerant log validates |
+| SMTP AUTH basic-auth fix for scan-to-email (M365) | Parked | Admins can re-enable after the end-2026 default-off; SMTP2GO and a free OAuth proxy exist ([Office 365 for IT Pros](https://office365itpros.com/2026/01/29/smtp-auth-basic-retirement/amp/)) | Microsoft sets a final removal date with no re-enable |
+| EWS dependency finder (M365) | Killed | Free scripts already find EWS apps ([LazyAdmin](https://lazyadmin.nl/?p=12999)); one-off before 2027-04-01 | — |
+| Teams Office 365 connector migration | Killed | Disabled May 2026; Workflows is the free replacement ([MC1181996](https://mc.merill.net/message/MC1181996)) | — |
+| InfoPath form migration | Parked | Vendors already sell it; per-form project work ([Lightning Tools](https://lightningtools.com/blog/infopath-still-working-sharepoint-online-retirement-2026/)) | Owner accepts project work and forms stop rendering |
+| SharePoint Add-in replacements | Parked | Can no longer be sold on Microsoft's marketplace; SPFx rebuilds are custom ([Microsoft](https://learn.microsoft.com/en-us/office/dev/store/monetize-addins-through-microsoft-commercial-marketplace)) | A widely used retired add-in with no replacement is found |
+| Outlook VBA/COM macro replacements for new Outlook | Parked | Sperry Software lists 48 Outlook utilities ([Robert 365](https://robert365.com/app/publisher/sperry)); web add-ins can't act on incoming mail | Microsoft dates the end of classic Outlook support |
+| Outlook mail merge with attachments | Parked | Sperry's web add-in and MAPILab already sell it ([AppSource](https://appsource.microsoft.com/en-us/product/office/WA200007008)) | Both drop new-Outlook support |
+| MSP offboarding and licence clean-up | Parked | CIPP free self-hosted, €99/month hosted ([CyberDrain](https://cyberdrain.com/pricing/)) | CIPP goes paid-only or is abandoned |
+| Paid Power Platform connector | Parked | No way to charge for the connector; all certified connectors are Premium ([Microsoft](https://learn.microsoft.com/nb-no/connectors/custom-connectors/submit-certification)) | A paid API we own needs a connector |
+| Paid PowerShell module / VS Code extension | Parked | No paid listing on either marketplace; community scripts are free (assumption) | Either marketplace adds paid listings |
+| AI document extraction in SharePoint without Copilot | Parked | Not sourced this round; Microsoft AI tools assumed to cover it | A named document type small firms process by hand is found |
+| Signatures for new Outlook and mobile | Parked | Crowded paid category (assumption, not sourced) | — |
 | Nine earlier parked ideas (print-file, visual regression, localization, subtitle, SCORM, Shopify catalog, SQL diagnostics, RFP, MSP handover) | Parked | See old repo `PORTFOLIO.md` | Their recorded triggers |
