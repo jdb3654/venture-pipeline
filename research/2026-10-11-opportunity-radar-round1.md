@@ -8,9 +8,9 @@ Labels: **[fact]** verified on the cited page, **[txn]** completed transaction, 
 
 **No market passes the gates yet, and the direct-resale half of the prompt mostly fails `BRIEF.md`.** One signal type is worth a second, bounded round: platform sunsets (closed WordPress plugins first), which the pipeline already tracks as "Sunset-replacement watch" and which we can act on with software rather than capital.
 
-1. **Raw public-signal feeds don't sell.** Others already resell WARN layoffs, bankruptcy filings and ICS advisories as per-result feeds; each has 1–2 users. Detection is not the scarce part. [fact, see ledger]
+1. **No sign that raw public-signal feeds sell.** Others already resell WARN layoffs, bankruptcy filings and ICS advisories as per-result feeds, each with 1–2 total users. Apify's `total_users` includes the actor's owner and doesn't show payments ([Apify docs](https://docs.apify.com/api/client/python/reference/class/ActorStats)), so this is weak engagement evidence: willingness to pay is unknown, not disproven. What it does show is that building the feed is easy and already done. [fact on counts; inference on demand]
 2. **Physical resale hits a disqualifier.** Government surplus needs pickup within 5–10 business days, sells as-is with no returns, and lands 15–25% above the hammer price before shrink. [vendor] That puts the owner on-site, which `AGENTS.md` disqualifies.
-3. **We can't see completed sales.** eBay's sold-items API is limited release, and small developers report being refused. [report] Without completed-sale comps, any "underpriced" claim is an asking-price guess.
+3. **Completed-sale comps exist but are approval-gated.** eBay's sold-items API is limited release, and small developers report being refused [report]. eBay's Seller Hub Product Research shows 3 years of sold prices to sellers ([eBay help](https://www.ebay.com/help/selling/selling-tools/product-research?id=4853)) [fact], but it is a manual tool behind a seller account (owner approval) with no stated API or export. So comps can verify a handful of finds by hand, not feed an automated valuation. This doesn't rescue surplus resale, which already fails on the on-site rule.
 4. **Brokering is licensed.** In Idaho, referral fees to unlicensed people are prohibited fee splitting. [fact, Idaho guidance] Assume the same for real-estate "facilitation" elsewhere until checked.
 5. **Procurement intelligence does sell, but it's crowded.** HigherGov charges $500–$2,500 a year. [vendor, via a competitor's page] Free official alerts exist, so BID-01 stays parked.
 
@@ -18,22 +18,23 @@ Labels: **[fact]** verified on the cited page, **[txn]** completed transaction, 
 
 ## Signal ledger (denominator)
 
-12 records reviewed; 0 pass all four gates. Rejections keep their reasons.
+13 records reviewed; 0 pass all four gates. Rejections keep their reasons.
 
 | # | Category | Signal | Evidence | Label | Outcome |
 |---|---|---|---|---|---|
-| 1 | Closures | WARN layoff/closure feed (CA, TX) on Apify, $0.005 per notice; targets liquidators, CRE brokers, recruiters | [Apify](https://apify.com/deadwood_data_solutions/warn-layoff-signal-feed) | fact: 1 total user | Reject as a product: supply exists, demand doesn't show |
+| 1 | Closures | WARN layoff/closure feed (CA, TX) on Apify, $0.005 per notice; targets liquidators, CRE brokers, recruiters | [Apify](https://apify.com/deadwood_data_solutions/warn-layoff-signal-feed) | fact: 1 total user (may be only the publisher) | No demand evidence; willingness to pay unknown |
 | 2 | Closures | At least 5 other WARN monitors on Apify | [search, 2026-10-11](https://apify.com/tagadanar/us-warn-layoffs) | fact | Crowded free-data resale |
-| 3 | Closures | Bankruptcy monitor built on CourtListener's free API, $5 per 1,000 rows | [Apify](https://apify.com/lavender_whistle/bankruptcy-filings-monitor) | fact: 2 users, 1 monthly | Reject as a product |
+| 3 | Closures | Bankruptcy monitor built on CourtListener's free API, $5 per 1,000 rows | [Apify](https://apify.com/lavender_whistle/bankruptcy-filings-monitor) | fact: 2 total users incl. owner, 1 monthly | No demand evidence; willingness to pay unknown |
 | 4 | Surplus | GSA Auctions: public API for federal surplus listings | [data.gov](https://catalog.data.gov/dataset/gsa-auctions-api) | fact (fields unconfirmed) | Keep as a source; no buyer route |
 | 5 | Surplus | GovDeals buyer costs: 5–10% premium, 5–10 day pickup, as-is, $150–$400 pallet freight, 25–30% shrink on untested electronics | [Closo, Sep 2026](https://closo.co/blogs/inventory-liquidation/govdeals-liquidation) | vendor (sells wholesale lots) | Reject direct action: on-site disqualifier |
 | 6 | Surplus | GovDeals scrapers sold by third parties | [Apify](https://apify.com/parseforge/govdeals-scraper) | fact | Not permission; terms unread, so paused |
-| 7 | Resale comps | eBay Marketplace Insights limited; small devs denied | [eBay community](https://community.ebay.com/t5/eBay-APIs-Talk-to-your-fellow/Marketplace-Insights-API-access/m-p/34838736) | report | Valuation evidence unavailable |
+| 7 | Resale comps | eBay Marketplace Insights limited; small devs denied | [eBay community](https://community.ebay.com/t5/eBay-APIs-Talk-to-your-fellow/Marketplace-Insights-API-access/m-p/34838736) | report | API closed to us; see row 13 |
 | 8 | Consumer resale | Keepa API sells Amazon price history by tokens | [Keepa](https://keepa.com/api-docs/plans-tokens.html) | fact | Incumbent data; needs spend and inventory capital |
 | 9 | Discontinued parts | Octopart/Nexar API: closed beta, lifecycle status an add-on, prices after sign-up | [Altium](https://developer.altium.com/octopart-api-plans) | fact | Reject now; counterfeit risk for brokers [assume] |
 | 10 | Procurement | HigherGov $500/yr (1 user) to $2,500/yr (10 users) | [Gov Contract Finder, checked Jul 2026](https://govcontractfinder.com/compare/highergov/pricing) | vendor (competitor's page) | WTP exists; crowded; BID-01 parked |
 | 11 | Real estate | Unlicensed referral fees prohibited (Idaho) | [Idaho REC guideline](https://dopl.idaho.gov/wp-content/uploads/2023/11/REC-Guideline-10-rev-03.19.pdf) | fact | Reject facilitation without a license |
 | 12 | Digital assets | WordPress plugin with 4,000+ installs closed permanently for a security issue on 2026-04-07 | [WordPress.org](https://wordpress.org/plugins/post-grid-and-filter-ultimate/advanced/) | fact | **Keep:** orphaned users, act with software |
+| 13 | Resale comps | eBay Seller Hub Product Research: 3 years of sold prices, manual, seller account needed | [eBay help](https://www.ebay.com/help/selling/selling-tools/product-research?id=4853) | fact | Approval-gated; usable for manual spot checks only |
 
 Not covered this round: domain aftermarket (NameBio failed to load), regional price gaps, collectibles, permits. Regulatory triggers: the Federal Register API needs no key [fact], but nothing here shows anyone pays for the alerts.
 
@@ -45,10 +46,10 @@ Scores 1–5 (5 best), subjective, from this round's evidence only. Weights favo
 |---|---|---|---|---|---|---|---|
 | Platform sunsets (WP, Shopify, Chrome, Atlassian) | 4 | 3 | 4 | 5 | 3 | 46 | low (1 instance) |
 | Regulatory triggers | 5 | 1 | 4 | 5 | 3 | 43 | low |
+| Closures → intelligence feed | 4 | 2 | 4 | 5 | 2 | 42 | low |
 | Gov procurement intelligence | 4 | 2 | 4 | 5 | 1 | 41 | medium |
-| Closures → intelligence feed | 4 | 1 | 4 | 5 | 2 | 39 | medium |
+| Consumer resale arbitrage | 3 | 3 | 2 | 1 | 1 | 27 | low |
 | Gov surplus → resale | 3 | 2 | 1 | 2 | 2 | 24 | medium |
-| Consumer resale arbitrage | 2 | 3 | 2 | 1 | 1 | 24 | low |
 | Discontinued parts | 1 | 2 | 3 | 2 | 2 | 24 | low |
 | Real estate signals | 2 | 1 | 2 | 1 | 2 | 19 | low |
 
@@ -72,7 +73,7 @@ Net upside after all costs ×3, valuation evidence ×3 (completed sales only sco
 
 ## 21-day plan, re-scoped
 
-The prompt's 150-signal target assumes collection at scale. This round found that most categories fail on owner time, capital or comps before collection matters, so the plan narrows to one category with a no-go exit.
+The prompt's 150-signal target assumes collection at scale. This round found that most categories fail on owner time, capital or licensing before collection matters, so the plan narrows to one category with a no-go exit.
 
 | Days | Work | Stop rule |
 |---|---|---|

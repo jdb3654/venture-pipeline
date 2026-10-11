@@ -12,7 +12,7 @@ Agents watch permitted public sources for repeatable information gaps (closures,
 
 ## Signal
 
-Owner prompt pasted 2026-10-11 ("Venture Pipeline — Opportunity Radar", v2). Round 1 findings: [research/2026-10-11-opportunity-radar-round1.md](../research/2026-10-11-opportunity-radar-round1.md). Key facts: resold public-signal feeds on Apify have 1–2 users each; physical resale needs on-site pickup; eBay sold-item data is closed to small developers; a 4,000+ install WordPress plugin was closed for security on 2026-04-07, leaving orphaned users.
+Owner prompt pasted 2026-10-11 ("Venture Pipeline — Opportunity Radar", v2). Round 1 findings: [research/2026-10-11-opportunity-radar-round1.md](../research/2026-10-11-opportunity-radar-round1.md). Key facts: resold public-signal feeds on Apify show 1–2 total users each (owner included; payments unknown); physical resale needs on-site pickup; eBay sold-price data is available only manually through a seller account; a 4,000+ install WordPress plugin was closed for security on 2026-04-07, leaving orphaned users.
 
 ## Customers and distribution
 
