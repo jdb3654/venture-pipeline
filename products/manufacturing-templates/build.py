@@ -150,9 +150,12 @@ def build_oee():
 
     # Setup
     title(setup, "Setup", "List each machine once. Names must match exactly what you pick in the log.")
-    headers(setup, 4, ["Machine", "Ideal cycle time\n(seconds per part)", "Notes"], [26, 20, 40])
+    headers(setup, 4, ["Machine", "Ideal cycle time\n(seconds per part)", "Notes", "Check"], [26, 20, 40, 36])
     style_block(setup, 5, MACH_LAST, [1, 2, 3], INPUT)
+    style_block(setup, 5, MACH_LAST, [4], CALC)
     fmt_cols(setup, 5, MACH_LAST, {2: "0.0"})
+    for r in range(5, MACH_LAST + 1):
+        setup[f"D{r}"] = f'=IF(A{r}="","",IF(SUMPRODUCT(--($A$5:A{r}=A{r}))>1,"Duplicate: only the first row is used",""))'
     for i, (m, ct, note) in enumerate([
         ("Press 01", 12, "EXAMPLE"),
         ("CNC Lathe 02", 95, "EXAMPLE"),
@@ -179,8 +182,9 @@ def build_oee():
     for r in range(5, LOG_LAST + 1):
         # exact-match lookups (SUMPRODUCT) avoid Excel wildcards and IFERROR, which OpenOffice 4.1 lacks
         found = f'SUMPRODUCT(--({S}=$C{r}))>0'
-        log[f"K{r}"] = f'=IF($C{r}="","",IF({found},SUMPRODUCT(({S}=$C{r})*1,{CT}),""))'
-        log[f"T{r}"] = (f'=IF($C{r}="",FALSE,AND({found},ISNUMBER(K{r}),N(K{r})>0,ISNUMBER(D{r}),N(D{r})>0,'
+        far = f'SUMPRODUCT(MAX(({S}=$C{r})*({MACH_LAST + 1}-ROW({S}))))'  # first matching Setup row wins
+        log[f"K{r}"] = f'=IF($C{r}="","",IF({found},INDEX({CT},{MACH_LAST - 3}-{far}),""))'
+        log[f"T{r}"] = (f'=IF($C{r}="",FALSE,AND({found},ISNUMBER(A{r}),ISNUMBER(K{r}),N(K{r})>0,ISNUMBER(D{r}),N(D{r})>0,'
                         f'ISNUMBER(G{r}),N(G{r})>=0,OR(E{r}="",ISNUMBER(E{r})),OR(F{r}="",ISNUMBER(F{r})),'
                         f'OR(H{r}="",ISNUMBER(H{r})),N(E{r})>=0,N(F{r})>=0,N(H{r})>=0,N(H{r})<=N(G{r}),'
                         f'N(E{r})<N(D{r}),N(F{r})<=N(D{r})-N(E{r})))')
@@ -196,6 +200,7 @@ def build_oee():
         log[f"Q{r}"] = f'=IF({ok},S{r}/I{r},"")'
         log[f"R{r}"] = (f'=IF($C{r}="","",IF(NOT({found}),"Machine not in Setup",'
                         f'IF(OR(NOT(ISNUMBER(K{r})),N(K{r})<=0),"Set an ideal cycle time in Setup",'
+                        f'IF(NOT(ISNUMBER(A{r})),"Enter a date",'
                         f'IF(OR(NOT(ISNUMBER(D{r})),NOT(ISNUMBER(G{r})),AND(E{r}<>"",NOT(ISNUMBER(E{r}))),'
                         f'AND(F{r}<>"",NOT(ISNUMBER(F{r}))),AND(H{r}<>"",NOT(ISNUMBER(H{r})))),'
                         f'"Enter numbers: shift length and total parts are required",'
@@ -203,7 +208,7 @@ def build_oee():
                         f'IF(N(H{r})>N(G{r}),"Rejects > total parts",'
                         f'IF(N(E{r})>=N(D{r}),"Planned stops >= shift length",'
                         f'IF(N(F{r})>N(D{r})-N(E{r}),"Downtime > planned time",'
-                        f'IF(AND(ISNUMBER(O{r}),O{r}>1),"Check: performance above 100%","OK")))))))))')
+                        f'IF(AND(ISNUMBER(O{r}),O{r}>1),"Check: performance above 100%","OK"))))))))))')
     examples = [
         ("2026-09-01", "Day", "Press 01", 480, 40, 35, 1900, 22),
         ("2026-09-01", "Day", "CNC Lathe 02", 480, 40, 60, 210, 4),
@@ -263,7 +268,8 @@ def build_oee():
     src = {2: "I", 3: "J", 4: "F", 5: "G", 6: "M", 7: "L", 13: "S"}
     for r in range(first, last + 1):
         sr = 5 + (r - first)
-        dash[f"A{r}"] = f'=IF(Setup!A{sr}="","",Setup!A{sr})'
+        dash[f"A{r}"] = (f'=IF(Setup!A{sr}="","",IF(SUMPRODUCT(--(Setup!$A$4:A{sr - 1}=Setup!A{sr}))>0,"",'
+                         f'Setup!A{sr}))')
         sel = f'({rng("C")}=$A{r})*({rng("T")}=TRUE)*({rng("A")}>=$D$3)*({rng("A")}<=$D$4)'
         for col, lc in src.items():
             dash.cell(row=r, column=col).value = f'=IF($A{r}="","",SUMPRODUCT({sel},{rng(lc)}))'
@@ -285,7 +291,8 @@ def build_oee():
     dash[f"M{first - 1}"] = "Ideal time for good parts (min)"
     dash[f"M{first - 1}"].font = f(8, True, "808080")
     dash.column_dimensions["M"].hidden = True
-    dash["A6"] = "Rows with a Check message (not OK) are left out of these totals."
+    dash["A6"] = ("Log rows whose Check shows an error are left out of these totals. "
+                  "The 'performance above 100%' warning still counts.")
     dash["A6"].font = f(9, italic=True, color="595959")
     style_block(dash, first, total, range(1, 13), CALC)
     for col in range(1, 13):
@@ -368,11 +375,14 @@ def build_downtime():
     ])
 
     title(setup, "Setup", "Machines and downtime reasons used by the drop-downs.")
-    headers(setup, 4, ["Machine", "", "", "Downtime reason", "Category"], [24, 3, 3, 34, 22])
-    for c in ("B4", "C4"):
-        setup[c].fill = PatternFill(None)
-        setup[c].border = Border()
+    headers(setup, 4, ["Machine", "Check", "", "Downtime reason", "Category", "Check"], [24, 30, 3, 34, 22, 30])
+    setup["C4"].fill = PatternFill(None)
+    setup["C4"].border = Border()
     style_block(setup, 5, LIST_LAST, [1, 4, 5], INPUT)
+    style_block(setup, 5, LIST_LAST, [2, 6], CALC)
+    for r in range(5, LIST_LAST + 1):
+        setup[f"B{r}"] = f'=IF(A{r}="","",IF(SUMPRODUCT(--($A$5:A{r}=A{r}))>1,"Duplicate: only the first row is used",""))'
+        setup[f"F{r}"] = f'=IF(D{r}="","",IF(SUMPRODUCT(--($D$5:D{r}=D{r}))>1,"Duplicate: only the first row is used",""))'
     for i, m in enumerate(["Press 01", "CNC Lathe 02", "Packaging Line A"]):
         setup.cell(row=5 + i, column=1, value=m)
     for i, (reason, cat) in enumerate(REASONS):
@@ -393,8 +403,9 @@ def build_downtime():
         # A stop counts when Duration is a number above 0. Bad typed minutes give a blank duration and a Check message.
         log[f"G{r}"] = (f'=IF(F{r}<>"",IF(AND(ISNUMBER(F{r}),N(F{r})>=0),F{r},""),'
                         f'IF(AND(ISNUMBER(D{r}),ISNUMBER(E{r})),ROUND(MOD(E{r}-D{r},1)*1440,0),""))')
-        pos = f'SUMPRODUCT(MAX(({RS}=H{r})*(ROW({RS})-4)))'  # exact match: no wildcards, no IFERROR
-        log[f"I{r}"] = f'=IF(H{r}="","",IF({pos}=0,"Not in Setup",INDEX(Setup!$E$5:$E${LIST_LAST},{pos})))'
+        far = f'SUMPRODUCT(MAX(({RS}=H{r})*({LIST_LAST + 1}-ROW({RS}))))'  # exact match, first Setup row wins
+        log[f"I{r}"] = (f'=IF(H{r}="","",IF({far}=0,"Not in Setup",'
+                        f'INDEX(Setup!$E$5:$E${LIST_LAST},{LIST_LAST - 3}-{far})))')
         log[f"K{r}"] = (f'=IF(AND(A{r}="",C{r}="",D{r}="",E{r}="",F{r}="",H{r}=""),"",'
                         f'IF(NOT(ISNUMBER(A{r})),"Enter a date",'
                         f'IF(AND(F{r}<>"",OR(NOT(ISNUMBER(F{r})),N(F{r})<0)),"Minutes must be a number of 0 or more",'
@@ -476,7 +487,8 @@ def build_downtime():
     for r in range(first, last + 1):
         sr = 5 + (r - first)
         k = r - first + 1
-        par[f"I{r}"] = f'=IF(Setup!D{sr}="","",Setup!D{sr})'
+        par[f"I{r}"] = (f'=IF(Setup!D{sr}="","",IF(SUMPRODUCT(--(Setup!$D$4:D{sr - 1}=Setup!D{sr}))>0,"",'
+                        f'Setup!D{sr}))')
         par[f"J{r}"] = f'=IF(I{r}="",0,SUMPRODUCT(({dcol("H")}=I{r})*{sel},{dcol("G")}))'
         par[f"K{r}"] = (f'=IF(I{r}="",0,SUMPRODUCT(({dcol("H")}=I{r})*{sel}'
                         f'*ISNUMBER({dcol("G")})*({dcol("G")}>0)))')
@@ -526,7 +538,8 @@ def build_downtime():
     dsel = f'({dcol("A")}>=Pareto!$D$3)*({dcol("A")}<=Pareto!$D$4)'
     other, tot = mlast + 1, mlast + 2
     for r in range(mfirst, mlast + 1):
-        bym[f"A{r}"] = f'=IF(Setup!A{r}="","",Setup!A{r})'
+        bym[f"A{r}"] = (f'=IF(Setup!A{r}="","",IF(SUMPRODUCT(--(Setup!$A$4:A{r - 1}=Setup!A{r}))>0,"",'
+                        f'Setup!A{r}))')
         bym[f"B{r}"] = f'=IF($A{r}="","",SUMPRODUCT(({dcol("C")}=$A{r})*{dsel},{dcol("G")}))'
         bym[f"C{r}"] = (f'=IF($A{r}="","",SUMPRODUCT(({dcol("C")}=$A{r})*{dsel}'
                         f'*ISNUMBER({dcol("G")})*({dcol("G")}>0)))')
@@ -657,8 +670,8 @@ def build_pm():
     P = "'PM Plan'!"
     for r in range(5, LOG_LAST + 1):
         done[f"F{r}"] = (f'=IF(AND(A{r}="",B{r}="",C{r}=""),"",IF(NOT(ISNUMBER(A{r})),"Enter the date done",'
-                         f'IF(SUMPRODUCT(({P}$A$5:$A${PLAN_LAST}=B{r})*({P}$B$5:$B${PLAN_LAST}=C{r}))=0,'
-                         f'"No matching asset + task in plan","OK")))')
+                         f'IF(OR(B{r}="",C{r}=""),"Fill in asset and task",IF(SUMPRODUCT(({P}$A$5:$A${PLAN_LAST}=B{r})*({P}$B$5:$B${PLAN_LAST}=C{r}))=0,'
+                         f'"No matching asset + task in plan","OK"))))')
     done["A5"] = "=TODAY()-2"
     done["B5"] = "CNC Lathe 02"
     done["C5"] = "Clean chip conveyor and coolant filter"

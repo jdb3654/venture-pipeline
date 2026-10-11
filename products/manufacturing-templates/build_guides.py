@@ -31,8 +31,8 @@ WIDTH = letter[0] - 1.6 * inch
 S = {
     "title": ParagraphStyle("title", fontName="Helvetica-Bold", fontSize=24, leading=29, textColor=NAVY, spaceAfter=4),
     "sub": ParagraphStyle("sub", fontName="Helvetica", fontSize=12, leading=16, textColor=MUTED, spaceAfter=14),
-    "h1": ParagraphStyle("h1", fontName="Helvetica-Bold", fontSize=15, leading=19, textColor=NAVY, spaceBefore=14, spaceAfter=6),
-    "h2": ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=12, leading=15, textColor=INK, spaceBefore=8, spaceAfter=4),
+    "h1": ParagraphStyle("h1", fontName="Helvetica-Bold", fontSize=15, leading=19, textColor=NAVY, spaceBefore=14, spaceAfter=6, keepWithNext=1),
+    "h2": ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=12, leading=15, textColor=INK, spaceBefore=8, spaceAfter=4, keepWithNext=1),
     "body": ParagraphStyle("body", fontName="Helvetica", fontSize=10.5, leading=14.5, textColor=INK, spaceAfter=6, alignment=TA_LEFT),
     "small": ParagraphStyle("small", fontName="Helvetica", fontSize=9, leading=12, textColor=MUTED, spaceAfter=4),
     "cell": ParagraphStyle("cell", fontName="Helvetica", fontSize=9.5, leading=12.5, textColor=INK),
@@ -167,6 +167,8 @@ def oee(shot):
             "In <b>Ideal cycle time (seconds per part)</b>, enter the fastest time the machine can sustainably make "
             "one good part. For a line, use the time per finished unit at rated speed. Example: a machine rated at "
             "300 parts per hour has an ideal cycle time of 3600 / 300 = <b>12 seconds</b>.",
+            "Type each machine only once. If a name is repeated, <b>Check</b> on the repeat says <b>Duplicate: only "
+            "the first row is used</b>; delete the repeat.",
             "Clear the three EXAMPLE machines when you no longer need them (yellow cells only).",
         ]),
         p("Getting the ideal cycle time right matters most: if it's too slow, Performance can show over 100% and the "
@@ -184,7 +186,8 @@ def oee(shot):
             "The grey columns fill in by themselves, including <b>OEE</b> (coloured green, amber or red) and "
             "<b>Check</b>.",
             "Look at <b>Check</b> on each new row. It should say <b>OK</b>. If not, see the table below. Rows with an "
-            "error are left out of the Dashboard until you fix them.",
+            "error are left out of the Dashboard until you fix them. The \"performance above 100%\" warning is not an "
+            "error: those rows still count.",
             CLEAR_EXAMPLES,
         ]),
         shot("OEE-Tracker-3", "Production Log with the example rows. Yellow columns are typed in; grey columns calculate."),
@@ -193,6 +196,8 @@ def oee(shot):
                ["Machine not in Setup", "The machine name isn't on the Setup sheet, or is spelled differently. Pick "
                 "it from the drop-down, or add it to Setup."],
                ["Set an ideal cycle time in Setup", "The machine has no ideal cycle time (or 0) on the Setup sheet."],
+               ["Enter a date", "The Date cell is empty or isn't a real date. Undated rows can't be placed in a date "
+                "range, so they are left out."],
                ["Enter numbers: shift length and total parts are required", "A required cell is empty, or a cell "
                 "contains text instead of a number."],
                ["Values must be 0 or more (shift length above 0)", "A negative number, or a shift length of 0."],
@@ -209,10 +214,13 @@ def oee(shot):
             "Optional: enter a <b>From date</b> and/or <b>To date</b>. Leave them blank to include every row. Both "
             "dates are included in the range.",
             "Set your <b>OEE target</b> (85% is filled in). OEE cells turn <b>green</b> at or above target, "
-            "<b>amber</b> from 60% up to the target, and <b>red</b> below 60%. <b>OEE vs target</b> shows the gap.",
+            "<b>amber</b> from 60% up to the target, and <b>red</b> below 60%. Red always wins: below 60% is red even "
+            "if your target is lower than 60%. <b>OEE vs target</b> shows the gap.",
             "Each row adds up times and part counts first, then calculates the percentages, so a long shift counts "
             "more than a short one. <b>All machines</b> OEE is total ideal time for good parts divided by total "
-            "planned production time, which stays correct when machines have different cycle times.",
+            "planned production time, which stays correct when machines have different cycle times. Its <b>Quality</b> "
+            "is weighted by ideal time (ideal time for good parts ÷ ideal time for all parts), so Availability × "
+            "Performance × Quality still equals OEE.",
         ]),
         shot("OEE-Tracker-4", "Dashboard: totals and OEE by machine, the all-machines total, and the OEE chart.", 4.4),
         p("How the numbers are calculated", "h1"),
@@ -259,6 +267,8 @@ def downtime(shot):
             "Under <b>Downtime reason</b> and <b>Category</b>, edit the 12 starter reasons to match how your plant "
             "talks about stops. Keep the list short, about 10 to 15 reasons. Categories (Breakdown, Material, and so "
             "on) can be renamed too.",
+            "List each machine and each reason only once. A repeated name shows <b>Duplicate: only the first row is "
+            "used</b> in the <b>Check</b> column next to it; delete the repeat.",
         ]),
         shot("Downtime-Log-and-Pareto-2", "Setup: machines on the left, reasons and categories on the right.", 3.2),
         p("Step 2: Log every stop", "h1"),
@@ -351,6 +361,7 @@ def pm(shot):
             "Each time a task is done, add a row: <b>Date done</b>, <b>Asset</b> and <b>Task</b> (pick both from the "
             "drop-downs so they match the plan exactly), <b>Done by</b> and any <b>Notes</b>.",
             "Check <b>Matches plan?</b>. It should say <b>OK</b>. <b>Enter the date done</b> means the date is missing. "
+            "<b>Fill in asset and task</b> means one of them is blank. "
             "<b>No matching asset + task in plan</b> means the asset or task is spelled differently from the PM "
             "Plan, so the plan won't update. Fix the spelling.",
         ]),

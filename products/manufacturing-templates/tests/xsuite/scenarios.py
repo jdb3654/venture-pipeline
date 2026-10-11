@@ -23,8 +23,13 @@ D0 = date(2026, 9, 1)
 
 # --------------------------------------------------------------------------- independent models
 def oee_expect(machines, rows, frm=None, to=None):
-    """machines: {name: cycle_sec}; rows: (date, machine, shift, stops, down, total, rejects).
+    """machines: {name: cycle_sec} or [(name, cycle_sec)] (first row wins for duplicates);
+    rows: (date, machine, shift, stops, down, total, rejects).
     Returns per-row (check, oee or None) and per-machine / total OEE using only valid rows."""
+    items = list(machines.items()) if isinstance(machines, dict) else list(machines)
+    machines = {}
+    for m, ct in items:
+        machines.setdefault(m, ct)
     out_rows, agg = [], {}
     for d, m, sl, ps, dt, tot, rej in rows:
         nums = all(isinstance(v, (int, float)) for v in (sl, tot)) and all(
@@ -32,6 +37,8 @@ def oee_expect(machines, rows, frm=None, to=None):
         ps0, dt0, rej0 = (ps or 0), (dt or 0), (rej or 0)
         if m not in machines:
             check = "Machine not in Setup"
+        elif not isinstance(d, date):
+            check = "Enter a date"
         elif not nums:
             check = "Enter numbers: shift length and total parts are required"
         elif sl <= 0 or ps0 < 0 or dt0 < 0 or tot < 0 or rej0 < 0:
@@ -118,7 +125,8 @@ def open_clean(name, clear):
 def oee_scenario(name, machines, rows, frm=None, to=None, target=None):
     wb = open_clean(OEE, {"Setup": ["A5:C24"], "Production Log": ["A5:H504"]})
     st, lg, db = wb["Setup"], wb["Production Log"], wb["Dashboard"]
-    for i, (m, ct) in enumerate(machines.items()):
+    items = list(machines.items()) if isinstance(machines, dict) else list(machines)
+    for i, (m, ct) in enumerate(items):
         st.cell(5 + i, 1, m)
         st.cell(5 + i, 2, ct)
     for i, row in enumerate(rows):
@@ -137,8 +145,10 @@ def oee_scenario(name, machines, rows, frm=None, to=None, target=None):
     for i, (check, oee) in enumerate(rows_exp):
         exp.append({"sheet": "Production Log", "cell": f"R{5 + i}", "value": check})
         exp.append({"sheet": "Production Log", "cell": f"Q{5 + i}", "value": oee if oee is not None else ""})
-    for i, m in enumerate(machines):
-        exp.append({"sheet": "Dashboard", "cell": f"K{9 + i}", "value": per.get(m, "")})
+    seen = set()
+    for i, (m, _) in enumerate(items):  # a repeated Setup name gets a blank Dashboard row
+        exp.append({"sheet": "Dashboard", "cell": f"K{9 + i}", "value": "" if m in seen else per.get(m, "")})
+        seen.add(m)
     exp.append({"sheet": "Dashboard", "cell": "K29", "value": total if total is not None else ""})
     return wb, exp
 
@@ -149,7 +159,8 @@ def dt_scenario(name, machines, rows, frm=None, to=None, mfilter=None, reasons=N
     st, lg, pa, bm = wb["Setup"], wb["Downtime Log"], wb["Pareto"], wb["By Machine"]
     for i, m in enumerate(machines):
         st.cell(5 + i, 1, m)
-    for i, (r, cat) in enumerate(reasons.items()):
+    reason_items = list(reasons.items()) if isinstance(reasons, dict) else list(reasons)
+    for i, (r, cat) in enumerate(reason_items):
         st.cell(5 + i, 4, r)
         st.cell(5 + i, 5, cat)
     for i, (d, m, s, e, typed, r) in enumerate(rows):
@@ -162,15 +173,20 @@ def dt_scenario(name, machines, rows, frm=None, to=None, mfilter=None, reasons=N
         pa["B4"] = to
     if mfilter:
         pa["B5"] = mfilter
-    x = dt_expect(machines, reasons, rows, frm, to, mfilter)
+    x = dt_expect(list(dict.fromkeys(machines)), dict(reason_items[::-1]), rows, frm, to, mfilter)
     exp = [{"sheet": "Pareto", "cell": "B6", "value": x["total"]},
            {"sheet": "Pareto", "cell": "B7", "value": x["unclassified"]}]
-    for i, r in enumerate(reasons):  # hidden helper columns hold per-reason minutes and stops in Setup order
-        exp.append({"sheet": "Pareto", "cell": f"J{9 + i}", "value": x["by_reason"].get(r, 0)})
-        exp.append({"sheet": "Pareto", "cell": f"K{9 + i}", "value": x["stops_reason"].get(r, 0)})
-    for i, m in enumerate(machines):
-        exp.append({"sheet": "By Machine", "cell": f"B{5 + i}", "value": x["by_machine"][m]})
-        exp.append({"sheet": "By Machine", "cell": f"C{5 + i}", "value": x["stops_machine"][m]})
+    seen = set()
+    for i, (r, _) in enumerate(reason_items):  # hidden helper columns, Setup order; repeats count 0
+        exp.append({"sheet": "Pareto", "cell": f"J{9 + i}", "value": 0 if r in seen else x["by_reason"].get(r, 0)})
+        exp.append({"sheet": "Pareto", "cell": f"K{9 + i}", "value": 0 if r in seen else x["stops_reason"].get(r, 0)})
+        seen.add(r)
+    seen = set()
+    for i, m in enumerate(machines):  # a repeated machine gets a blank By Machine row
+        exp.append({"sheet": "By Machine", "cell": f"B{5 + i}", "value": "" if m in seen else x["by_machine"][m]})
+        exp.append({"sheet": "By Machine", "cell": f"C{5 + i}", "value": "" if m in seen else x["stops_machine"][m]})
+        seen.add(m)
+    exp.append({"sheet": "By Machine", "cell": "B35", "value": x["all_logged"] - sum(x["by_machine"].values())})
     exp.append({"sheet": "By Machine", "cell": "B36", "value": x["all_logged"]})
     exp.append({"sheet": "By Machine", "cell": "C36", "value": x["all_stops"]})
     return wb, exp
@@ -217,7 +233,7 @@ def pm_scenario(name, plan, log, window=7):
             {"sheet": "PM Plan", "cell": "L3", "value": counts["OK"]},
             {"sheet": "PM Plan", "cell": "L4", "value": counts["fix"]}]
     for i, (ago, a, t) in enumerate(log):
-        msg = ("Enter the date done" if ago is None else
+        msg = ("Enter the date done" if ago is None else "Fill in asset and task" if not a or not t else
                ("OK" if (a, t) in keys else "No matching asset + task in plan"))
         exp.append({"sheet": "Completion Log", "cell": f"F{5 + i}", "value": msg})
     return wb, exp
@@ -272,6 +288,15 @@ def scenarios():
         machines=["M1"], frm=d(1),
         rows=[(d(0), "M1", None, None, 30, "R-Break"), (d(1), "M1", None, None, 20, "R-Break"),
               (None, "M1", None, None, 99, "R-Break")])
+    yield "oee_setup_duplicates_and_dates", oee_scenario, dict(  # #37, reopened #25
+        machines=[("M1", 60), ("M1", 30), ("M2", 60)],
+        rows=[(d(0), "M1", 60, 0, 0, 24, 0), (None, "M2", 60, 0, 0, 24, 0), ("not a date", "M2", 60, 0, 0, 24, 0)])
+    yield "down_setup_duplicates", dt_scenario, dict(  # #39 #40
+        machines=["M1", "M1", "M2"], reasons=[("R1", "Cat A"), ("R1", "Cat B"), ("R2", "Cat C")],
+        rows=[(d(0), "M1", None, None, 10, "R1"), (d(0), "M2", None, None, 5, "R2")])
+    yield "pm_incomplete_completion", pm_scenario, dict(  # #38
+        plan=[("A1", "T1", 7, None)],
+        log=[(1, None, None), (1, "A1", None), (1, None, "T1"), (1, "A1", "T1")])
     yield "pm_rules", pm_scenario, dict(  # #20 #30 #31 #18
         plan=[("A1", "T1", 7, None), ("A2", "T2", 30, 40), ("A3", "T3", 0, None), ("A4", "T4", None, None),
               ("A5", "T5", -7, None), ("A6", "T6", 7, None), ("A6", "T6", 30, None), ("Line*1", "Lube", 14, 13),
