@@ -77,5 +77,5 @@ Note: opening an uploaded .xlsx in Sheets without converting ("Office editing" m
 | 2026-10-10 | Apache OpenOffice 4.1.7 (Windows; native UNO/ODS) | Codex | 147/147 pass; no formula errors in any scenario. See results-aoo-4.1.7.json and the broader recheck report for additional defects. |
 | 2026-10-10 | LibreOffice 24.2 (Linux, headless), after #37–#40 fixes | Claude | 188/188 pass |
 | | Apache OpenOffice 4.1.7, after #37–#40 fixes | Codex | pending re-run |
-| | Excel for the web | | pending |
+| 2026-10-11 | Excel for the web (Microsoft 365 personal) | Claude | 188/188 pass; no formula errors. Copies saved with File > Create a Copy > Download a Copy (results-excel-web.json). Visual check: Pareto cumulative line dropped to 0 over empty rows; fixed with a carry-forward helper column and re-checked in Excel. |
 | 2026-10-10 | Google Sheets (web; uploaded .xlsx, File > Save as Google Sheets) | Claude | 188/188 pass; no formula errors. Values read from Google's own .xlsx export of each converted sheet (results-google-sheets.json, check.py --native-readback). Visual check found the Production Log OEE colours missing (cross-sheet colour rule); fixed by a hidden same-sheet copy of the target and re-checked in Sheets. |
