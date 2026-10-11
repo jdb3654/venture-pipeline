@@ -1,31 +1,35 @@
 ---
 name: case-against
-description: Blind adversarial review of an opportunity before it enters Validate or Build. Use when asked for a case against, a red-team or a kill review of an opportunity, or when an issue titled "Case against" is assigned to you.
+description: Blind adversarial review of an opportunity before it enters Validate or Build. Use when an issue titled "Case against: <slug>" is assigned to you, or when you need to request one for an opportunity you own.
 ---
 
-You are the adversary. Your job is to find the reason this opportunity fails, not to improve it. A review that finds nothing is a failed review.
+The other agent attacks an opportunity without seeing the case for it. Two roles: the **owner agent** (owns the opportunity) requests it; the **reviewer** (the other agent) writes it.
 
-## Stay blind
+## Owner agent: request it
 
-Read only:
+Open an issue titled `Case against: <slug>`, labeled for the other agent (`agent:codex` for a Claude-owned opportunity, and the reverse). Its body is a sanitized excerpt copied verbatim from the opportunity file, and nothing else:
 
-- `BRIEF.md`.
-- The **two-sentence idea** and the **Customers and distribution** section of `opportunities/<slug>.md`.
+- the **two-sentence idea**;
+- the **Customers and distribution** section.
 
-Do not read its scores, signal, economics, validation plan, existing case against or decision log, or any PR discussion. Those carry the author's framing. If you already worked on this opportunity in this session, say so and stop: another agent or a fresh session must do it.
+No stage, scores, economics, plan, decision log or argument. The reviewer will see only this and `BRIEF.md`.
 
-## Do
+If the other agent isn't available, the gate waits. Only the owner can waive it, in a `needs:owner` issue.
 
-Research independently, with sources and dates, following the evidence rules in `AGENTS.md`. Look for: free substitutes, evidence buyers don't pay, distribution that won't reach them, platform or legal blockers, hidden owner time, and anything in `BRIEF.md` it breaks.
+## Reviewer: write it
 
-Budget: one session, at most about 10 searches. Stop at the budget even if unfinished, and say what you didn't check.
+You are the adversary. Your job is to find the reason this fails, not to improve it. A review that finds nothing is a failed review.
 
-## Output
+**Stay blind.** Read only `BRIEF.md` and the issue (`AGENTS.md` exempts you from the usual startup reading). Do not open `PIPELINE.md`, `opportunities/<slug>.md` or its PRs. If you have worked on this opportunity before, say so on the issue and stop.
 
-Add this section to the opportunity file, under 250 words, then open a PR:
+**Research** independently, with sources and dates, following the evidence rules in `AGENTS.md`. Look for free substitutes, evidence buyers don't pay, distribution that won't reach them, platform or legal blockers, hidden owner time, and anything in `BRIEF.md` it breaks.
+
+**Budget:** one session, about 10 searches. Stop at the budget even if unfinished, and list what you didn't check.
+
+**Output:** create `opportunities/<slug>-case-against.md` (a new file, so you never open the opportunity file), under 250 words, and open a PR that closes the issue:
 
 ```md
-## Case against (blind review, <agent>, YYYY-MM-DD)
+# Case against: <slug> (blind review, <agent>, YYYY-MM-DD)
 
 **Verdict:** kill | park | proceed. **Confidence:** low | medium | high.
 
@@ -33,15 +37,11 @@ Add this section to the opportunity file, under 250 words, then open a PR:
 2. <next reason>, with source.
 3. <next reason>, with source.
 
-**Cheapest kill test:** <the one test, under $X and Y days, whose failure should end this>.
+**Cheapest kill test:** <the one test, with its cost and duration, whose failure should end this>.
 
 **Not checked:** <what the budget left out>.
 ```
 
-## After the review
+## Owner agent: answer it
 
-The opportunity's owner agent answers each numbered point in one line beneath the section: refuted (with source), accepted, or mitigated (how). A point can't be answered with "we'll see". The owner reads both sides and decides the stage change.
-
-## Requesting one
-
-To request a blind review, open an issue titled `Case against: <slug>` labeled for the **other** agent (`agent:codex` for a Claude-owned opportunity, and the reverse). The issue body names the slug only, with no argument for the idea. If the other agent isn't available, a fresh session or a sub-agent that has not seen the opportunity may do it, and the section says which.
+Under each numbered point, add one line: refuted (with source), accepted, or mitigated (how). "We'll see" is not an answer. Link the file from the opportunity's decision log. The owner reads both sides and decides the stage change.

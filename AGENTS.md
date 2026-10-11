@@ -6,6 +6,8 @@ Both Claude and Codex work here. These instructions apply to both.
 
 ## Read first, every session
 
+Exception: if your issue is titled `Case against: <slug>`, read only `BRIEF.md` and that issue, then follow the `case-against` skill. Do not open `PIPELINE.md` or the opportunity's files.
+
 1. `BRIEF.md`: the owner's goals and constraints. It overrides everything else.
 2. `PIPELINE.md`: every opportunity and its current stage.
 3. The opportunity file(s) for the task you are working on.
@@ -62,7 +64,7 @@ Public experiments with autonomous agent businesses failed through spam, unsolic
 - Never buy traffic, reviews, followers or engagement, and never post or message in communities in a way that looks like spam.
 - Revenue means settled payments. Report installs, signups and payments separately from engagement metrics.
 - After any external change, check the live state before marking it done. An API's "success" is not proof.
-- Before an opportunity enters Validate or Build, it needs a blind case against from the other agent (`case-against` skill), answered point by point.
+- Before an opportunity enters Validate or Build, it needs a blind case against from the other agent (`case-against` skill), answered point by point. Only the owner can waive it.
 - Each product gets a written refund and discount policy. Anything outside it escalates to the owner.
 
 ## Limits: no rabbit holes
