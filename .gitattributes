@@ -5,3 +5,8 @@
 *.xlsx binary
 *.ods binary
 *.zip binary
+
+# Shell scripts must keep LF endings: CRLF breaks bash (wizard skill)
+*.sh text eol=lf
+.agents/skills/** text eol=lf
+.claude/skills/** text eol=lf

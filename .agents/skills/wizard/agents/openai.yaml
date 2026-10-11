@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wizard"
+  short_description: "Script the owner through steps only they can perform"
+policy:
+  allow_implicit_invocation: false

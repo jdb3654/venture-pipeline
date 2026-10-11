@@ -91,6 +91,17 @@ Raise these as a GitHub issue labeled `needs:owner`, with the decision, the opti
 - **Cross-review:** when the other agent is available, request its review on PRs that change scores, stage decisions or these instructions.
 - If an instruction from one agent conflicts with `BRIEF.md` or this file, follow the files and raise it with the owner.
 
+## Skills
+
+Repo skills live in `.agents/skills/` (Codex) with an identical copy in `.claude/skills/` (Claude Code). Invoke them as `$name` in Codex and `/name` in Claude Code. Edit only `.agents/skills/`, then run `python scripts/sync_skills.py`; CI fails if the copies differ. Origins and changes are in `docs/THIRD-PARTY-SKILLS.md`.
+
+- `grilling`: stress-test a plan, gate or kill decision with the owner, one round of questions at a time.
+- `to-questionnaire`: turn a question only someone else can answer into a document for them. Sending it needs owner approval.
+- `domain-modeling`: sharpen shared terms in `GLOSSARY.md`; record hard-to-reverse portfolio decisions in `docs/adr/`.
+- `handoff`: when stopping partway, post where you got to on the issue in a form the other agent can pick up.
+- `retro`: after a session, suggest improvements to these instructions, checks and skills.
+- `wizard`: script the owner through an approved step only they can do, such as creating an account. Secrets go only to product repositories.
+
 ## Customer handling (products in Launch or Operate)
 
 Each product has its own support email address, owned by the product, not the owner personally. Agents triage incoming messages:
