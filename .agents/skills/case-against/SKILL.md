@@ -7,7 +7,7 @@ The other agent attacks an opportunity without seeing the case for it. Two roles
 
 ## Owner agent: request it
 
-Open an issue titled `Case against: <slug>`, labeled for the other agent (`agent:codex` for a Claude-owned opportunity, and the reverse). Its body is a sanitized excerpt copied verbatim from the opportunity file, and nothing else:
+Open an issue titled `Case against: <slug>`, labeled for the other agent (`agent:codex` for a Claude-owned opportunity, and the reverse). Its body is a sanitized excerpt copied verbatim from the opportunity file:
 
 - the **two-sentence idea**;
 - the **Customers and distribution** section.
