@@ -233,7 +233,10 @@ def build_oee():
     nonneg.showErrorMessage = True
     log.add_data_validation(nonneg)
     nonneg.add(f"D5:H{LOG_LAST}")
-    traffic_light(log, f"Q5:Q{LOG_LAST}", "Dashboard!$B$5")
+    # Google Sheets ignores colour rules that point at another sheet, so keep a hidden local copy of the target.
+    log["U1"] = "=Dashboard!$B$5"
+    log.column_dimensions["U"].hidden = True
+    traffic_light(log, f"Q5:Q{LOG_LAST}", "$U$1")
     log.freeze_panes = "D5"
 
     # Dashboard
