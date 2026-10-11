@@ -1,0 +1,3 @@
+interface:
+  display_name: "Case Against"
+  short_description: "Blind adversarial review of an opportunity"
