@@ -74,3 +74,4 @@ Sell to a knitting software, pattern platform or yarn company. Needs a clean cus
 ## Decision log
 
 - 2026-10-11: entered at Screen from discovery round 2 (#56), by Claude. Ranked second of five.
+- 2026-10-11: moved to rank 1 and recommended for the next `case-against` after the dormant filer hit an unresolved ACSP gate, by Claude.

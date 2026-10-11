@@ -19,6 +19,10 @@ Lens: forced deadline, plus our own lens "a free government service is being swi
 - Companies House WebFiling for annual accounts, and paper accounts, close on 1 April 2028; dormant companies must use commercial software from then. HMRC's free CT600 service already closed on 31 March 2026. [vendor: [TinyTax](https://tinytax.co.uk/guides/companies-house-webfiling-closing), published 2025-12-01, updated 2026-10-11; TinyTax sells such software]. Corroborating headlines from Easy Digital Filing, Xero and Yahoo Finance appeared in search results but were not read.
 - Government guidance page exists ([GOV.UK](https://www.gov.uk/guidance/using-software-to-file-your-companys-information)); not read this round, so the 2028 date rests on vendor pages. **Verify on GOV.UK first.**
 
+## Screen gate: ACSP eligibility (unresolved)
+
+Companies House says all agents filing for clients will need to register as an Authorised Corporate Service Provider (ACSP), which requires supervision by a UK anti-money-laundering body; filing as an agent is expected "no earlier than November 2026" [fact: [GOV.UK](https://www.gov.uk/guidance/being-an-authorised-corporate-service-provider), updated 2026-06-19]. The page doesn't say whether self-serve software a director uses to file their own company's accounts counts as an agent. If it does, a US-based owner has no documented route to UK AML supervision, which would make the filing route unusable. **No validation, build or case-against until this is answered** (raised by Codex review on #57).
+
 ## Customers and distribution
 
 - **Buyer:** directors of dormant UK companies who file their own accounts today for free. Number of dormant companies: not found this round (a Companies House FOI release on dormant-company penalties exists, [GOV.UK](https://www.gov.uk/government/publications/request-for-statistics-relating-to-dormant-company-penalties), not read). [assume: large, unquantified]
@@ -41,12 +45,12 @@ Price floor and timing. Incumbents already sell micro-entity accounts plus CT600
 | Build effort | 3 | Dormant accounts are the simplest case, but need iXBRL tagging and XML Gateway filing [vendor: TinyTax], plus credential testing ([CH forum](https://xmlforum.companieshouse.gov.uk/t/no-response-to-test-account-request-after-17-working-days/1943)). |
 | Operating load | 4 | One filing per company per year; exceptions are rejections, wrong authentication codes, and companies that aren't actually dormant [assume]. Deadline-driven, so bursts. |
 | Owner time | 4 | Near zero once live [assume]; rejection spikes near deadlines may need escalation. |
-| Legal and compliance load | 3 | We would hold customers' Companies House authentication codes (a filing credential) and act as presenter; a missed filing triggers a penalty for the customer [assume]. UK filing for a US-based owner needs the CPA consult in `docs/LEGAL-TAX.md`. No regulated personal data. |
+| Legal and compliance load | 2 | Possible ACSP registration with UK AML supervision ([GOV.UK](https://www.gov.uk/guidance/being-an-authorised-corporate-service-provider)). We would hold customers' Companies House authentication codes (a filing credential) and act as presenter; a missed filing triggers a penalty for the customer [assume]. UK filing for a US-based owner needs the CPA consult in `docs/LEGAL-TAX.md`. No regulated personal data. |
 | Sellability | 4 | Annual-renewal customer base is easy to transfer to a formation agent or accounting vendor [assume]. |
 | Window | 3 | Opens fully April 2028 and closes as incumbents price-match [vendor date: TinyTax]. |
 | Cost | 4 | Small web app; filing accounts by software has no Companies House fee [assume, verify]. Well under $50/month. |
 
-Disqualifiers checked: illegal or platform-risky: no / needs owner on calls: no / regulated data: no (company data is public; authentication codes need secure handling) / employer-related: no.
+Disqualifiers checked: illegal or platform-risky: **unresolved** — ACSP requirement could block the filing route (see Screen gate) / needs owner on calls: no / regulated data: no (company data is public; authentication codes need secure handling) / employer-related: no.
 
 ## Economics (estimates, not forecasts)
 
@@ -63,12 +67,13 @@ Disqualifiers checked: illegal or platform-risky: no / needs owner on calls: no 
 
 ## Validation plan
 
+0. **$0, one session, before anything else:** establish from Companies House guidance or the XML/software forums whether a software provider filing for directors must be an ACSP, and whether partnering with an existing ACSP is a workable route. Fail: ACSP required and no partner route; park.
 1. **$0, one session:** confirm the 2028 date on GOV.UK and size the market from free Companies House data (count of dormant accounts filed per year). Pass: at least 100,000 dormant filings a year. Fail: below that, park.
 2. **$0–£10, 60 days (owner approval to publish):** a one-page "file dormant accounts after WebFiling closes, £18/yr — reserve a place" waitlist plus a free deadline checker. Pass: 25 or more waitlist signups with the price shown. Fail: fewer than 10.
 
 ## Kill criteria
 
-Step 1 fails; or step 2 gets fewer than 10 signups in 60 days; or Companies House credentials are still unavailable by 2027-03-31.
+Step 1 fails; or step 2 gets fewer than 10 signups in 60 days; or Companies House credentials are still unavailable by 2027-03-31; or ACSP registration is required with no partner route.
 
 ## Exit
 
@@ -76,4 +81,5 @@ Sell the customer list and software to a formation agent or small accounting ven
 
 ## Decision log
 
-- 2026-10-11: entered at Screen from discovery round 2 (#56), by Claude. Ranked first of five; recommended for the next `case-against`.
+- 2026-10-11: entered at Screen from discovery round 2 (#56), by Claude. Ranked first of five.
+- 2026-10-11: Codex review on #57 raised ACSP registration. Verified the GOV.UK requirement; applicability to self-serve software unknown. Moved to rank 2 behind an ACSP check, by Claude.

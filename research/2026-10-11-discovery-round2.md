@@ -1,6 +1,6 @@
 # Discovery round 2: unexplored niches
 
-Issue #56. Researched 2026-10-11 by Claude. Budget about 50 searches/fetches; used 49 (one fetch blocked by robots). $0 spend. No accounts, outreach or publishing.
+Issue #56. Researched 2026-10-11 by Claude. Budget about 50 searches/fetches; used 50 (one fetch blocked by robots; the 50th verified a Codex review finding). $0 spend. No accounts, outreach or publishing.
 
 Excluded up front: everything in `PIPELINE.md`, round 1's categories (`2026-10-11-opportunity-radar-round1.md`), and the nine old-repo parked ideas.
 
@@ -14,8 +14,8 @@ Forced deadlines; marketplaces we hadn't checked (Canva, Xero, Google Workspace)
 
 | # | Candidate | Lens | Outcome | Main reason |
 |---|---|---|---|---|
-| 1 | UK dormant-company accounts filer | Free service closing | **Screen (rank 1)** | Forced switch from free to paid in April 2028 |
-| 2 | Knitwear pattern grading tool | Sellers / AI / hobby | **Screen (rank 2)** | Designers pay human graders £30/h for 6–16h per garment |
+| 1 | UK dormant-company accounts filer | Free service closing | **Screen (rank 2)** | Forced switch from free to paid in April 2028; ACSP gate unresolved |
+| 2 | Knitwear pattern grading tool | Sellers / AI / hobby | **Screen (rank 1)** | Designers pay human graders £30/h for 6–16h per garment |
 | 3 | COI tracker for small contractors | AI | **Screen (rank 3)** | Proven paid category, but crowded |
 | 4 | Refrigerant leak-rate log (EPA Part 84) | Deadline / trade | **Screen (rank 4)** | New 15 lb rule; rollback risk |
 | 5 | GPSR document kit for handmade sellers | Deadline / sellers | **Screen (rank 5)** | Paid part (EU responsible person) is out of reach |
