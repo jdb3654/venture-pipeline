@@ -58,6 +58,7 @@ Public experiments with autonomous agent businesses failed through spam, unsolic
 ## Limits: no rabbit holes
 
 - **Every task has a budget and a stop rule**, set in its issue (`.github/ISSUE_TEMPLATE/task.md`). At either one, stop, post a handoff on the issue, and ask. Never extend a budget yourself.
+- **Multi-round searches.** The owner may set a round cap in an issue (for example, "up to 3 rounds, about 60 searches each"). Within that cap, an agent that finishes a round without meeting the issue's success bar may open the next round's issue with the same budget and bar, and start it in a new session. Each round is its own issue and PR. At the cap, stop and open a `needs:owner` issue summarizing the rounds with a recommendation. Only the owner sets or raises the cap or lowers the bar.
 - **Evidence before polish.** Until an opportunity has outside demand evidence (a sale, signup, install or search data), build only what its current validation test needs. No extra formats, tests or styling.
 - **Tripwire.** After 3 merged PRs on one opportunity with no new outside evidence, stop work on it and open a `needs:owner` issue: continue, park or kill, with a recommendation.
 - **Kill on the criteria.** When an opportunity meets its kill criteria, kill or park it the same day and record one line in `PIPELINE.md`.

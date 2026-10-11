@@ -12,6 +12,8 @@ labels: []
 
 **Budget:** <for example, 1 session or about 10 searches>
 
+**Rounds (optional, owner-set):** <for example, "up to 3 rounds; success bar: ..."; leave blank for a single task>
+
 **Stop rule:** <the finding that ends this early, for example "no paid competitor found">
 
 At the budget or the stop rule, stop, post a handoff comment, and ask. Don't extend the budget yourself.
