@@ -16,3 +16,16 @@ limited for inspection; these images do not audit original workbook pagination.
 Reproduce with run_review.py/probe_visuals.py and inspect_images.py as described
 in the parent README. These images were inspected at full size. Generic AOO
 Pareto legend labels and sparse OEE category labels remain readability issues.
+
+Post-fix evidence from main0f5e59d, also AOO4.1.7, is prefixed `recheck-`:
+
+- `recheck-target-95` / `recheck-target-50`: raw fixed-product target cases,
+  amber/green without any IFERROR substitution.
+- `recheck-low-target`: 40% OEE with a30% target is red, conflicting with the
+  guide's green-at/above-target wording (#21).
+- `recheck-pareto`: populated top12/secondary-axis chart; generic legend labels
+  remain a readability issue.
+- `recheck-pm`: current example statuses/three normal colours/counts plus the
+  new Needs-fixing count. Dates reflect the office host date2026-10-10.
+
+These do not replace the historical images above or the product listing assets.

@@ -18,13 +18,16 @@ def main():
     parser.add_argument("--soffice", type=Path, default=Path(r"C:\Program Files (x86)\OpenOffice 4\program\soffice.exe"))
     parser.add_argument("--uno-python", type=Path, default=Path(r"C:\Program Files (x86)\OpenOffice 4\program\python.exe"))
     parser.add_argument("--timeout", type=int, default=600)
+    parser.add_argument("--output", type=Path, default=Path(__file__).with_name("visual-native-results.json"))
     args = parser.parse_args()
     if args.from_work_dir.resolve() == args.work_dir.resolve():
         parser.error("Visual work folder must differ from the original run")
     args.work_dir = args.work_dir.resolve()
     args.work_dir.mkdir(parents=True, exist_ok=True)
     old = json.loads((args.from_work_dir / "manifest.json").read_text())
-    chosen = {"diagnostic_oee_target_0.95", "diagnostic_oee_target_0.5", "down_ranking"}
+    ids = {r["id"] for r in old}
+    prefix = "diagnostic_" if "diagnostic_oee_target_0.95" in ids else ""
+    chosen = {prefix + "oee_target_0.95", prefix + "oee_target_0.5", "down_ranking"}
     requests = []
     for original in old:
         if original["id"] not in chosen:
@@ -45,6 +48,9 @@ def main():
     for id in ("oee_heterogeneous", "diagnostic_oee_heterogeneous"):
         wb = heterogeneous_input()
         if id.startswith("diagnostic_"):
+            if not any(cell.data_type == "f" and "IFERROR(" in cell.value
+                       for sheet in wb for row in sheet for cell in row):
+                continue
             for sheet in wb:
                 for row in sheet:
                     for cell in row:
@@ -54,7 +60,7 @@ def main():
     requests += suite.requests
     result = run_office(args, args.work_dir, requests)
     compact = [{k: v for k, v in r.items() if k != "data"} for r in result]
-    Path(__file__).with_name("visual-native-results.json").write_text(json.dumps(compact, indent=2), encoding="utf-8")
+    args.output.write_text(json.dumps(compact, indent=2), encoding="utf-8")
     print("Native PDFs and full readback:", args.work_dir)
     return int(any("error" in r for r in result))
 

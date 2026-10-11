@@ -1,7 +1,8 @@
 # Cross-app test suite (Excel, Google Sheets, OpenOffice/LibreOffice)
 
 One set of scenarios, checked the same way in every spreadsheet app. Claude and Codex both use it. We only claim
-an app is supported on the listings when its latest run passes in full, and the result is recorded below.
+an app is supported on the listings when its latest run passes in full, the result is recorded below,
+and broader review findings affecting that app have been resolved. A shared-suite pass covers these scenarios only.
 
 ## How it works
 
@@ -18,6 +19,22 @@ an app is supported on the listings when its latest run passes in full, and the 
 **OpenOffice or LibreOffice (automatic).**
 `python3 run_soffice.py <path to soffice> <in> <out>`. Example on Windows with Apache OpenOffice:
 `python run_soffice.py "C:\Program Files (x86)\OpenOffice 4\program\soffice.exe" in out`
+
+Apache OpenOffice 4.1.7 cannot export XLSX. Its native path uses the matching bundled UNO Python,
+an isolated profile, and fresh copied inputs. It calls `calculateAll`, saves ODS, closes/reopens it,
+then reads values and scans all sheets for formula errors. Run from the repository root:
+
+```powershell
+python products/manufacturing-templates/tests/xsuite/scenarios.py make <in>
+python products/manufacturing-templates/tests/xsuite/run_native.py <in> <out>
+python products/manufacturing-templates/tests/xsuite/check.py <in>/expected.json <out> --app "Apache OpenOffice 4.1.7" --native-readback <out>/office-results.json --json <out>/results.json
+```
+
+The same 147 independent cell expectations are checked; this does not emulate Excel or claim an XLSX save
+round trip in AOO. Do not use an old native JSON after changing inputs/products. `provenance.json` records
+input hashes, preservation and installed version. Both default executable paths are for installed AOO4;
+`--soffice` and `--uno-python` accept matching alternatives. If a sandbox blocks local UNO, run the authorized
+test outside it. Nothing is installed and the owner's office session is never attached to or terminated.
 
 **Excel for the web (free with a Microsoft account; we use takttools.shop@gmail.com).**
 1. Upload the `<in>` files to a OneDrive folder.
@@ -52,6 +69,6 @@ Steps 1–3 for the web apps can be done by hand or by Claude through the owner'
 | Date | App and version | Who ran it | Result |
 |---|---|---|---|
 | 2026-10-10 | LibreOffice 24.2 (Linux, headless) | Claude | 147/147 pass |
-| | Apache OpenOffice 4.1.7 (Windows) | Codex | pending |
+| 2026-10-10 | Apache OpenOffice 4.1.7 (Windows; native UNO/ODS) | Codex | 147/147 pass; no formula errors in any scenario. See results-aoo-4.1.7.json and the broader recheck report for additional defects. |
 | | Excel for the web | | pending |
 | | Google Sheets | | pending |

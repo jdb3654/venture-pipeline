@@ -64,8 +64,9 @@ def metrics(rows):
     parts = sum(r[3] for r in rows)
     good = sum(r[3] - r[4] for r in rows)
     ideal = sum(r[5] * r[3] / 60 for r in rows)
-    # Quality factor used in the delivered dashboard.
-    factors = [run / planned, ideal / run, good / parts]
+    # Weight quality by ideal production time so different cycle times aggregate correctly.
+    ideal_good = sum(r[5] * (r[3] - r[4]) / 60 for r in rows)
+    factors = [run / planned, ideal / run, ideal_good / ideal]
     return [planned, run, sum(r[2] for r in rows), parts, good, ideal,
             *factors, math.prod(factors)]
 
@@ -203,8 +204,16 @@ def scenarios(s):
         wb["Setup"]["A5"], wb["Setup"]["B5"] = "M1", (None if name == "missing_cycle" else 12)
         oee_row(wb, **kwargs)
         id = s.scenario("oee_bad_" + name, "oee", wb, reads)
-        s.non_ok(id, "Check catches " + name, "Production Log", "R5")
-        s.equal(id, "invalid %s suppresses OEE" % name, "Production Log", "Q5", "")
+        if name == "zero_parts":
+            s.equal(id, "zero output is valid with zero OEE", "Production Log", "R5", "OK")
+            s.equal(id, "zero output OEE", "Production Log", "Q5", 0)
+        elif name.startswith("performance_"):
+            s.non_ok(id, "Check catches " + name, "Production Log", "R5")
+            expected = kwargs["parts"] * 12 / 60 / 440
+            s.equal(id, "performance warning retains explicitly flagged OEE", "Production Log", "Q5", expected)
+        else:
+            s.non_ok(id, "Check catches " + name, "Production Log", "R5")
+            s.equal(id, "invalid %s suppresses OEE" % name, "Production Log", "Q5", "")
 
     wb = fresh("oee")
     wb["Setup"]["A5"], wb["Setup"]["B5"] = "M1", 60
@@ -456,9 +465,10 @@ def scenarios(s):
                 bool(r["features"][sh]["cells"][a]["formula1"]), r["features"][sh]["cells"][a]))
         if kind in ("oee", "pm"):
             sheet, address = ("Dashboard", "K9") if kind == "oee" else ("PM Plan", "I5")
-            s.check(id, "native three conditional colour styles", lambda r, sh=sheet, a=address: (
-                sorted(x["background"] for x in r["features"][sh]["cells"][a]["conditional_rules"]) ==
-                sorted([0xC6EFCE, 0xFFE699, 0xF8CBAD]), r["features"][sh]["cells"][a]["conditional_rules"]))
+            expected_colours = {0xC6EFCE, 0xFFE699, 0xF8CBAD} | ({0xD9D9D9} if kind == "pm" else set())
+            s.check(id, "native conditional colour styles", lambda r, sh=sheet, a=address, ex=expected_colours: (
+                {x["background"] for x in r["features"][sh]["cells"][a]["conditional_rules"]} == ex,
+                r["features"][sh]["cells"][a]["conditional_rules"]))
         if kind == "down":
             s.check(id, "native Pareto column plus secondary-axis line", lambda r: (
                 chart_axes(r, "Pareto") == [("com.sun.star.chart2.ColumnChartType", 0),
@@ -476,6 +486,9 @@ def scenarios(s):
     oee_checks = [c for c in s.checks if c[0].startswith("oee_")]
     for req in oee_requests:
         wb = load_workbook(req["input"])
+        if not any(cell.data_type == "f" and "IFERROR(" in cell.value
+                   for ws in wb for row in ws for cell in row):
+            continue  # Fixed products need no duplicate compatibility diagnostic lane.
         for ws in wb:
             for row in ws:
                 for cell in row:

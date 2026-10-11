@@ -1,0 +1,19 @@
+{
+  "soffice": "C:\\Program Files (x86)\\OpenOffice 4\\program\\soffice.exe",
+  "version_ini": "[Version]\nAllLanguages=en-US\nbuildid=417m1(Build:9800)\nExtensionUpdateURL=http://updateexte.services.openoffice.org/ExtensionUpdateService/check.Update\nMsiProductVersion=<msiproductversion>\nOOOBaseVersion=4.1\nOOOPackageVersion=4.1.7\nProductBuildid=9800\nProductCode={A09D951F-4BA3-4383-97B3-D1B91835E779}\nProductMajor=417\nProductMinor=1\nProductSource=AOO417\nRevision=46059c9192\nUpdateID=OpenOffice_4_en-US\nUpdateURL=https://ooo-updates.apache.org/aoo417/check.Update\nUpgradeCode={7C35B9AB-2CE3-4C18-BE7C-5B97EA089EB3}\nUpdateUserAgent=<PRODUCT> (${buildid}; ${_OS}; ${_ARCH}; BundledLanguages=${AllLanguages})\n",
+  "input_sha256": {
+    "oee_examples.xlsx": "9989ff03a1dec0309238b3360acc85f61994b7d469e25f0f7a42c8121c2120a2",
+    "oee_mixed_cycle_times.xlsx": "c12e028619fa0cd705bb9dc2c0f54b885aae4b8754d05ba3050cbaf798d8bcb8",
+    "oee_bad_inputs.xlsx": "95f38709fff19280875ab8c113ab71972a43c18b5fdeeed0520edc003436ba9b",
+    "oee_wildcard_names.xlsx": "6ac0f822ab2712b38e953c235ef7a06216d07ff7bde9956d6ffffef6efed13f3",
+    "oee_date_filter.xlsx": "d54a338a309a79d11386037610a05e585b22ed1342bb7c52a1f537d97e70b22c",
+    "down_examples.xlsx": "46faa7c507bc2055e6ad511e29b8e8b12a24bba45853a39c136590ada6955456",
+    "down_machine_filter.xlsx": "dc9c41c52c697213da25b5c3f18457cdb3d6572f4a2e71cf9bfffb5c19923d00",
+    "down_unknown_negative_zero.xlsx": "e41a320cd41bbea168eb65b2cf92b840508a853f44d494ffff426d02efa75bb1",
+    "down_wildcard_names.xlsx": "02896be785bc9b712f83f2b40a6df81e06e50e836af2c6e825a002aea135a5f3",
+    "down_dates.xlsx": "d9147cc59a3645214505f318d538b2b8a613dd9d557906304c098d41a03c7076",
+    "pm_rules.xlsx": "3cad327a3e472e177436f8a15920b0984b2fb9bd27903969f33d5df43bfa1999"
+  },
+  "inputs_unchanged": true,
+  "protocol": "calculateAll; store ODS; close; reopen; read UNO; scan all formulas for errors"
+}

@@ -4,6 +4,10 @@ Run from the repository root. The default program is Apache OpenOffice
 `C:\Program Files (x86)\OpenOffice 4\program\soffice.exe`, using its bundled
 UNO Python. Microsoft Excel is never invoked. No production files are edited.
 
+Fresh verification after fixes #34/#35 is in `../RECHECK-2026-10.md` and
+`recheck-*.json`. The original `results.json` / `document-results.json` /
+`static-checks.json` remain historical baseline evidence.
+
 Use Python 3.8 or later with `openpyxl`. On the review machine the already
 installed Codex runtime supplied Python and openpyxl; nothing was installed.
 If openpyxl is missing, the owner explicitly approved this repo-local option:
@@ -48,6 +52,22 @@ does not recognize the shipped IFERROR formulas. They isolate deeper input and
 aggregation bugs. Passing diagnostic tests do not establish compatibility of
 the shipped product. No product fix is included in this PR. Original and
 diagnostic assertion totals are reported separately.
+After #35 removed IFERROR, this duplicate diagnostic lane is automatically omitted.
+The independent dashboard model now weights Quality by ideal production time;
+zero-output shifts produce 0% OEE; performance-above-100% remains a visible
+warning and contributes to totals, as documented in #35. PM now has a fourth
+grey Needs-fixing conditional style. These expectation changes do not hide
+the new bad-input regressions in `recheck_edges.py`.
+
+```powershell
+python products/manufacturing-templates/tests/recheck_edges.py --work-dir <fresh-folder> --output <new-results.json>
+python products/manufacturing-templates/tests/write_recheck_tables.py
+```
+
+This additional native lane checks missing OEE dates, duplicate Setup names,
+text cycle/completion dates, date-only completions and a target below60%.
+It exports the low-target visual for manual colour inspection; the numerical
+pass for that case does not certify its colour. Known defects stay visible.
 
 `--only oee_capacity` (or another scenario prefix) runs a bounded retest.
 `--reuse-inputs` is for bridge diagnostics using already prepared inputs in
@@ -111,9 +131,11 @@ For supplemental target-colour and populated Pareto PDF inspection after a
 retained main run, use a different work folder:
 
 ```powershell
-python products/manufacturing-templates/tests/probe_visuals.py --from-work-dir "$env:TEMP\templates-review" --work-dir "$env:TEMP\templates-visual-review"
+python products/manufacturing-templates/tests/probe_visuals.py --from-work-dir "$env:TEMP\templates-review" --work-dir "$env:TEMP\templates-visual-review" --output "$env:TEMP\visual-results.json"
 python products/manufacturing-templates/tests/inspect_images.py "$env:TEMP\templates-visual-review"
 ```
 
 Visual cases are additional observations, not counted a second time as the same
 numeric assertions. Diagnostic OEE colour output remains test-only.
+The helper selects raw target cases when IFERROR is absent; the regular broad
+runner already exports those fresh PDFs, so no duplicate native run is needed.

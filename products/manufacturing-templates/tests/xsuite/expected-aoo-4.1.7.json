@@ -1,0 +1,759 @@
+{
+ "oee_examples": [
+  {
+   "sheet": "Production Log",
+   "cell": "R5",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q5",
+   "value": 0.8536363636363636
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R6",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q6",
+   "value": 0.7412878787878788
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R7",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q7",
+   "value": 0.8570075757575757
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R8",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q8",
+   "value": 0.6681818181818182
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R9",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q9",
+   "value": 0.856439393939394
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R10",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q10",
+   "value": 0.7864583333333334
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K9",
+   "value": 0.760909090909091
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K10",
+   "value": 0.7988636363636363
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K11",
+   "value": 0.8217329545454546
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K29",
+   "value": 0.7938352272727273
+  }
+ ],
+ "oee_mixed_cycle_times": [
+  {
+   "sheet": "Production Log",
+   "cell": "R5",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q5",
+   "value": 1.0
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R6",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q6",
+   "value": 0.0
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K9",
+   "value": 1.0
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K10",
+   "value": 0.0
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K29",
+   "value": 0.5
+  }
+ ],
+ "oee_bad_inputs": [
+  {
+   "sheet": "Production Log",
+   "cell": "R5",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q5",
+   "value": 0.8536363636363636
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R6",
+   "value": "Rejects > total parts"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q6",
+   "value": ""
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R7",
+   "value": "Enter numbers: shift length and total parts are required"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q7",
+   "value": ""
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R8",
+   "value": "Values must be 0 or more (shift length above 0)"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q8",
+   "value": ""
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R9",
+   "value": "Downtime > planned time"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q9",
+   "value": ""
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R10",
+   "value": "Machine not in Setup"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q10",
+   "value": ""
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R11",
+   "value": "Values must be 0 or more (shift length above 0)"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q11",
+   "value": ""
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R12",
+   "value": "Check: performance above 100%"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q12",
+   "value": 0.9386363636363636
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K9",
+   "value": 0.8961363636363636
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K29",
+   "value": 0.8961363636363636
+  }
+ ],
+ "oee_wildcard_names": [
+  {
+   "sheet": "Production Log",
+   "cell": "R5",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q5",
+   "value": 0.5
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R6",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q6",
+   "value": 1.0
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R7",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q7",
+   "value": 0.16666666666666669
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K9",
+   "value": 0.5
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K10",
+   "value": 1.0
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K11",
+   "value": 0.16666666666666669
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K29",
+   "value": 0.5555555555555555
+  }
+ ],
+ "oee_date_filter": [
+  {
+   "sheet": "Production Log",
+   "cell": "R5",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q5",
+   "value": 0.8536363636363636
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R6",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q6",
+   "value": 0.6681818181818182
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "R7",
+   "value": "OK"
+  },
+  {
+   "sheet": "Production Log",
+   "cell": "Q7",
+   "value": 0.9090909090909091
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K9",
+   "value": 0.6681818181818182
+  },
+  {
+   "sheet": "Dashboard",
+   "cell": "K29",
+   "value": 0.6681818181818182
+  }
+ ],
+ "down_examples": [
+  {
+   "sheet": "Pareto",
+   "cell": "B6",
+   "value": 240
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "B7",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J9",
+   "value": 160
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K9",
+   "value": 3
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J10",
+   "value": 65
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K10",
+   "value": 2
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J11",
+   "value": 15
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K11",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B5",
+   "value": 105
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C5",
+   "value": 3
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B6",
+   "value": 60
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C6",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B7",
+   "value": 75
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C7",
+   "value": 2
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B36",
+   "value": 240
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C36",
+   "value": 6
+  }
+ ],
+ "down_machine_filter": [
+  {
+   "sheet": "Pareto",
+   "cell": "B6",
+   "value": 25
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "B7",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J9",
+   "value": 20
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K9",
+   "value": 1
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J10",
+   "value": 5
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K10",
+   "value": 1
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J11",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K11",
+   "value": 0
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B5",
+   "value": 30
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C5",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B6",
+   "value": 25
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C6",
+   "value": 2
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B36",
+   "value": 55
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C36",
+   "value": 3
+  }
+ ],
+ "down_unknown_negative_zero": [
+  {
+   "sheet": "Pareto",
+   "cell": "B6",
+   "value": 115
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "B7",
+   "value": 90
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J9",
+   "value": 10
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K9",
+   "value": 1
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J10",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K10",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J11",
+   "value": 15
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K11",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B5",
+   "value": 100
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C5",
+   "value": 2
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B36",
+   "value": 115
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C36",
+   "value": 3
+  }
+ ],
+ "down_wildcard_names": [
+  {
+   "sheet": "Pareto",
+   "cell": "B6",
+   "value": 107
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "B7",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J9",
+   "value": 10
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K9",
+   "value": 1
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J10",
+   "value": 90
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K10",
+   "value": 1
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J11",
+   "value": 7
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K11",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B5",
+   "value": 10
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C5",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B6",
+   "value": 97
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C6",
+   "value": 2
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B36",
+   "value": 107
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C36",
+   "value": 3
+  }
+ ],
+ "down_dates": [
+  {
+   "sheet": "Pareto",
+   "cell": "B6",
+   "value": 20
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "B7",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J9",
+   "value": 20
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K9",
+   "value": 1
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J10",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K10",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "J11",
+   "value": 0
+  },
+  {
+   "sheet": "Pareto",
+   "cell": "K11",
+   "value": 0
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B5",
+   "value": 20
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C5",
+   "value": 1
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "B36",
+   "value": 20
+  },
+  {
+   "sheet": "By Machine",
+   "cell": "C36",
+   "value": 1
+  }
+ ],
+ "pm_rules": [
+  {
+   "sheet": "PM Plan",
+   "cell": "I5",
+   "value": "Due soon"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I6",
+   "value": "OVERDUE"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I7",
+   "value": "Check frequency"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I8",
+   "value": "Check frequency"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I9",
+   "value": "Check frequency"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I10",
+   "value": "Duplicate row"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I11",
+   "value": "Duplicate row"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I12",
+   "value": "Due soon"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I13",
+   "value": "OK"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "I14",
+   "value": "OK"
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "L1",
+   "value": 1
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "L2",
+   "value": 2
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "L3",
+   "value": 2
+  },
+  {
+   "sheet": "PM Plan",
+   "cell": "L4",
+   "value": 5
+  },
+  {
+   "sheet": "Completion Log",
+   "cell": "F5",
+   "value": "OK"
+  },
+  {
+   "sheet": "Completion Log",
+   "cell": "F6",
+   "value": "OK"
+  },
+  {
+   "sheet": "Completion Log",
+   "cell": "F7",
+   "value": "Enter the date done"
+  },
+  {
+   "sheet": "Completion Log",
+   "cell": "F8",
+   "value": "No matching asset + task in plan"
+  },
+  {
+   "sheet": "Completion Log",
+   "cell": "F9",
+   "value": "OK"
+  },
+  {
+   "sheet": "Completion Log",
+   "cell": "F10",
+   "value": "OK"
+  }
+ ]
+}

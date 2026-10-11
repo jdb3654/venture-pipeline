@@ -1,5 +1,6 @@
 """Rerunnable structural acceptance checks, separate from native numerical tests."""
 import json
+import re
 from pathlib import Path
 from static_audit import audit, PRODUCT
 from openpyxl import load_workbook
@@ -35,11 +36,11 @@ def main():
                   "PM completion matching": pm["Completion Log"]["F5"].value}
     for label, formula in vulnerable.items():
         check(label + " literal names safe under documented Excel wildcard semantics",
-              "SUBSTITUTE(" in formula, {"formula": formula,
-                  "counterexample": "Line*1 or Jam?1 matches a distinct name; literal ~ must also be escaped",
+              "SUBSTITUTE(" in formula or ("SUMPRODUCT(" in formula and not re.search(r"\b(?:SUMIFS|COUNTIFS|MATCH)\(", formula)), {"formula": formula,
+                  "acceptance": "Escaped criteria or exact array equality without wildcard-consuming criteria functions",
                   "source": ("https://support.microsoft.com/en-us/excel/functions/match-function"
                              if "lookup" in label else "https://support.microsoft.com/en-au/excel/functions/sumifs-function"),
-                  "native_Excel_test": "unverified; structural defect inferred from documented criteria semantics"})
+                  "native_Excel_test": "unverified; exact equality removes the documented wildcard construct"})
     delivery = (PRODUCT / "LISTING.md").read_text(encoding="utf-8").split("## Files per listing")[1].split("## Images")[0]
     check("Declared direct-upload format agrees with Etsy's published file-type list", ".zip" in delivery.lower(),
           {"instructions": delivery.strip(), "supported_wrapper": ".zip",
