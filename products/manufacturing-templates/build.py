@@ -7,6 +7,9 @@ from pathlib import Path
 
 from openpyxl import Workbook
 from openpyxl.chart import BarChart, LineChart, Reference
+from openpyxl.chart.axis import TextAxis
+from openpyxl.chart.text import RichText
+from openpyxl.drawing.text import CharacterProperties, Paragraph, ParagraphProperties, RichTextProperties
 from openpyxl.formatting.rule import FormulaRule
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.worksheet.datavalidation import DataValidation
@@ -503,7 +506,9 @@ def build_downtime():
         par[f"D{r}"] = f'=IF(B{r}="","",INDEX($K${first}:$K${last},{pick}))'
         par[f"E{r}"] = f'=IF(OR(B{r}="",$B$6=0),"",C{r}/$B$6)'
         par[f"F{r}"] = f'=IF(OR(B{r}="",$B$6=0),"",SUM($C${first}:C{r})/$B$6)'
-        for col in "IJKL":
+        # Chart-only copy of cumulative %: carries the last value forward so empty rows don't plot as 0.
+        par[f"M{r}"] = f'=IF(B{r}<>"",F{r},' + ('""' if r == first else f'M{r - 1}') + ')'
+        for col in "IJKLM":
             par[f"{col}{r}"].font = f(8, color="808080")
     style_block(par, first, last, range(1, 7), CALC)
     fmt_cols(par, first, last, {3: "#,##0", 4: "0", 5: "0.0%", 6: "0.0%"})
@@ -517,20 +522,29 @@ def build_downtime():
     bar.add_data(Reference(par, min_col=3, min_row=8, max_row=first + 11), titles_from_data=True)
     bar.set_categories(Reference(par, min_col=2, min_row=first, max_row=first + 11))
     line = LineChart()
-    line.add_data(Reference(par, min_col=6, min_row=8, max_row=first + 11), titles_from_data=True)
+    par["M8"] = "Cumulative %"
+    line.add_data(Reference(par, min_col=13, min_row=8, max_row=first + 11), titles_from_data=True)
     line.y_axis.axId = 200
     line.y_axis.title = "Cumulative %"
     line.y_axis.numFmt = "0%"
     line.y_axis.scaling.min = 0
     line.y_axis.scaling.max = 1
     line.y_axis.crosses = "max"
+    # Give the line its own hidden category axis, so Excel doesn't print the reason labels twice.
+    line.x_axis = TextAxis(axId=500, delete=True, crosses="autoZero")
+    line.y_axis.crossAx = 500
+    # Tilt the reason labels so long names don't run together.
+    bar.x_axis.txPr = RichText(bodyPr=RichTextProperties(rot=-2700000, vert="horz"),
+                               p=[Paragraph(pPr=ParagraphProperties(defRPr=CharacterProperties(sz=800)),
+                                            endParaRPr=CharacterProperties(sz=800))])
     bar += line
+    bar.visible_cells_only = False  # the line reads the hidden helper column M
     bar.height, bar.width = 9, 20
     for series in line.series:
         series.smooth = False
-    for col in "IJKL":
+    for col in "IJKLM":
         par.column_dimensions[col].hidden = True
-    par.add_chart(bar, "H3")
+    par.add_chart(bar, "N9")  # right after the hidden helper columns I:M; Sheets mis-places charts that span hidden columns
     par.freeze_panes = "A9"
 
     # By machine

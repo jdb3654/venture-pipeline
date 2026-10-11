@@ -1,0 +1,1262 @@
+{
+ "app": "Excel for the web",
+ "passed": 188,
+ "total": 188,
+ "formula_error_scenarios": [],
+ "scenarios": [
+  {
+   "scenario": "oee_examples",
+   "status": "PASS",
+   "checks": 16,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Production Log",
+     "cell": "R5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q5",
+     "expected": 0.8536363636363636,
+     "actual": 0.8536363636363636
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R6",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q6",
+     "expected": 0.7412878787878788,
+     "actual": 0.7412878787878788
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R7",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q7",
+     "expected": 0.8570075757575757,
+     "actual": 0.8570075757575757
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R8",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q8",
+     "expected": 0.6681818181818182,
+     "actual": 0.6681818181818182
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R9",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q9",
+     "expected": 0.856439393939394,
+     "actual": 0.856439393939394
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R10",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q10",
+     "expected": 0.7864583333333334,
+     "actual": 0.7864583333333334
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K9",
+     "expected": 0.760909090909091,
+     "actual": 0.760909090909091
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K10",
+     "expected": 0.7988636363636363,
+     "actual": 0.7988636363636363
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K11",
+     "expected": 0.8217329545454546,
+     "actual": 0.8217329545454546
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K29",
+     "expected": 0.7938352272727273,
+     "actual": 0.7938352272727273
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "oee_mixed_cycle_times",
+   "status": "PASS",
+   "checks": 7,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Production Log",
+     "cell": "R5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q5",
+     "expected": 1.0,
+     "actual": 1
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R6",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q6",
+     "expected": 0.0,
+     "actual": 0
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K9",
+     "expected": 1.0,
+     "actual": 1
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K10",
+     "expected": 0.0,
+     "actual": 0
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K29",
+     "expected": 0.5,
+     "actual": 0.5
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "oee_bad_inputs",
+   "status": "PASS",
+   "checks": 18,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Production Log",
+     "cell": "R5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q5",
+     "expected": 0.8536363636363636,
+     "actual": 0.8536363636363636
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R6",
+     "expected": "Rejects > total parts",
+     "actual": "Rejects > total parts"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q6",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R7",
+     "expected": "Enter numbers: shift length and total parts are required",
+     "actual": "Enter numbers: shift length and total parts are required"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q7",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R8",
+     "expected": "Values must be 0 or more (shift length above 0)",
+     "actual": "Values must be 0 or more (shift length above 0)"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q8",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R9",
+     "expected": "Downtime > planned time",
+     "actual": "Downtime > planned time"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q9",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R10",
+     "expected": "Machine not in Setup",
+     "actual": "Machine not in Setup"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q10",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R11",
+     "expected": "Values must be 0 or more (shift length above 0)",
+     "actual": "Values must be 0 or more (shift length above 0)"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q11",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R12",
+     "expected": "Check: performance above 100%",
+     "actual": "Check: performance above 100%"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q12",
+     "expected": 0.9386363636363636,
+     "actual": 0.9386363636363636
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K9",
+     "expected": 0.8961363636363636,
+     "actual": 0.8961363636363636
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K29",
+     "expected": 0.8961363636363636,
+     "actual": 0.8961363636363636
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "oee_wildcard_names",
+   "status": "PASS",
+   "checks": 10,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Production Log",
+     "cell": "R5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q5",
+     "expected": 0.5,
+     "actual": 0.5
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R6",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q6",
+     "expected": 1.0,
+     "actual": 1
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R7",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q7",
+     "expected": 0.16666666666666669,
+     "actual": 0.16666666666666669
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K9",
+     "expected": 0.5,
+     "actual": 0.5
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K10",
+     "expected": 1.0,
+     "actual": 1
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K11",
+     "expected": 0.16666666666666669,
+     "actual": 0.16666666666666669
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K29",
+     "expected": 0.5555555555555555,
+     "actual": 0.5555555555555555
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "oee_date_filter",
+   "status": "PASS",
+   "checks": 8,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Production Log",
+     "cell": "R5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q5",
+     "expected": 0.8536363636363636,
+     "actual": 0.8536363636363636
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R6",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q6",
+     "expected": 0.6681818181818182,
+     "actual": 0.6681818181818182
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R7",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q7",
+     "expected": 0.9090909090909091,
+     "actual": 0.9090909090909091
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K9",
+     "expected": 0.6681818181818182,
+     "actual": 0.6681818181818182
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K29",
+     "expected": 0.6681818181818182,
+     "actual": 0.6681818181818182
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "down_examples",
+   "status": "PASS",
+   "checks": 17,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Pareto",
+     "cell": "B6",
+     "expected": 240,
+     "actual": 240
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "B7",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J9",
+     "expected": 160,
+     "actual": 160
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K9",
+     "expected": 3,
+     "actual": 3
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J10",
+     "expected": 65,
+     "actual": 65
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K10",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J11",
+     "expected": 15,
+     "actual": 15
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K11",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B5",
+     "expected": 105,
+     "actual": 105
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C5",
+     "expected": 3,
+     "actual": 3
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B6",
+     "expected": 60,
+     "actual": 60
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C6",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B7",
+     "expected": 75,
+     "actual": 75
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C7",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B35",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B36",
+     "expected": 240,
+     "actual": 240
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C36",
+     "expected": 6,
+     "actual": 6
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "down_machine_filter",
+   "status": "PASS",
+   "checks": 15,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Pareto",
+     "cell": "B6",
+     "expected": 25,
+     "actual": 25
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "B7",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J9",
+     "expected": 20,
+     "actual": 20
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K9",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J10",
+     "expected": 5,
+     "actual": 5
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K10",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J11",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K11",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B5",
+     "expected": 30,
+     "actual": 30
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C5",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B6",
+     "expected": 25,
+     "actual": 25
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C6",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B35",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B36",
+     "expected": 55,
+     "actual": 55
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C36",
+     "expected": 3,
+     "actual": 3
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "down_unknown_negative_zero",
+   "status": "PASS",
+   "checks": 13,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Pareto",
+     "cell": "B6",
+     "expected": 115,
+     "actual": 115
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "B7",
+     "expected": 90,
+     "actual": 90
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J9",
+     "expected": 10,
+     "actual": 10
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K9",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J10",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K10",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J11",
+     "expected": 15,
+     "actual": 15
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K11",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B5",
+     "expected": 100,
+     "actual": 100
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C5",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B35",
+     "expected": 15,
+     "actual": 15
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B36",
+     "expected": 115,
+     "actual": 115
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C36",
+     "expected": 3,
+     "actual": 3
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "down_wildcard_names",
+   "status": "PASS",
+   "checks": 15,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Pareto",
+     "cell": "B6",
+     "expected": 107,
+     "actual": 107
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "B7",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J9",
+     "expected": 10,
+     "actual": 10
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K9",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J10",
+     "expected": 90,
+     "actual": 90
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K10",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J11",
+     "expected": 7,
+     "actual": 7
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K11",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B5",
+     "expected": 10,
+     "actual": 10
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C5",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B6",
+     "expected": 97,
+     "actual": 97
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C6",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B35",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B36",
+     "expected": 107,
+     "actual": 107
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C36",
+     "expected": 3,
+     "actual": 3
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "down_dates",
+   "status": "PASS",
+   "checks": 13,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Pareto",
+     "cell": "B6",
+     "expected": 20,
+     "actual": 20
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "B7",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J9",
+     "expected": 20,
+     "actual": 20
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K9",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J10",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K10",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J11",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K11",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B5",
+     "expected": 20,
+     "actual": 20
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C5",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B35",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B36",
+     "expected": 20,
+     "actual": 20
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C36",
+     "expected": 1,
+     "actual": 1
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "oee_setup_duplicates_and_dates",
+   "status": "PASS",
+   "checks": 10,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Production Log",
+     "cell": "R5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q5",
+     "expected": 0.4,
+     "actual": 0.4
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R6",
+     "expected": "Enter a date",
+     "actual": "Enter a date"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q6",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "R7",
+     "expected": "Enter a date",
+     "actual": "Enter a date"
+    },
+    {
+     "sheet": "Production Log",
+     "cell": "Q7",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K9",
+     "expected": 0.4,
+     "actual": 0.4
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K10",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K11",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "Dashboard",
+     "cell": "K29",
+     "expected": 0.4,
+     "actual": 0.4
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "down_setup_duplicates",
+   "status": "PASS",
+   "checks": 17,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "Pareto",
+     "cell": "B6",
+     "expected": 15,
+     "actual": 15
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "B7",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J9",
+     "expected": 10,
+     "actual": 10
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K9",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J10",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K10",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "J11",
+     "expected": 5,
+     "actual": 5
+    },
+    {
+     "sheet": "Pareto",
+     "cell": "K11",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B5",
+     "expected": 10,
+     "actual": 10
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C5",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B6",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C6",
+     "expected": "",
+     "actual": null
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B7",
+     "expected": 5,
+     "actual": 5
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C7",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B35",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "B36",
+     "expected": 15,
+     "actual": 15
+    },
+    {
+     "sheet": "By Machine",
+     "cell": "C36",
+     "expected": 2,
+     "actual": 2
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "pm_incomplete_completion",
+   "status": "PASS",
+   "checks": 9,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "PM Plan",
+     "cell": "I5",
+     "expected": "Due soon",
+     "actual": "Due soon"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L1",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L2",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L3",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L4",
+     "expected": 0,
+     "actual": 0
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F5",
+     "expected": "Fill in asset and task",
+     "actual": "Fill in asset and task"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F6",
+     "expected": "Fill in asset and task",
+     "actual": "Fill in asset and task"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F7",
+     "expected": "Fill in asset and task",
+     "actual": "Fill in asset and task"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F8",
+     "expected": "OK",
+     "actual": "OK"
+    }
+   ],
+   "formula_errors": "not scanned"
+  },
+  {
+   "scenario": "pm_rules",
+   "status": "PASS",
+   "checks": 20,
+   "failures": [],
+   "observations": [
+    {
+     "sheet": "PM Plan",
+     "cell": "I5",
+     "expected": "Due soon",
+     "actual": "Due soon"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I6",
+     "expected": "OVERDUE",
+     "actual": "OVERDUE"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I7",
+     "expected": "Check frequency",
+     "actual": "Check frequency"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I8",
+     "expected": "Check frequency",
+     "actual": "Check frequency"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I9",
+     "expected": "Check frequency",
+     "actual": "Check frequency"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I10",
+     "expected": "Duplicate row",
+     "actual": "Duplicate row"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I11",
+     "expected": "Duplicate row",
+     "actual": "Duplicate row"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I12",
+     "expected": "Due soon",
+     "actual": "Due soon"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I13",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "I14",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L1",
+     "expected": 1,
+     "actual": 1
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L2",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L3",
+     "expected": 2,
+     "actual": 2
+    },
+    {
+     "sheet": "PM Plan",
+     "cell": "L4",
+     "expected": 5,
+     "actual": 5
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F5",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F6",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F7",
+     "expected": "Enter the date done",
+     "actual": "Enter the date done"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F8",
+     "expected": "No matching asset + task in plan",
+     "actual": "No matching asset + task in plan"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F9",
+     "expected": "OK",
+     "actual": "OK"
+    },
+    {
+     "sheet": "Completion Log",
+     "cell": "F10",
+     "expected": "OK",
+     "actual": "OK"
+    }
+   ],
+   "formula_errors": "not scanned"
+  }
+ ]
+}
