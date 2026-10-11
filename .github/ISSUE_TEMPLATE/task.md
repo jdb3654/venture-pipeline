@@ -16,4 +16,4 @@ labels: []
 
 **Stop rule:** <the finding that ends this early, for example "no paid competitor found">
 
-At the budget or the stop rule, stop, post a handoff comment, and ask. Don't extend the budget yourself.
+At the budget or the stop rule, stop and post a handoff comment. If owner-set rounds remain and the success bar wasn't met, open the next round's issue and continue; otherwise ask. Don't extend the budget or rounds yourself.
