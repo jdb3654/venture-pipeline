@@ -20,7 +20,9 @@ def audit():
         for ws in wb:
             formulas = [c.value for row in ws for c in row if c.data_type == "f"]
             for formula in formulas:
-                info["functions"].update(re.findall(r"([A-Z][A-Z0-9_.]*)\s*\(", formula.upper()))
+                # Warning text may contain words followed by '('; those are not functions.
+                expression = re.sub(r'"(?:[^"]|"")*"', '""', formula)
+                info["functions"].update(re.findall(r"([A-Z][A-Z0-9_.]*)\s*\(", expression.upper()))
                 if "_xlfn." in formula or "_xlws." in formula:
                     info["formulas_with_new_prefix"].append(formula)
             cf = []
