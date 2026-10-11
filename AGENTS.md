@@ -6,6 +6,8 @@ Both Claude and Codex work here. These instructions apply to both.
 
 ## Read first, every session
 
+Exception: if your issue is titled `Case against: <slug>`, read only `BRIEF.md` and that issue, then follow the `case-against` skill. Do not open `PIPELINE.md` or the opportunity's files.
+
 1. `BRIEF.md`: the owner's goals and constraints. It overrides everything else.
 2. `PIPELINE.md`: every opportunity and its current stage.
 3. The opportunity file(s) for the task you are working on.
@@ -62,8 +64,16 @@ Public experiments with autonomous agent businesses failed through spam, unsolic
 - Never buy traffic, reviews, followers or engagement, and never post or message in communities in a way that looks like spam.
 - Revenue means settled payments. Report installs, signups and payments separately from engagement metrics.
 - After any external change, check the live state before marking it done. An API's "success" is not proof.
-- Before an opportunity enters Validate, write the strongest case against it in its file. The other agent reviews it when available.
+- Before an opportunity enters Validate or Build, it needs a blind case against from the other agent (`case-against` skill), answered point by point. Only the owner can waive it.
 - Each product gets a written refund and discount policy. Anything outside it escalates to the owner.
+
+## Limits: no rabbit holes
+
+- **Every task has a budget and a stop rule**, set in its issue (`.github/ISSUE_TEMPLATE/task.md`). At either one, stop, post a handoff on the issue, and ask. Never extend a budget yourself.
+- **Evidence before polish.** Until an opportunity has outside demand evidence (a sale, signup, install or search data), build only what its current validation test needs. No extra formats, tests or styling.
+- **Tripwire.** After 3 merged PRs on one opportunity with no new outside evidence, stop work on it and open a `needs:owner` issue: continue, park or kill, with a recommendation.
+- **Kill on the criteria.** When an opportunity meets its kill criteria, kill or park it the same day and record one line in `PIPELINE.md`.
+- Keep outputs short: results, decisions, next step. No narration.
 
 ## What agents may do without asking
 
@@ -93,13 +103,14 @@ Raise these as a GitHub issue labeled `needs:owner`, with the decision, the opti
 
 ## Skills
 
-Repo skills live in `.agents/skills/` (Codex) with an identical copy in `.claude/skills/` (Claude Code). Invoke them as `$name` in Codex and `/name` in Claude Code. Edit only `.agents/skills/`, then run `python scripts/sync_skills.py`; CI fails if the copies differ. Origins and changes are in `docs/THIRD-PARTY-SKILLS.md`.
+Repo skills live in `.agents/skills/` (Codex) with an identical copy in `.claude/skills/` (Claude Code). Invoke them as `$name` in Codex and `/name` in Claude Code. Edit only `.agents/skills/`, then run `python scripts/sync_skills.py`; CI fails if the copies differ. Third-party origins are in `docs/THIRD-PARTY-SKILLS.md`.
 
 - `grilling`: stress-test a plan, gate or kill decision with the owner, one round of questions at a time.
 - `to-questionnaire`: turn a question only someone else can answer into a document for them. Sending it needs owner approval.
 - `domain-modeling`: sharpen shared terms in `GLOSSARY.md`; record hard-to-reverse portfolio decisions in `docs/adr/`.
 - `handoff`: when stopping partway, post where you got to on the issue in a form the other agent can pick up.
 - `retro`: after a session, suggest improvements to these instructions, checks and skills.
+- `case-against`: blind adversarial review of an opportunity by the agent that didn't build the case for it.
 - `wizard`: script the owner through an approved step only they can do, such as creating an account. Secrets go only to product repositories.
 
 ## Customer handling (products in Launch or Operate)

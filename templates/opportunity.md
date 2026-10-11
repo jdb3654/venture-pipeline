@@ -4,6 +4,7 @@
 - **Stage:** Signal
 - **Owner agent:** claude | codex
 - **Created / last updated:** YYYY-MM-DD / YYYY-MM-DD
+- **Last outside evidence:** YYYY-MM-DD, <what: sale, signup, install, search data> (or "none yet")
 
 ## The idea in two sentences
 
