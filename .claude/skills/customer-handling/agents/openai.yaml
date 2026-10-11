@@ -1,0 +1,3 @@
+interface:
+  display_name: "Customer Handling"
+  short_description: "Triage and answer customer messages for a live product"

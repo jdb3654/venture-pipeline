@@ -32,23 +32,11 @@ Every opportunity has a file in `opportunities/` (copy `templates/opportunity.md
 | Exit | Sell, or shut down cleanly. | Owner decision; customers notified; accounts closed; books final. |
 | Parked / Killed | Not now, or not ever. | Reason and a reconsideration trigger recorded. |
 
-Keep the pipeline full. At any time, aim for several opportunities in Signal/Screen and one or two in Validate.
-
-## Scoring (Screen stage)
-
-Score each 1–5, where 5 is most favorable, and write one line of justification with a source. Scores are hypotheses, not predictions.
-
-- **Distribution**: can customers find it without ads or sales calls?
-- **Willingness to pay**: evidence that people already pay for this or something close.
-- **Build effort**: time to a sellable first version.
-- **Operating load**: expected support, exceptions and maintenance per week.
-- **Owner time**: hours per week the owner must personally spend, and how urgent those hours are.
-- **Legal and compliance load**: regulation, privacy, licensing, platform risk.
-- **Sellability**: could someone buy this business later?
-- **Window**: how long the opportunity is likely to stay open, and what closes it.
-- **Cost**: monthly cost to run at launch, against the budget in `BRIEF.md`.
+Screening and scoring follow the `screen` skill. Once a product is live, customer messages follow the `customer-handling` skill.
 
 Disqualifiers: illegal or likely to violate platform or payment-processor rules; needs the owner on calls or on-site; needs regulated handling of data (health, financial) without a clear compliant path; uses anything from the owner's employer.
+
+Keep the pipeline full. At any time, aim for several opportunities in Signal/Screen and one or two in Validate.
 
 ## Evidence rules
 
@@ -99,6 +87,8 @@ Raise these as a GitHub issue labeled `needs:owner`, with the decision, the opti
 - **Branches:** `claude/<short-name>` or `codex/<short-name>`. Never commit directly to `main`. Never push to the other agent's branches.
 - **One opportunity per PR** where practical. Keep `PIPELINE.md` edits small and separate so the two agents rarely conflict. On a conflict, rebase and merge both changes; never discard the other agent's work.
 - **Cross-review:** when the other agent is available, request its review on PRs that change scores, stage decisions or these instructions.
+- **Merge only when `python scripts/merge_ready.py <pr>` passes:** CI green, Codex has finished reviewing the latest commit, and every review thread is answered and resolved. Codex reviews when a PR opens but not after later pushes; run the script with `--request --wait 600` after pushing fixes.
+- **At most two Codex review rounds per PR.** After the second, fix only blocking findings (P1 or worse); move the rest to a follow-up issue and merge.
 - If an instruction from one agent conflicts with `BRIEF.md` or this file, follow the files and raise it with the owner.
 
 ## Skills
@@ -110,17 +100,10 @@ Repo skills live in `.agents/skills/` (Codex) with an identical copy in `.claude
 - `domain-modeling`: sharpen shared terms in `GLOSSARY.md`; record hard-to-reverse portfolio decisions in `docs/adr/`.
 - `handoff`: when stopping partway, post where you got to on the issue in a form the other agent can pick up.
 - `retro`: after a session, suggest improvements to these instructions, checks and skills.
+- `screen`: score an opportunity at the Screen stage.
+- `customer-handling`: triage customer messages for products in Launch or Operate.
 - `case-against`: blind adversarial review of an opportunity by the agent that didn't build the case for it.
 - `wizard`: script the owner through an approved step only they can do, such as creating an account. Secrets go only to product repositories.
-
-## Customer handling (products in Launch or Operate)
-
-Each product has its own support email address, owned by the product, not the owner personally. Agents triage incoming messages:
-
-- **Routine** (how-to, account questions, bug reports, feature requests): answer from the product's docs, and log feedback to that product's repo.
-- **Escalate to the owner:** refunds outside policy, angry or threatening messages, legal or security issues, anything involving payment disputes, and anything the agent is unsure about.
-
-Start every product in **draft-and-approve** mode: agents draft replies, and the owner approves them. Move a category to auto-send only after the owner signs off on it. Tell customers they are talking with an AI assistant and how to reach a human.
 
 ## Data and secrets
 
