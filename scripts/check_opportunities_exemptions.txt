@@ -1,0 +1,39 @@
+# Known failures of scripts/check_opportunities.py as of 2026-10-11, one per line,
+# exactly as the script prints them. Being fixed in #69: delete a line when its file passes.
+# Do not add lines for new failures.
+opportunities/gpsr-handmade-kit.md: [assume] only, no link: Distribution
+opportunities/gpsr-handmade-kit.md: [assume] only, no link: Operating load
+opportunities/gpsr-handmade-kit.md: [assume] only, no link: Owner time
+opportunities/gpsr-handmade-kit.md: [assume] only, no link: Legal and compliance load
+opportunities/gpsr-handmade-kit.md: [assume] only, no link: Sellability
+opportunities/knitwear-grading-tool.md: [assume] only, no link: Operating load
+opportunities/knitwear-grading-tool.md: [assume] only, no link: Owner time
+opportunities/knitwear-grading-tool.md: [assume] only, no link: Legal and compliance load
+opportunities/knitwear-grading-tool.md: [assume] only, no link: Sellability
+opportunities/m365-insurance-evidence-pack.md: [assume] only, no link: Operating load
+opportunities/m365-insurance-evidence-pack.md: [assume] only, no link: Owner time
+opportunities/m365-insurance-evidence-pack.md: [assume] only, no link: Legal and compliance load
+opportunities/m365-insurance-evidence-pack.md: [assume] only, no link: Sellability
+opportunities/m365-insurance-evidence-pack.md: [assume] only, no link: Window
+opportunities/m365-insurance-evidence-pack.md: [assume] only, no link: Cost
+opportunities/m365-oversharing-check.md: [assume] only, no link: Build effort
+opportunities/m365-oversharing-check.md: [assume] only, no link: Operating load
+opportunities/m365-oversharing-check.md: [assume] only, no link: Owner time
+opportunities/m365-oversharing-check.md: [assume] only, no link: Legal and compliance load
+opportunities/m365-oversharing-check.md: [assume] only, no link: Window
+opportunities/m365-owner-access-reviews.md: [assume] only, no link: Operating load
+opportunities/m365-owner-access-reviews.md: [assume] only, no link: Owner time
+opportunities/m365-owner-access-reviews.md: [assume] only, no link: Legal and compliance load
+opportunities/m365-owner-access-reviews.md: [assume] only, no link: Sellability
+opportunities/m365-owner-access-reviews.md: [assume] only, no link: Window
+opportunities/refrigerant-leak-log.md: [assume] only, no link: Distribution
+opportunities/refrigerant-leak-log.md: [assume] only, no link: Operating load
+opportunities/refrigerant-leak-log.md: [assume] only, no link: Owner time
+opportunities/refrigerant-leak-log.md: [assume] only, no link: Sellability
+opportunities/small-gc-coi-tracker.md: [assume] only, no link: Owner time
+opportunities/small-gc-coi-tracker.md: [assume] only, no link: Legal and compliance load
+opportunities/small-gc-coi-tracker.md: [assume] only, no link: Sellability
+opportunities/uk-dormant-accounts-filer.md: [assume] only, no link: Operating load
+opportunities/uk-dormant-accounts-filer.md: [assume] only, no link: Owner time
+opportunities/uk-dormant-accounts-filer.md: [assume] only, no link: Sellability
+opportunities/uk-dormant-accounts-filer.md: [assume] only, no link: Cost

@@ -3,6 +3,10 @@
     python scripts/merge_ready.py <pr>                  report; exit 0 if ready
     python scripts/merge_ready.py <pr> --request        ask Codex to review the latest commit if it hasn't
     python scripts/merge_ready.py <pr> --wait 600       poll every 30s, up to 600s, until ready or failed
+    python scripts/merge_ready.py <pr> --final          after two Codex rounds: request one last pass
+                                                        (waits up to 600s, or --wait); only its new
+                                                        P0/P1 findings block. Each lower finding gets
+                                                        a follow-up issue, a reply and a resolved thread.
 
 Ready means: PR open and mergeable; CI on the head commit finished green;
 Codex finished reviewing the head commit (it does not re-review new pushes
@@ -16,6 +20,8 @@ import re
 import subprocess
 import sys
 import time
+
+import gh_rest
 
 REPO = "jdb3654/venture-pipeline"
 CODEX = "chatgpt-codex-connector[bot]"
@@ -32,19 +38,28 @@ def gh(path, method="GET", fields=None):
     return json.loads(out.stdout) if out.stdout.strip() else None
 
 
-def unresolved_threads(n):
-    """Count unresolved review threads. Claude Code sessions can't use GraphQL
-    and have a REST route instead; elsewhere (Codex, a laptop) GraphQL works."""
+def review_threads(n):
+    """List review threads as {"resolved": bool, "comment_ids": [...]}. Claude Code
+    sessions can't use GraphQL and have a REST route instead; elsewhere (Codex,
+    a laptop) GraphQL works."""
     try:
-        return sum(1 for t in gh("repos/%s/pulls/%d/ccr/review_threads" % (REPO, n))
-                   if not t.get("resolved"))
+        threads = gh("repos/%s/pulls/%d/ccr/review_threads" % (REPO, n))
+        return [{"resolved": bool(t.get("resolved")), "comment_ids": t.get("comment_ids", [])}
+                for t in threads]
     except (RuntimeError, TypeError):
         owner, name = REPO.split("/")
         query = ("query{repository(owner:\"%s\",name:\"%s\"){pullRequest(number:%d)"
-                 "{reviewThreads(first:100){nodes{isResolved}}}}}" % (owner, name, n))
+                 "{reviewThreads(first:100){nodes{isResolved comments(first:100)"
+                 "{nodes{databaseId}}}}}}}" % (owner, name, n))
         data = gh("graphql", "POST", {"query": query})
         nodes = data["data"]["repository"]["pullRequest"]["reviewThreads"]["nodes"]
-        return sum(1 for t in nodes if not t["isResolved"])
+        return [{"resolved": t["isResolved"],
+                 "comment_ids": [c["databaseId"] for c in t["comments"]["nodes"]]}
+                for t in nodes]
+
+
+def unresolved_threads(n):
+    return sum(1 for t in review_threads(n) if not t["resolved"])
 
 
 def codex_status(n, head):
@@ -101,6 +116,94 @@ def check(n):
     return head, state, reviewed, problems, rounds
 
 
+BLOCKING = ("P0", "P1")
+MARKER = "merge_ready --final"
+
+
+def priority(body):
+    m = re.search(r"badge/(P\d)", body or "")
+    return m.group(1) if m else None
+
+
+def finding_title(body):
+    first = (body or "").strip().splitlines()[0] if (body or "").strip() else ""
+    m = re.search(r"</sub></sub>\s*(.+?)\*\*", first)
+    return (m.group(1) if m else re.sub(r"[*<>]", "", first)).strip()[:80] or "Codex finding"
+
+
+def final_triage(n, head, branch):
+    """For Codex findings on the head commit: leave P0/P1 open (blocking); for each
+    lower one, open a follow-up issue, reply with its number and resolve the thread.
+    Returns the blocking findings as (title, url)."""
+    comments = gh("repos/%s/pulls/%d/comments?per_page=100" % (REPO, n))
+    by_id = {c["id"]: c for c in comments}
+    agent = "agent:codex" if branch.startswith("codex/") else "agent:claude"
+    blocking = []
+    for t in review_threads(n):
+        if t["resolved"] or not t["comment_ids"]:
+            continue
+        root = by_id.get(t["comment_ids"][0])
+        if (not root or root["user"]["login"] != CODEX
+                or root.get("original_commit_id", root.get("commit_id")) != head):
+            continue  # not a finding from this pass; the unresolved-thread check covers it
+        level = priority(root["body"])
+        title = finding_title(root["body"])
+        if level in BLOCKING or level is None:
+            blocking.append(("%s %s" % (level or "unlabelled", title), root["html_url"]))
+            continue
+        filed = [by_id[i]["body"] for i in t["comment_ids"][1:]
+                 if i in by_id and MARKER in by_id[i]["body"]]
+        if not filed:
+            issue = gh_rest.issue_create(
+                "Follow-up from #%d: %s" % (n, title),
+                "Non-blocking %s finding from Codex's final review of #%d (commit `%s`), "
+                "moved here by `%s` under the two-round limit in AGENTS.md.\n\n"
+                "Finding: %s\n\n> %s" % (level, n, head[:7], MARKER, root["html_url"],
+                                          root["body"].strip().replace("\n", "\n> ")),
+                [agent])
+            gh_rest.pr_reply(n, root["id"], "Not blocking (%s) under the two-round limit. "
+                             "Follow-up: #%d (%s)." % (level, issue["number"], MARKER))
+            print("filed #%d for %s finding: %s" % (issue["number"], level, title))
+        gh_rest.pr_resolve(n, root["id"])
+    return blocking
+
+
+def final(n, args, wait):
+    head, state, reviewed, problems, rounds = check(n)
+    if rounds < 2:
+        print("--final is for after two Codex review rounds; this PR has %d. "
+              "Use --request instead." % rounds)
+        return 2
+    if state == "no-environment":
+        print("NOT READY:\n- " + "\n- ".join(problems))
+        return 1
+    if state != "running" and not (reviewed and head.startswith(reviewed)):
+        gh("repos/%s/issues/%d/comments" % (REPO, n), "POST", {"body": "@codex review"})
+        print("requested final Codex review of %s" % head[:7])
+        time.sleep(30)
+    deadline = time.time() + (wait or 600)
+    while True:
+        state, reviewed = codex_status(n, head)
+        if state == "completed" and reviewed and head.startswith(reviewed):
+            break
+        if time.time() >= deadline:
+            print("NOT READY:\n- final Codex review of %s not finished; rerun --final" % head[:7])
+            return 1
+        time.sleep(30)
+
+    branch = gh("repos/%s/pulls/%d" % (REPO, n))["head"]["ref"]
+    blocking = final_triage(n, head, branch)
+    head, state, reviewed, problems, rounds = check(n)
+    print("PR #%d at %s; final Codex pass done (--final)" % (n, head[:7]))
+    for title, url in blocking:
+        print("blocking: %s %s" % (title, url))
+    if problems:
+        print("NOT READY:\n- " + "\n- ".join(problems))
+        return 1
+    print("READY to merge")
+    return 0
+
+
 def main():
     args = sys.argv[1:]
     if not args or not args[0].isdigit():
@@ -108,6 +211,8 @@ def main():
         return 2
     n = int(args[0])
     wait = int(args[args.index("--wait") + 1]) if "--wait" in args else 0
+    if "--final" in args:
+        return final(n, args, wait)
 
     head, state, reviewed, problems, rounds = check(n)
     if "--request" in args and state != "running" and not (reviewed and head.startswith(reviewed)):

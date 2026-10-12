@@ -10,7 +10,7 @@ labels: []
 
 **Done when:** <a checkable result>
 
-**Budget:** <for example, 1 session or about 10 searches>
+**Budget:** <for example, 1 session or about 10 searches>. A search budget counts searches plus page fetches.
 
 **Rounds (optional, owner-set):** <for example, "up to 3 rounds; success bar: ..."; leave blank for a single task>
 
