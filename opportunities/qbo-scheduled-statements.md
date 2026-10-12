@@ -1,7 +1,7 @@
 # Scheduled customer statements for QuickBooks Online below Advanced
 
 - **Slug:** qbo-scheduled-statements
-- **Stage:** Screen (near-miss: Distribution 3 and Willingness to pay 3, both below the round's bar of 4)
+- **Stage:** Parked (listing route likely needs Intuit's $300/month Silver tier, above budget; also below the round's bar on Distribution and Willingness to pay)
 - **Owner agent:** claude
 - **Created / last updated:** 2026-10-11 / 2026-10-11
 - **Last outside evidence:** none yet (desk research only, issue #65)
@@ -20,7 +20,7 @@ Lens: long-open requests. A QuickBooks moderator said recurring statements are a
 
 - **Buyers:** QuickBooks Online Plus and Essentials users with B2B receivables [assume].
 - **Today:** manual batch statements; AR suites; upgrading to Advanced [report: Community].
-- **Route without ads:** QuickBooks App Store after Intuit's technical and security review [report: [Apideck](https://developers.apideck.com/connectors/quickbooks/docs/application_owner+app_compliance)]; search for "QuickBooks automatic statements".
+- **Route without ads:** QuickBooks App Store after Intuit's technical and security review [report: [Apideck](https://developers.apideck.com/connectors/quickbooks/docs/application_owner+app_compliance)]. Codex's review of #66 cites Intuit's App Partner Program Guide as making Marketplace listing unavailable on the free Builder tier and available from Silver ($300/month) [report: [Intuit guide via Codex review](https://static.developer.intuit.com/resources/Intuit_App_Partner_Program_Guide.pdf); not opened by Claude, round budget spent]. Without the App Store, the route is search for "QuickBooks automatic statements" only.
 - **Named paid competitor:** Paidnice, AR automation for QuickBooks Online and Xero including scheduled statements, from **US$69/month**; 4.9 from 14 reviews; complaints are about bulk edits and learning curve, not statements [vendor: [Capterra](https://www.capterra.ie/software/1032423/paidnice)]. Chaser and Upflow are in the same category [assume, not checked].
 
 ## Scopes
@@ -37,7 +37,7 @@ Statements are one feature inside a crowded AR category, and the people who care
 
 | Factor | 1–5 | Justification and source |
 |---|---|---|
-| Distribution | 3 | App Store listing after Intuit review [report: Apideck]; AR category already has Paidnice and others [vendor]. |
+| Distribution | 2 | App Store listing likely needs Silver at $300/month [report: Codex citing Intuit guide]; without it, search only, against Paidnice and others [vendor]. |
 | Willingness to pay | 3 | Paidnice from $69/month bundles it [vendor]; Intuit gates it to Advanced [report]; no one found paying for statements alone. |
 | Build effort | 2 | OAuth, statement rendering and email delivery if the API can't send QuickBooks' own; Intuit security review before listing [assume; report]. |
 | Operating load | 2 | Full accounting-file read access; outbound email to third parties; balance errors reach customers' customers [assume]. |
@@ -45,14 +45,14 @@ Statements are one feature inside a crowded AR category, and the people who care
 | Legal and compliance load | 3 | Financial records of customers' customers; transactional email rules; Intuit terms [assume]. |
 | Sellability | 3 | Small recurring app; a bookkeeping-tools buyer might want it [assume]. |
 | Window | 3 | Intuit can move the feature down-tier at any time [assume]. |
-| Cost | 4 | Builder API tier $0 within 500,000 reads/month [report]; email sending a few dollars [est]. |
+| Cost | 1 | Builder API tier is $0 within 500,000 reads/month [report: Apideck], but listing likely needs Silver at $300/month [report: Codex citing Intuit guide], above the $50–100/month budget in `BRIEF.md`. |
 
 Disqualifiers checked: financial data, but invoice and payment records under the customer's own authorization through Intuit's reviewed route [assume]; not regulated handling as far as known. Revisit with the CPA consult in `docs/LEGAL-TAX.md`.
 
 ## Economics (estimates, not forecasts)
 
 - Price: $15/month per company [est].
-- Running cost at launch: under $15/month [est].
+- Running cost at launch: under $15/month off-marketplace [est]; about $315/month if listed on Silver [report + est].
 - MoR fee about 5% + $0.50 [assume, per #59].
 - $1k/month owner cash: about 75 companies [est].
 
@@ -74,4 +74,5 @@ An AR-automation vendor or bookkeeping-tools company [assume]. Needs its own Int
 
 ## Decision log
 
-- 2026-10-11: Screened as near-miss 2 in round 1 (#65), by Claude. Fails the round bar on Distribution (3) and Willingness to pay (3). Not sent to case-against.
+- 2026-10-11: Screened as near-miss 2 in round 1 (#65), by Claude.
+- 2026-10-11: Parked after Codex review of #66: listing likely needs the $300/month Silver tier (above budget), and Legal, Sellability and Window scores rest on assumptions. Reconsider if Intuit opens listing to Builder, or the portfolio budget covers Silver.

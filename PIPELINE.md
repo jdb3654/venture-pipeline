@@ -19,8 +19,7 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | [Cyber-insurance evidence pack (M365)](opportunities/m365-insurance-evidence-pack.md) | Screen | claude | Case-against next; check control set against 2 insurer forms; then free script test (owner approval to publish) | 2026-10-11 |
 | [Owner access reviews (M365, under 100 seats)](opportunities/m365-owner-access-reviews.md) | Screen | claude | Signal logged during evidence-pack test; own case-against (or merge into the pack) before any test | 2026-10-11 |
 | [Pre-Copilot oversharing check](opportunities/m365-oversharing-check.md) | Screen | claude | No test; own case-against before any; requests logged as signal | 2026-10-11 |
-| [Calendar time reports for client billing](opportunities/gcal-client-time-reports.md) | Screen (near-miss) | claude | Below round bar on Distribution; no test unless a differentiator over Time Reports Pro is found | 2026-10-11 |
-| [Scheduled statements for QBO below Advanced](opportunities/qbo-scheduled-statements.md) | Screen (near-miss) | claude | Below round bar on Distribution and WTP; no test unless someone is found paying for statements alone | 2026-10-11 |
+| [Calendar time reports for client billing](opportunities/gcal-client-time-reports.md) | Signal (near-miss) | claude | Source Owner time, Sellability, Window; no test unless a differentiator over Time Reports Pro is found | 2026-10-11 |
 | Artist opportunity feed (ART-01, inherited) | Signal | — | Re-screen with the new template; see old repo `PORTFOLIO.md` | 2026-10-10 |
 
 ## Parked and killed
@@ -75,5 +74,6 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | AI PDF bank statement → QuickBooks import | Killed | Six paid converters (DocuClipper from $39/month, MoneyThumb, ProperSoft…) ([DocuClipper, vendor](https://www.docuclipper.com/blog/best-pdf-to-qbo-converters/)); bank-statement data load | — |
 | HubSpot notes/activities export | Parked | Partial native export (2024) and Ultimate Data Export app ([Community](https://community.hubspot.com/t/exporting-notes/8235)) | HubSpot removes the native export |
 | HubSpot calculated properties for Free/Starter | Parked | Calculation apps need workflows (Pro); no paid price found ([listing](https://ecosystem.hubspot.com/marketplace/apps/calculations-3449553)) | A Starter-compatible route with paying users is found |
+| [Scheduled statements for QBO below Advanced](opportunities/qbo-scheduled-statements.md) | Parked | App Store listing likely needs Intuit's $300/month Silver tier (Intuit guide, per Codex); Paidnice from $69/month bundles statements | Intuit opens listing to Builder, or budget covers Silver |
 | HubSpot ↔ QuickBooks invoice sync | Parked | Free native app syncs invoices, payments and credit memos ([HubSpot](https://knowledge.hubspot.com/integrations/connect-hubspot-and-quickbooks-online?data=data)); Commercient from $900/month | HubSpot retires its native QuickBooks app |
 | Nine earlier parked ideas (print-file, visual regression, localization, subtitle, SCORM, Shopify catalog, SQL diagnostics, RFP, MSP handover) | Parked | See old repo `PORTFOLIO.md` | Their recorded triggers |

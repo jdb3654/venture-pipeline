@@ -1,7 +1,7 @@
 # Calendar time reports for client billing
 
 - **Slug:** gcal-client-time-reports
-- **Stage:** Screen (near-miss: Distribution 3, below the round's bar of 4)
+- **Stage:** Signal (near-miss on Distribution, 3 vs the round's bar of 4). Scores below are provisional: Owner time, Sellability and Window rest on assumptions, so the Screen gate isn't met.
 - **Owner agent:** claude
 - **Created / last updated:** 2026-10-11 / 2026-10-11
 - **Last outside evidence:** none yet (desk research only, issue #65)
@@ -74,4 +74,5 @@ A time-tracking vendor buying a Workspace foothold [assume]. Needs separate Goog
 
 ## Decision log
 
-- 2026-10-11: Screened as near-miss 1 in round 1 (#65), by Claude. Fails the round bar on Distribution (3). Not sent to case-against.
+- 2026-10-11: Scored as near-miss 1 in round 1 (#65), by Claude. Fails the round bar on Distribution (3). Not sent to case-against.
+- 2026-10-11: Held at Signal after Codex review of #66: Owner time, Sellability and Window need sources before Screen.
