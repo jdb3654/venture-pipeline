@@ -1,22 +1,22 @@
 # SMB marketplaces, round 2: monday.com, Figma Community, GitHub Marketplace
 
-Issue #67 (round 2 of up to 3; round 1 was #65 / #66). Researched 2026-10-12 by Claude in one scheduled session. Budget about 60 lookups; used 56 (28 searches, 28 fetches; one fetch was refused by the fetch tool and one hit a redirect, both counted). $0 spend. No accounts, outreach or publishing.
+Issue #67 (round 2 of up to 3; round 1 was #65 / #66). Researched 2026-10-12 by Claude in one scheduled session. Budget about 60 lookups; used 58 (29 searches, 29 fetches; one fetch was refused by the fetch tool and one hit a redirect, both counted). The last two checked a Codex review finding on #71. $0 spend. No accounts, outreach or publishing.
 
 Labels: **[fact]** verified on the cited page, **[report]** first-hand or secondary report (forum posts, third-party write-ups), **[vendor]** vendor claim (including the platform's own marketing), **[est]** estimate, **[assume]** assumption, **[title]** search-result title only, page not opened. Pages checked 2026-10-12 unless a date is given. Installs, ratings, reviews, likes and views are engagement, not sales.
 
 ## Bottom line
 
-**No candidate meets the "found" bar.** 17 candidates; none scores 4+ on both Distribution and Willingness to pay with no factor below 2. Wherever a published price showed that people pay (backups, time-in-status, email reports, merge queues, token sync, changelogs), a named vendor already sells it. Where a gap had no seller (library analytics on Figma Pro, deployment approvals on GitHub Team), a free tool or nothing at all showed that people won't pay.
+**No candidate meets the "found" bar.** 17 candidates; none scores 4+ on both Distribution and Willingness to pay with no factor below 2. Wherever a published price exists (backups, time-in-status, email reports, merge queues, token sync, changelogs), a named vendor already sells it. Where a gap had no seller (library analytics on Figma Pro, deployment approvals on GitHub Team), a free tool or nothing at all showed that people won't pay.
 
-One near-miss is filed:
+No near-miss survives. One was filed and then parked in review:
 
-| Rank | Candidate | Dist | WTP | Lowest other | Falls short on |
-|---|---|---|---|---|---|
-| 1 | [Scheduled board email reports for monday.com](../opportunities/monday-board-email-reports.md) (Signal, near-miss) | 3 | 4 | 3 (several, mostly assumptions) | Distribution: Stiltsoft already sells exactly this on the monday marketplace; native monday features may overlap [assume, not checked]. Its demand test also needs a monday developer account and Payoneer, so it fails the "no new account" part of the bar. |
+| Candidate | Dist | WTP | Why parked |
+|---|---|---|---|
+| [Scheduled board email reports for monday.com](../opportunities/monday-board-email-reports.md) | 2 | 2 | monday natively schedules dashboard PDFs by email to up to 50 recipients, external included (Standard 1 schedule, Pro 5, Enterprise 100) [fact: [monday support](https://support.monday.com/hc/en-us/articles/26237863849490-Share-and-present-your-Dashboard)]. That meets the file's own kill criterion (Codex, review of #71). Stiltsoft's $10–500/month is an asking price, not payment evidence. |
 
 A second near-miss was considered and not filed: Figma variables sync for non-Enterprise plans (WTP 3, Distribution 3). Free sync already exists, so it is parked rather than given a file.
 
-**Pattern worth recording:** Atlassian Marketplace vendors (SaaSJet, Stiltsoft, Appfire's BigPicture, resolution) are porting their Jira apps to monday.com with seat-tier prices [fact: their help pages, below]. The proven Jira categories are already being carried across by vendors who own the Jira listings. That makes "port a proven Jira app to monday" a crowded play, not an open one.
+**Pattern worth recording:** Atlassian Marketplace vendors (SaaSJet, Stiltsoft, Appfire's BigPicture, resolution) are porting their Jira apps to monday.com with seat-tier prices [vendor: SaaSJet and Stiltsoft help pages, below; title only for BigPicture and resolution]. The proven Jira categories are already being carried across by vendors who own the Jira listings. That makes "port a proven Jira app to monday" a crowded play, not an open one.
 
 ## Route map
 
@@ -63,7 +63,7 @@ A second near-miss was considered and not filed: Figma variables sync for non-En
 
 ## Denominator
 
-17 candidates (8 monday.com, 4 Figma, 5 GitHub). 0 hit a hard disqualifier. 1 near-miss held at Signal; 12 parked; 3 killed; 1 not pursued (its lens came up empty).
+17 candidates (8 monday.com, 4 Figma, 5 GitHub). 0 hit a hard disqualifier. 13 parked (one after review, with a file); 3 killed; 1 not pursued (its lens came up empty).
 
 Lenses per ecosystem: monday — long-open requests (2, 3, 8), retired apps (searched; nothing found), workarounds (3, 8), paid apps and their pricing (1, 4, 5, 6, 7). AI not used. Figma — long-open requests (9), workarounds for plan limits (9, 10), retired plugins (12), paid apps (11). AI covered only by assumption (Figma's own AI). GitHub — retired features (13), workarounds for plan limits (14, 15), AI (16, 17), paid apps and their pricing (15, 16). Long-open requests: one search returned nothing usable; 14 was a July 2026 request.
 
@@ -75,7 +75,7 @@ Lenses per ecosystem: monday — long-open requests (2, 3, 8), retired apps (sea
 | 4 | monday | Time tracking and billable hours | Killed | Everhour, Harvest and TimeBits already integrate [title: [Everhour](https://everhour.com/time-tracking/time-tracking-app-for-mondaycom), [Harvest](https://www.getharvest.com/time-tracking/time-tracking-app-for-mondaycom), [TimeBits](https://community.monday.com/t/introducing-timebits-the-ultimate-time-tracking-power-up-for-monday-com/113868)]; overlaps the existing calendar time-reports near-miss |
 | 5 | monday | Time in status / cycle-time reports | Parked | SaaSJet sells it from $2/month (2 seats) to $84/month (unlimited) [vendor: [SaaSJet help, modified 2025-12-03](https://help.saasjet.com/monday/how-to-calculate-the-price-for-app-on-your-monday-account)] |
 | 6 | monday | Email to items | Parked | SaaSJet Email to Tasks & Capture, $10–300/month [vendor: same page]; monday's native email integration likely overlaps [assume] |
-| 7 | monday | Scheduled board email reports | **Signal, near-miss** | See file. Stiltsoft Board Email Reports, $10–500/month [vendor] |
+| 7 | monday | Scheduled board email reports | Parked (file kept) | Native scheduled dashboard PDF exports [fact: monday support]; Stiltsoft Board Email Reports asks $10–500/month [vendor] |
 | 8 | monday | Required fields / item validation | Parked | resolution.de sells a "required fields automation" app [title: [resolution wiki](https://wiki.resolution.de/doc/monday-required-fields-automation/installation)]; page redirected, price not seen |
 | 9 | Figma | Variables → code/Git sync for non-Enterprise plans | Parked | Real long-open complaint (2023-08-23 to 2026-05-03) [report: forum], but Tokens Studio's free plan includes Git sync, with Plus at €39–49/user/month [vendor: [Tokens Studio](https://tokens.studio/pro-pricing)]; Design System Sync launched 2026-04-25 at $10/month (0 replies, 179 views) [report: [forum](https://forum.figma.com/share-your-feedback-26/export-figma-variables-directly-to-github-as-pull-requests-53332)]; TokensBrücke is free [title: [README](https://cdn.jsdelivr.net/npm/tokens-bruecke@3.15.1/README.md)] |
 | 10 | Figma | Library/component-usage analytics for Pro plans | Parked | No paid competitor and no request thread found in one search; Figma keeps it for higher plans [title: [Figma Help](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage)] |
