@@ -147,9 +147,9 @@ def finding_title(body):
 
 
 def final_triage(n, head, branch, since):
-    """For Codex findings posted since the final request: leave P0/P1 open (blocking); for each
-    lower one, open a follow-up issue, reply with its number and resolve the thread.
-    Returns the blocking findings as (title, url)."""
+    """Unresolved Codex findings: P0/P1 posted since the final request stay open (blocking);
+    each lower one, from any round, gets a follow-up issue, a reply and a resolved thread.
+    Older P0/P1 are left for the unresolved-thread check. Returns blocking (title, url)."""
     comments = gh("repos/%s/pulls/%d/comments?per_page=100" % (REPO, n))
     by_id = {c["id"]: c for c in comments}
     agent = "agent:codex" if branch.startswith("codex/") else "agent:claude"
@@ -158,24 +158,25 @@ def final_triage(n, head, branch, since):
         if t["resolved"] or not t["comment_ids"]:
             continue
         root = by_id.get(t["comment_ids"][0])
-        if not root or root["user"]["login"] != CODEX or when(root["created_at"]) < since:
-            continue  # not a finding from this pass; the unresolved-thread check covers it
+        if not root or root["user"]["login"] != CODEX:
+            continue
         level = priority(root["body"])
         title = finding_title(root["body"])
         if level in BLOCKING or level is None:
-            blocking.append(("%s %s" % (level or "unlabelled", title), root["html_url"]))
+            if when(root["created_at"]) >= since:
+                blocking.append(("%s %s" % (level or "unlabelled", title), root["html_url"]))
             continue
         filed = [by_id[i]["body"] for i in t["comment_ids"][1:]
                  if i in by_id and MARKER in by_id[i]["body"]]
         if not filed:
             issue = gh_rest.issue_create(
                 "Follow-up from #%d: %s" % (n, title),
-                "Non-blocking %s finding from Codex's final review of #%d (commit `%s`), "
-                "moved here by `%s` under the two-round limit in AGENTS.md.\n\n"
-                "Finding: %s\n\n> %s" % (level, n, head[:7], MARKER, root["html_url"],
+                "Non-blocking %s Codex finding on #%d, moved here by `%s` at its final "
+                "review (`%s`) under the two-round limit in AGENTS.md.\n\n"
+                "Finding: %s\n\n> %s" % (level, n, MARKER, head[:7], root["html_url"],
                                           root["body"].strip().replace("\n", "\n> ")),
                 [agent])
-            gh_rest.pr_reply(n, root["id"], "Not blocking (%s) under the two-round limit. "
+            gh_rest.pr_reply(n, root["id"], "Not blocking (%s) after two review rounds. "
                              "Follow-up: #%d (%s)." % (level, issue["number"], MARKER))
             print("filed #%d for %s finding: %s" % (issue["number"], level, title))
         gh_rest.pr_resolve(n, root["id"])
