@@ -20,6 +20,7 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | [Owner access reviews (M365, under 100 seats)](opportunities/m365-owner-access-reviews.md) | Screen | claude | Signal logged during evidence-pack test; own case-against (or merge into the pack) before any test | 2026-10-11 |
 | [Pre-Copilot oversharing check](opportunities/m365-oversharing-check.md) | Screen | claude | No test; own case-against before any; requests logged as signal | 2026-10-11 |
 | [Calendar time reports for client billing](opportunities/gcal-client-time-reports.md) | Signal (near-miss) | claude | Source Owner time, Sellability, Window; no test unless a differentiator over Time Reports Pro is found | 2026-10-11 |
+| [Scheduled board email reports (monday.com)](opportunities/monday-board-email-reports.md) | Signal (near-miss) | claude | No test unless a gap over Stiltsoft is found; check monday native scheduled reports first | 2026-10-12 |
 | Artist opportunity feed (ART-01, inherited) | Signal | — | Re-screen with the new template; see old repo `PORTFOLIO.md` | 2026-10-10 |
 
 ## Parked and killed
@@ -77,3 +78,16 @@ One row per opportunity. Details live in `opportunities/<slug>.md`. Keep edits t
 | [Scheduled statements for QBO below Advanced](opportunities/qbo-scheduled-statements.md) | Parked | App Store listing likely needs Intuit's $300/month Silver tier (Intuit guide, per Codex); Paidnice from $69/month bundles statements | Intuit opens listing to Builder, or budget covers Silver |
 | HubSpot ↔ QuickBooks invoice sync | Parked | Free native app syncs invoices, payments and credit memos ([HubSpot](https://knowledge.hubspot.com/integrations/connect-hubspot-and-quickbooks-online?data=data)); Commercient from $900/month | HubSpot retires its native QuickBooks app |
 | Nine earlier parked ideas (print-file, visual regression, localization, subtitle, SCORM, Shopify catalog, SQL diagnostics, RFP, MSP handover) | Parked | See old repo `PORTFOLIO.md` | Their recorded triggers |
+| monday.com board backups | Parked | Rewind (in monday's support docs), ProBackup and Board & Doc Backups sell it; account-wide read access ([monday](https://support.monday.com/hc/en-us/articles/27928614737042-Back-up-and-restore-your-data-with-Rewind-backups)) | One of the three is discontinued |
+| monday.com Updates print/PDF and combined Excel export | Parked | DocCreate and The PDF Maker serve PDF; no price anyone pays for the Excel variant ([community](https://community.monday.com/t/export-pdf-or-print-updates-tab-view-to-pdf/43609?page=2)) | A thread shows users paying for a workaround |
+| monday.com time tracking | Killed | Everhour, Harvest and TimeBits integrate; overlaps the calendar time-reports near-miss ([Everhour](https://everhour.com/time-tracking/time-tracking-app-for-mondaycom)) | — |
+| monday.com time-in-status and email-to-items | Parked | SaaSJet sells both, $2–84 and $10–300/month ([SaaSJet](https://help.saasjet.com/monday/how-to-calculate-the-price-for-app-on-your-monday-account)) | SaaSJet drops monday |
+| monday.com required fields | Parked | resolution.de sells it (search title only) | Its app is retired |
+| Figma variables sync for non-Enterprise plans | Parked | Tokens Studio's free plan syncs to Git; Design System Sync $10/month; TokensBrücke free ([Tokens Studio](https://tokens.studio/pro-pricing)) | Figma blocks plugin access to variables or Tokens Studio paywalls sync |
+| Figma library analytics for Pro plans | Parked | No paid competitor or request thread found | A request thread with workarounds people pay for |
+| Figma logic-driven prototyping | Parked | Prototyper by Mighty and ProtoPie ($17/month) sell it ([Line25](https://line25.com/articles/best-figma-plugins-for-web-designers/)) | Both are discontinued |
+| GitHub Classroom replacement | Parked | Free Classroom 50 (CS50's nonprofit) and paid Codio already replace it ([Elgort](https://bruceelgort.com/2026/07/20/github-classroom-is-gone-heres-the-free-tool-that-replaces-it/)); school procurement | Classroom 50 is abandoned |
+| GitHub deployment approvals below Enterprise | Parked | Free `manual-approval` action covers it; no paid competitor ([community](https://github.com/orgs/community/discussions/202852)) | A paid tool is found selling it |
+| Merge queue below GitHub Enterprise | Killed | Mergify from $8/user/month plus funded Trunk, Aviator, Graphite; critical-path CI with write access ([Stackpick](https://www.stackpick.net/pricing/mergify/)) | — |
+| AI release notes from GitHub PRs | Parked | ReleasePad $35/month, git-cliff free, many changelog tools ([ReleasePad](https://www.releasepad.io/blog/best-changelog-tools/)) | A niche needing a regulated or customer-specific changelog format |
+| AI code-quality / PR review GitHub app | Killed | GitHub Code Quality $10/committer/month GA 2026-07-20 (changelog title); CodeRabbit and Copilot review | — |
