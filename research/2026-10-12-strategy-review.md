@@ -2,7 +2,7 @@
 
 **Decision:** the record does not establish that the staged goal is unrealistic; the stop rule does not fire. A first customer remains testable. It supplies **no basis for expecting eventual salary replacement**, especially within two years. Judge the next month on outside behavior and owner minutes, not income projections.
 
-Reviewed BRIEF, AGENTS, PIPELINE, opportunities/research and #40–#77 including comments/handoffs on October 12, 2026. Eight research lookups: five GitHub reads, three policy pages; local reads excluded. $0. Historical market claims audited as recorded, not revalidated; cost rankings are judgments, not measured hours.
+Reviewed BRIEF, AGENTS, PIPELINE, opportunities/research and #40–#77 including comments/handoffs on October 12, 2026. Nine research lookups: five GitHub reads, four policy fetches; local reads excluded. $0. Historical market claims audited as recorded, not revalidated; cost rankings are judgments, not measured hours.
 
 ## What is failing, in descending likely cost
 
