@@ -9,7 +9,8 @@ Fails when:
   and that has no link.
 
 Known failures are listed, one per line, in scripts/check_opportunities_exemptions.txt
-(the exact text this script prints). Fix the file, then delete its line.
+(the exact text this script prints). Fix the file and delete its line in the
+same PR: a leftover line also fails, so it can't hide a later regression.
 Standard library only.
 """
 import re
@@ -78,8 +79,8 @@ def main():
         exempt = {l.strip() for l in EXEMPTIONS.read_text(encoding="utf-8").splitlines()
                   if l.strip() and not l.startswith("#")}
     new = [f for f in failures if f not in exempt]
-    for stale in sorted(exempt - set(failures)):
-        print("note: exemption no longer needed, delete it: %s" % stale)
+    new += ["exemption no longer needed, delete its line: %s" % stale
+            for stale in sorted(exempt - set(failures))]
     if new:
         print("FAILED:\n- " + "\n- ".join(new))
         return 1

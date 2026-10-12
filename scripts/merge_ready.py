@@ -20,6 +20,7 @@ import re
 import subprocess
 import sys
 import time
+from datetime import datetime
 
 import gh_rest
 
@@ -62,19 +63,33 @@ def unresolved_threads(n):
     return sum(1 for t in review_threads(n) if not t["resolved"])
 
 
-def codex_status(n, head):
-    """Return (state, reviewed_commit) from Codex's summary comment, or (None, None)."""
-    bot = [c["body"] for c in gh("repos/%s/issues/%d/comments?per_page=100" % (REPO, n))
-           if c["user"]["login"] == CODEX]
+def issue_comments(n):
+    return gh("repos/%s/issues/%d/comments?per_page=100" % (REPO, n))
+
+
+def codex_summary(n):
+    """Return (state, reviewed_commit, completed_at) from Codex's summary comment.
+    Codex edits one summary comment per PR; completed_at is when the latest review finished."""
+    bot = [c["body"] for c in issue_comments(n) if c["user"]["login"] == CODEX]
     summaries = [b for b in bot if SUMMARY in b]
     if not summaries:
         if any("create an environment" in b for b in bot):
-            return "no-environment", None
-        return None, None
+            return "no-environment", None, None
+        return None, None, None
     body = summaries[-1]
     state = "running" if "Running" in body else "completed" if "Completed" in body else "unknown"
     sha = re.search(r"`([0-9a-f]{7,40})`", body)
-    return state, sha.group(1) if sha else None
+    done = re.search(r'Completed\*\*\s*<relative-time datetime="([^"]+)"', body)
+    return state, sha.group(1) if sha else None, when(done.group(1)) if done else None
+
+
+def codex_status(n, head):
+    """Return (state, reviewed_commit) from Codex's summary comment, or (None, None)."""
+    return codex_summary(n)[:2]
+
+
+def when(stamp):
+    return datetime.fromisoformat(stamp.replace("Z", "+00:00"))
 
 
 def check(n):
@@ -131,8 +146,8 @@ def finding_title(body):
     return (m.group(1) if m else re.sub(r"[*<>]", "", first)).strip()[:80] or "Codex finding"
 
 
-def final_triage(n, head, branch):
-    """For Codex findings on the head commit: leave P0/P1 open (blocking); for each
+def final_triage(n, head, branch, since):
+    """For Codex findings posted since the final request: leave P0/P1 open (blocking); for each
     lower one, open a follow-up issue, reply with its number and resolve the thread.
     Returns the blocking findings as (title, url)."""
     comments = gh("repos/%s/pulls/%d/comments?per_page=100" % (REPO, n))
@@ -143,8 +158,7 @@ def final_triage(n, head, branch):
         if t["resolved"] or not t["comment_ids"]:
             continue
         root = by_id.get(t["comment_ids"][0])
-        if (not root or root["user"]["login"] != CODEX
-                or root.get("original_commit_id", root.get("commit_id")) != head):
+        if not root or root["user"]["login"] != CODEX or when(root["created_at"]) < since:
             continue  # not a finding from this pass; the unresolved-thread check covers it
         level = priority(root["body"])
         title = finding_title(root["body"])
@@ -168,6 +182,9 @@ def final_triage(n, head, branch):
     return blocking
 
 
+FINAL_TAG = "<!-- merge_ready --final -->"
+
+
 def final(n, args, wait):
     head, state, reviewed, problems, rounds = check(n)
     if rounds < 2:
@@ -177,14 +194,26 @@ def final(n, args, wait):
     if state == "no-environment":
         print("NOT READY:\n- " + "\n- ".join(problems))
         return 1
-    if state != "running" and not (reviewed and head.startswith(reviewed)):
-        gh("repos/%s/issues/%d/comments" % (REPO, n), "POST", {"body": "@codex review"})
+    # A distinct pass: reuse our last request only if it is still pending, or if it
+    # already finished on this head (a re-run to re-check); otherwise ask again.
+    requests = [c for c in issue_comments(n) if FINAL_TAG in c["body"]]
+    since = when(requests[-1]["created_at"]) if requests else None
+    state, sha, done_at = codex_summary(n)
+    pending = since and (done_at is None or done_at < since)
+    finished_here = since and done_at and done_at >= since and sha and head.startswith(sha)
+    if not (pending or finished_here):
+        settle = time.time() + 600
+        while state == "running" and time.time() < settle:  # let an earlier review finish first
+            time.sleep(30)
+            state, sha, done_at = codex_summary(n)
+        c = gh("repos/%s/issues/%d/comments" % (REPO, n), "POST",
+               {"body": "@codex review\n\n" + FINAL_TAG})
+        since = when(c["created_at"])
         print("requested final Codex review of %s" % head[:7])
-        time.sleep(30)
     deadline = time.time() + (wait or 600)
     while True:
-        state, reviewed = codex_status(n, head)
-        if state == "completed" and reviewed and head.startswith(reviewed):
+        state, sha, done_at = codex_summary(n)
+        if state == "completed" and done_at and done_at >= since and sha and head.startswith(sha):
             break
         if time.time() >= deadline:
             print("NOT READY:\n- final Codex review of %s not finished; rerun --final" % head[:7])
@@ -192,7 +221,7 @@ def final(n, args, wait):
         time.sleep(30)
 
     branch = gh("repos/%s/pulls/%d" % (REPO, n))["head"]["ref"]
-    blocking = final_triage(n, head, branch)
+    blocking = final_triage(n, head, branch, since)
     head, state, reviewed, problems, rounds = check(n)
     print("PR #%d at %s; final Codex pass done (--final)" % (n, head[:7]))
     for title, url in blocking:
