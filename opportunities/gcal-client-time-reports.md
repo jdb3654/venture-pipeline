@@ -25,7 +25,7 @@ Lenses: paid apps with complaints; workarounds (calendar export to spreadsheets)
 
 ## Scopes
 
-Time Reports Pro requests all Sheets files, full read/write on all calendars, and connection to an external service [fact: same listing]. A rival needs at least read-only calendar access plus a Sheets output, and an AI step sends event titles and attendee names to a model provider [assume]. DeepStrike lists Calendar data among restricted scopes, which would mean an annual CASA assessment ($540–1,800 Tier 2) [report: [DeepStrike, updated 2026-09-02](https://deepstrike.io/blog/google-casa-security-assessment-2025)]; Google's own classification not checked.
+Time Reports Pro requests all Sheets files, full read/write on all calendars, and connection to an external service [fact: same listing]. A rival needs at least read-only calendar access plus a Sheets output, and an AI step sends event titles and attendee names to a model provider [assume]. Google classifies reading Calendar events as a sensitive scope: brand verification, scope justification and a demo video, typically 3–5 business days, with no security assessment or fee mentioned [fact: [Google, updated 2026-08-19](https://developers.google.com/identity/protocols/oauth2/production-readiness/sensitive-scope-verification)]. No CASA unless the design adds a restricted scope such as Drive.
 
 ## Strongest reason it fails
 
@@ -39,26 +39,26 @@ The need is already met by a well-reviewed $12 app with a moat of 189 reviews, a
 |---|---|---|
 | Distribution | 3 | Marketplace search finds the category, but a 189-review, 5.0 incumbent sits on it [fact: listing]. |
 | Willingness to pay | 4 | Published $12/user/month for exactly this job [fact: listing]; reviews show use, not sales. |
-| Build effort | 3 | Calendar add-on, Sheets output and an AI classifier; OAuth verification and possibly CASA before public listing [report: DeepStrike]. |
+| Build effort | 3 | Calendar add-on, Sheets output and an AI classifier; sensitive-scope OAuth verification (3–5 business days) before public listing [fact: Google]. |
 | Operating load | 2 | Full calendar read access and third-party AI processing of attendee data; billing disputes are money-adjacent [assume]. |
 | Owner time | 4 | Self-serve; escalations only [assume]. |
-| Legal and compliance load | 3 | Personal data of meeting attendees; Google API user-data policy; CASA if restricted [report]. |
+| Legal and compliance load | 3 | Personal data of meeting attendees sent to an AI provider; Google API user-data policy [assume]. |
 | Sellability | 3 | Small recurring SaaS; buyable if it has customers [assume]. |
 | Window | 3 | Stable category; Google Calendar's own time insights could widen [assume]. |
-| Cost | 3 | $0 hosting at low volume, but CASA $540+/year if Calendar is restricted [report]. |
+| Cost | 4 | Near $0 at low volume; sensitive-scope verification has no fee mentioned [fact: Google]; AI calls a few cents per report [est]. |
 
 Disqualifiers checked: none. No regulated data unless a customer's events contain it [assume].
 
 ## Economics (estimates, not forecasts)
 
 - Price: $8/user/month to undercut the incumbent [est].
-- Running cost at launch: under $10/month plus CASA if required [est].
+- Running cost at launch: under $10/month [est].
 - MoR fee about 5% + $0.50 per sale [assume, per #59].
-- $1k/month owner cash: about 140 paying users before CASA [est].
+- $1k/month owner cash: about 140 paying users [est].
 
 ## Owner tasks that remain
 
-Approve a Google Cloud project and public listing; approve the MoR account (#59); approve any CASA spend.
+Approve a Google Cloud project and public listing; approve the MoR account (#59).
 
 ## Validation plan
 

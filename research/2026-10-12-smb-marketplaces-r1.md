@@ -1,12 +1,12 @@
 # SMB marketplaces, round 1: Google Workspace, QuickBooks Online, HubSpot
 
-Issue #65. Researched 2026-10-11 by Claude (file dated for the round). Budget about 60 lookups; used 55 (26 searches, 29 fetches; one fetch timed out, two returned empty pages). $0 spend. No accounts, outreach or publishing.
+Issue #65. Researched 2026-10-11 by Claude (file dated for the round). Budget about 60 lookups; used 58 (27 searches, 31 fetches; two fetches timed out, two returned empty pages). The last three verified a Codex review finding. $0 spend. No accounts, outreach or publishing.
 
 Labels: **[fact]** verified on the cited page, **[report]** first-hand or secondary report, **[vendor]** vendor claim, **[est]** estimate, **[assume]** assumption. Pages checked 2026-10-11 unless a date is given. Installs, ratings, reviews and votes are engagement, not sales.
 
 ## Bottom line
 
-**No candidate meets the "found" bar.** 14 candidates; none scores 4+ on both Distribution and Willingness to pay. Two near-misses go to Screen:
+**No candidate meets the "found" bar.** 13 candidates; none scores 4+ on both Distribution and Willingness to pay. Two near-misses go to Screen:
 
 | Rank | Candidate | Distribution | WTP | Lowest other | Falls short on |
 |---|---|---|---|---|---|
@@ -24,10 +24,10 @@ The pattern across all three marketplaces: where a published price exists, a wel
 | How apps are listed | Google Cloud project, OAuth configuration, Marketplace SDK, store listing (website and logo required), then a Marketplace team review for public apps. Public/private choice is permanent. Admin allowlists can block installs. No listing fee mentioned. | [fact: [Google, updated 2026-09-03](https://developers.google.com/workspace/marketplace/how-to-publish)] |
 | Who bills | We do. Google offers pricing labels only (Free, Paid with free trial, Paid with free features, Paid). Developers bill through Stripe or similar and gate features with their own licence check. | [fact: labels, [Google Developers Blog, 2021-10-13](https://developers.googleblog.com/app-pricing-update-details-and-editors-choice-now-available-on-google-workspace-marketplace/)]; [vendor: billing, [Mailmeteor, 2022-11-02](https://mailmeteor.com/blog/monetize-google-workspace-addon)]. Not confirmed on a Google page. |
 | Platform cut, payout | 0% to Google; payout is whatever our MoR pays. | [assume], follows from the row above |
-| Review / certification | OAuth verification for sensitive scopes. Restricted scopes (Gmail, Drive among others) need a CASA security assessment by an approved lab, renewed every 12 months: about $540–1,800 for Tier 2 (TAC Security), $4,500 for Tier 3 (needed for the security badge). 1–4 weeks of lab time; budget a couple of months. | [report: [DeepStrike, updated 2026-09-02](https://deepstrike.io/blog/google-casa-security-assessment-2025)]. DeepStrike also lists Calendar and Contacts as restricted; Google's own scope list wasn't checked this round. |
+| Review / certification | Sensitive scopes (Google's own example: reading Calendar events) need brand verification, a justification per scope and a demo video, typically 3–5 business days, no assessment or fee mentioned. Restricted scopes (Gmail, Drive among others) need a CASA security assessment by an approved lab, renewed every 12 months: about $540–1,800 for Tier 2 (TAC Security), $4,500 for Tier 3 (needed for the security badge). 1–4 weeks of lab time; budget a couple of months. | [fact: sensitive, [Google, updated 2026-08-19](https://developers.google.com/identity/protocols/oauth2/production-readiness/sensitive-scope-verification)]; [report: CASA, [DeepStrike, updated 2026-09-02](https://deepstrike.io/blog/google-casa-security-assessment-2025)]. DeepStrike's list of restricted data includes Calendar; Google's page contradicts it, so Calendar is treated as sensitive. |
 | Accounts (all approval-gated) | Google Cloud project under a business Google account; a public website for the listing; MoR (#59). CASA lab contract only if restricted scopes. | as above |
 
-**Cost and lead time:** $0 and a review of unstated length for non-sensitive scopes (for example `spreadsheets.currentonly`) [assume on classification]; plus $540+/year and weeks for Gmail or Drive data.
+**Cost and lead time:** $0 and a Marketplace review of unstated length for non-sensitive scopes (for example `spreadsheets.currentonly`) [assume on classification]; $0 and 3–5 business days more for sensitive scopes such as Calendar [fact]; plus $540+/year and weeks for restricted Gmail or Drive data [report].
 
 ### QuickBooks Online App Store
 
@@ -55,7 +55,7 @@ The pattern across all three marketplaces: where a published price exists, a wel
 
 ## Denominator
 
-14 candidates (5 Workspace, 4 QuickBooks, 4 HubSpot, 1 not pursued). 0 hit a hard disqualifier. 2 go to Screen as near-misses; 10 parked; 1 killed; 1 lens came up empty.
+13 candidates (5 Workspace, 4 QuickBooks, 4 HubSpot). 0 hit a hard disqualifier. 2 go to Screen as near-misses; 9 parked (one of them folded into the Sunset-replacement watch); 1 killed; 1 not pursued (its lens came up empty).
 
 Lenses per ecosystem: Workspace — retired apps (1, 2, 5), workarounds (4), AI (3), paid-app complaints (4). QuickBooks — long-open requests (6, 7, 9), workarounds (6), AI (8), paid-app complaints (9). HubSpot — long-open requests (11), workarounds (10), retired or breaking apps (13), paid-app complaints (12). Not used for HubSpot: AI.
 
