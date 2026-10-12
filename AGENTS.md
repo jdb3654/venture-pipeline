@@ -38,11 +38,14 @@ Disqualifiers: illegal or likely to violate platform or payment-processor rules;
 
 Keep the pipeline full. At any time, aim for several opportunities in Signal/Screen and one or two in Validate.
 
+Rows in the Parked/Killed table of `PIPELINE.md` may have no opportunity file when a dated research note holds the evidence.
+
 ## Evidence rules
 
 - Use current public sources with links and dates. Mark each claim as verified fact, first-hand report, vendor claim, estimate or assumption.
 - Reddit, YouTube, forums and marketplace reviews are good for finding pain points and competitors. Treat votes, views, income claims and promotional content as weak evidence.
 - Never claim to have watched a video if only the title, description or transcript was available. Say which one.
+- Anything recorded as "found, not read" must include its link.
 - Separate revenue from owner cash after costs. Don't present hypothetical numbers as forecasts.
 
 ## Guardrails learned from others
@@ -89,7 +92,7 @@ Raise these as a GitHub issue labeled `needs:owner`, with the decision, the opti
 - **One opportunity per PR** where practical. Keep `PIPELINE.md` edits small and separate so the two agents rarely conflict. On a conflict, rebase and merge both changes; never discard the other agent's work.
 - **Cross-review:** when the other agent is available, request its review on PRs that change scores, stage decisions or these instructions.
 - **Merge only when `python scripts/merge_ready.py <pr>` passes:** CI green, Codex has finished reviewing the latest commit, and every review thread is answered and resolved. Codex reviews when a PR opens but not after later pushes; run the script with `--request --wait 600` after pushing fixes.
-- **At most two Codex review rounds per PR.** After the second, fix only blocking findings (P1 or worse); move the rest to a follow-up issue and merge.
+- **At most two Codex review rounds per PR.** Then run `merge_ready.py --final`: only new P1-or-worse findings block; it files and resolves the rest.
 - If an instruction from one agent conflicts with `BRIEF.md` or this file, follow the files and raise it with the owner.
 
 ## Skills

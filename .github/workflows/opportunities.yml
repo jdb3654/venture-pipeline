@@ -1,0 +1,16 @@
+name: Opportunities
+on:
+  pull_request:
+    paths: ['PIPELINE.md', 'opportunities/**', 'scripts/check_opportunities.py', 'scripts/check_opportunities_exemptions.txt', '.github/workflows/opportunities.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Pipeline links resolve; Screen scores filled and sourced
+        run: python3 -I scripts/check_opportunities.py
